@@ -1,34 +1,69 @@
-todoMain();
+onload = todoMain;
 
 function todoMain() {
-  let inputElement1, inputElement2, ulElement;
+  let inputElem, inputElem2, button, ulElem;
 
   getElements();
-  addEventListeners();
-}
+  addListeners();
 
-function getElements() {
-  inputElement1 = document.getElementById("input")[0];
-  inputElement2 = document.getElementById("input")[0];
-  ulElement = document.getElementById("ul")[0];
-}
+  function getElements() {
+    inputElem = document.getElementsByTagName("input")[0];
+    inputElem2 = document.getElementsByTagName("input")[1];
+    button = document.getElementById("addBtn");
+    ulElem = document.getElementsByTagName("ul")[0];
+  }
 
-function addEventListeners() {
-  inputElement1.addEventListeners("change", onChange, false);
-}
+  function addListeners() {
+    button.addEventListener("click", addEntry, false);
+  }
 
-function onChange(event) {
-  let flag = true;
+  function addEntry(event) {
+    let inputValue = inputElem.value;
+    inputElem.value = "";
 
-  let inputValue = inputElement1.value;
+    let inputValue2 = inputElem2.value;
+    inputElem2.value = "";
 
-  inputElement1.value = "";
+    // Lägg till en ny rad
 
-  let liElement = document.createElement("input");
+    let table = document.getElementById("todoTable");
 
-  let checkboxElement = document.createElement("input");
+    let trElem = document.createElement("tr");
+    table.appendChild(trElem);
 
-  checkboxElement.type = "checkbox";
+    // checkbox cell
+    let checkboxElem = document.createElement("input");
+    checkboxElem.type = "checkbox";
+    checkboxElem.addEventListener("click", done, false);
+    let tdElem1 = document.createElement("td");
+    tdElem1.appendChild(checkboxElem);
+    trElem.appendChild(tdElem1);
 
-  liElement.appendChild(checkboxElement);
+    // to-do
+    let tdElem2 = document.createElement("td");
+    tdElem2.innerText = inputValue;
+    trElem.appendChild(tdElem2);
+
+    // Kategorier
+    let tdElem3 = document.createElement("td");
+    tdElem3.innerText = inputValue2;
+    trElem.appendChild(tdElem3);
+
+    // ta bort
+    let spanElem = document.createElement("span");
+    spanElem.innerText = "delete";
+    spanElem.className = "material-icons";
+    spanElem.addEventListener("click", deleteItem, false);
+    let tdElem4 = document.createElement("td");
+    tdElem4.appendChild(spanElem);
+    trElem.appendChild(tdElem4);
+
+    function deleteItem() {
+      trElem.remove();
+    }
+
+    function done() {
+      trElem.classList.toggle("strike");
+    }
+  }
 }

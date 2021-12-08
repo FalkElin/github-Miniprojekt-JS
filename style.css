@@ -3,3 +3,18 @@ html {
   margin: 0;
   height: 100%;
 }
+
+input:checked + span {
+  text-decoration: line-through;
+}
+td {
+  border: 1px solid grey;
+  padding: 5px;
+}
+input:checked + span {
+  text-decoration: line-through;
+}
+td {
+  border: 1px solid grey;
+  padding: 5px;
+}

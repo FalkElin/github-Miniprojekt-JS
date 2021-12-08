@@ -1,31 +1,103 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kalender</title>
-    <!-- font awesome -->
+    <!-- Material Icons -->
     <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <script
-      src="https://kit.fontawesome.com/1b637c40fc.js"
-      crossorigin="anonymous"
-    ></script>
     <!-- CSS -->
 
     <!-- Javascript -->
-    <script src="./JS/calender.js"></script>
-    <script src="./JS/thisweek.js"></script>
-    <script src="./JS/todos.js"></script>
-    <script src="./JS/main.js"></script>
-    <script src="./JS/mobile.js"></script>
+    <script defer src="./JS/calender.js"></script>
+    <script defer src="./JS/thisweek.js"></script>
+    <script defer src="./JS/todos.js"></script>
+    <script defer src="./JS/main.js"></script>
+    <script defer src="./JS/mobile.js"></script>
   </head>
   <body>
-    <input type="text" placeholder="Enter new to-do" />
-    <p><input type="text" placeholder="Enter a category" /></p>
-    <ul></ul>
+    <div class="input-form">
+      <form>
+        <input type="text" placeholder="Enter new to-do" />
+        <p>
+          <input
+            type="text"
+            placeholder="Choose a category"
+            list="categoryList"
+          />
+        </p>
+        <input type="datetime-local" name="" id="" />
+        <datalist id="categoryList">
+          <option value="Personligt"></option>
+          <option value="Jobb"></option>
+        </datalist>
+        <button id="addBtn">Add</button>
+      </form>
+    </div>
+    <table id="todoTable">
+      <tr>
+        <td>Färdigt?</td>
+        <td>To-do</td>
+        <td>Kategori</td>
+        <td>Ta bort</td>
+      </tr>
+    </table>
+
+    <div>
+      <h3 class="monthAndYear" id="monthAndYear"></h3>
+      <button id="previousMonthBtn">Föregående månad</button>
+      <button id="nextMonthBtn">Nästa månad</button>
+      <table>
+        <thead>
+          <tr>
+            <th>Mån</th>
+            <th>Tis</th>
+            <th>Ons</th>
+            <th>Tor</th>
+            <th>Fre</th>
+            <th>Lör</th>
+            <th>Sön</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+
+      <form action="">
+        <label for="month">Byt till:</label>
+        <select name="month" id="month">
+          <option value="0">Jan</option>
+          <option value="1">Feb</option>
+          <option value="2">Mar</option>
+          <option value="3">Apr</option>
+          <option value="4">Maj</option>
+          <option value="5">Jun</option>
+          <option value="6">Jul</option>
+          <option value="7">Aug</option>
+          <option value="8">Sep</option>
+          <option value="9">Okt</option>
+          <option value="10">Nov</option>
+          <option value="11">Dec</option>
+        </select>
+
+        <label for="year"></label>
+        <select name="year" id="year">
+          <option value="2015">2015</option>
+          <option value="2016">2016</option>
+          <option value="2017">2017</option>
+          <option value="2018">2018</option>
+          <option value="2019">2019</option>
+          <option value="2020">2020</option>
+          <option value="2021">2021</option>
+          <option value="2022">2022</option>
+          <option value="2023">2023</option>
+          <option value="2024">2024</option>
+          <option value="2025">2025</option>
+        </select>
+      </form>
+    </div>
   </body>
 </html>
