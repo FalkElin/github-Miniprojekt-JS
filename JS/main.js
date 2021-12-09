@@ -4,6 +4,7 @@ function main() {
   addEventListeners();
   startCalender();
   todo();
+  
 }
 
 function addEventListeners() {

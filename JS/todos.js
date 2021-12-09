@@ -1,6 +1,6 @@
-let todos = ['Plugga', 'Tvätta', 'Köpa julklappar'];
+let todos = [{title: 'Plugga', date: 2021-12-12, color: 'red'}, {title: 'Tvätta', date: 2021-12-14, color: 'blue'}, {title: 'Köpa julklappar', date: 2021-12-10, color: 'yellow'}];
 
-titel, date, color i arrayen;
+//titel, date, color i arrayen;
 //colorPicker.addEventListener('input', updateFirst, false);
 //colorPicker.addEventListener('change', watchColorPicker, false);
 
@@ -34,9 +34,15 @@ function updateFirst(event) {
 }
 
 function updateAll(event) {
-  document.querySelectorAll("input").forEach(function (input) {
+  document.querySelectorAll("input").forEach(function(input) {
     input.style.color = event.target.value;
   });
+}
+
+function getDate() {
+  let date = form.getElementById('#date').value;
+  form.getElementById('#addBtn').innerHTML = date;
+  console.log(date);
 }
 
 function addTodo(event) {
