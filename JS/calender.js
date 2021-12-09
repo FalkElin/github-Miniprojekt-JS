@@ -1,14 +1,18 @@
-function startCalender() {
-  createCalender();
+let calendarState = {
+  today: new Date(),
+  currentMonth: today.getMonth(),
+  currentYear: today.getFullYear(),
+  selectYear: null,
+  selectMonth: null,
+  month: null,
+  monthAndYear: null,
+};
+function startCalendar() {
+  calendarState.selectYear = document.getElementById("year");
+  calendarState.selectMonth = document.getElementById("month");
+  calendarState.monthAndYear = document.querySelector(".monthAndYear");
+  createCalendar();
 }
-
-let today = new Date();
-let currentMonth = today.getMonth();
-let currentYear = today.getFullYear();
-let selectYear = document.getElementById("year");
-let selectMonth = document.getElementById("month");
-let month;
-
 console.log(today);
 let allMonths = [
   "Jan",
@@ -25,9 +29,7 @@ let allMonths = [
   "Dec",
 ];
 
-let monthAndYear = document.querySelector(".monthAndYear");
-
-createCalender(currentMonth, currentYear);
+createCalendar(currentMonth, currentYear);
 
 // condition ? if true = expression1 : if false = expression2
 function next() {
@@ -39,7 +41,7 @@ function next() {
   }
 
   currentMonth = (currentMonth + 1) % 12;
-  createCalender(currentMonth, currentYear);
+  createCalendar(currentMonth, currentYear);
 }
 
 function previous() {
@@ -59,10 +61,10 @@ function previous() {
 function jump() {
   currentYear = parseInt(selectYear.value);
   currentMonth = parseInt(selectMonth.value);
-  createCalender(currentMonth, currentYear);
+  createCalendar(currentMonth, currentYear);
 }
 
-function createCalender(month, year) {
+function createCalendar(month, year) {
   console.log(year);
   /** Sätter första dagen på månaden.*/
   let firstDayOfMonth = new Date(year, month).getDay();
