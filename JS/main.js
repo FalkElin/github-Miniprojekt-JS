@@ -1,18 +1,18 @@
-window.addEventListener("load", main);
+// window.addEventListener("load", main);
 
-function main() {
-  addEventListeners();
-  startCalender();
-}
+// function main() {
+//   addEventListeners();
+//   startCalender();
+// }
 
-function addEventListeners() {
-  const previousMonthBtn = document.getElementById("previousMonthBtn");
-  const nextMonthButton = document.getElementById("nextMonthBtn");
+// function addEventListeners() {
+//   const previousMonthBtn = document.getElementById("previousMonthBtn");
+//   const nextMonthButton = document.getElementById("nextMonthBtn");
 
-  previousMonthBtn.addEventListener("click", previous);
-  nextMonthButton.addEventListener("click", next);
+  // previousMonthBtn.addEventListener("click", previous);
+  // nextMonthButton.addEventListener("click", next);
 
-  const changeInCalender = document.getElementById("month");
+  // const changeInCalender = document.getElementById("month");
 
-  changeInCalender.addEventListener("change", jump);
-}
+  // changeInCalender.addEventListener("change", jump);
+// }

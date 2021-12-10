@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="style.css" />
     <!-- Javascript -->
     <!-- <script defer src="./JS/calender.js"></script> -->
+    <script defer src="JS/newcalendar.js"></script>
     <script defer src="./JS/thisweek.js"></script>
     <script defer src="./JS/todos.js"></script>
     <script defer src="./JS/main.js"></script>
@@ -21,16 +22,22 @@
   </head>
   <body>
     <div class="welcome-segment">
-      <div class="Day-today">thursday</div>
+      <div class="Day-today"></div>
     </div>
     <div class="input-form"></div>
 
-    <div class="calendar-container flex">
+    <!-- ---------CALENDER--------- -->
+    <div class="calendar-container flex column">
 
-      <div id="" class="calendar-header flex">
-        <span class="arrow arrow-left">pil</span>
-        <h2 id="MonthAndYearText" class="month-year-text">Januari 2022</h2>
-        <span class="arrow arrow-right">pil</span>
+      <div id="" class="calendar-header flex a-c j-c">
+        <div class="header-items flex a-c">
+          <span class="arrow arrow-left">pil</span>
+          <div class="flex column j-c a-c">
+            <h2 id="calendarHeader" class="month-year-text">placeholder</h2>
+            <p class="today-text">placeholder</p>
+          </div>
+          <span class="arrow arrow-right">pil</span>
+        </div>
       </div>
 
       <div class="cells-container grid">
@@ -58,6 +65,7 @@
         <div class="calendar-cell date-cells flex"></div>
         <div class="calendar-cell date-cells flex"></div>
         <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex">hjälp</div>
         <div class="calendar-cell date-cells flex"></div>
         <div class="calendar-cell date-cells flex"></div>
         <div class="calendar-cell date-cells flex"></div>
@@ -71,8 +79,7 @@
         <div class="calendar-cell date-cells flex"></div>
         <div class="calendar-cell date-cells flex"></div>
         <div class="calendar-cell date-cells flex"></div>
-        <div class="calendar-cell date-cells flex"></div>
-        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex today"></div>
         <div class="calendar-cell date-cells flex"></div>
         <div class="calendar-cell date-cells flex"></div>
         <div class="calendar-cell date-cells flex"></div>
