@@ -1,10 +1,10 @@
 window.addEventListener("load", main);
 
 function main() {
-  addEventListeners();
-  startCalender();
-  todo();
-  
+getLocation();
+addEventListeners();
+startCalender();
+todo();  
 }
 
 function addEventListeners() {
