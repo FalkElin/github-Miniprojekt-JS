@@ -14,7 +14,7 @@ async function getCurrentWeather(position) {
   long = position.coords.longitude.toFixed(2);
 
   const response = await fetch(
-    `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=7&units=metric`
+    `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=&units=metric`
   );
 
   const data = await response.json();
