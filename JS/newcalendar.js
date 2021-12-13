@@ -12,10 +12,16 @@ let calendar = {
     cells: null,
     month: null,
     year: null,
+    today: null
 }
 calendar.month = calendar.date.getMonth();
-console.log(calendar.month);
+// console.log(calendar.month);
+console.log(calendar.date.getDay());
 calendar.year = calendar.date.getFullYear();
+calendar.today = calendar.date.getDay();
+
+
+
 
 const months = [
     "Januari",
@@ -33,24 +39,23 @@ const months = [
   ];
 
   const weekdays = [
+      'Sön',
       'Mån',
       'Tis',
       'Ons',
       'Tor',
       'Fre',
-      'Lör',
-      'Sön'
+      'Lör'
   ]
 
 renderCalendar();
-
 function renderCalendar() {
 
     /**-----Header---- */
+
     
 document.getElementById('calendarHeader').innerText = months[calendar.month];
-document.querySelector('.today-text').innerHTML 
-= calendar.date.toLocaleDateString('sv-SE');
+document.querySelector('.today-text').innerHTML = weekdays[calendar.today] + " " + calendar.year;
 
 
 /**------Calendar body------- */
@@ -63,19 +68,14 @@ let dateCells = document.querySelectorAll('div.date-cells');
 
 for (let i = 1; i <= 31; i++) {
     dateCells[i].innerHTML= i;
-
 }
 
-
-//     let days = '';
-//     // dateCells.innerHTML = 'datecells hittas en gång';
-//     console.log(dateCells);
-//     for (let i = 1; i <= 31; i++) {
-//         days += `<p>${i}</p>`;
-//         dateCells.innerHTML = days;
-//         console.log(dateCells);
-//     }
-// }
+i=1
+if (dateCells[i].innerHTML == calendar.today) {
+    dateCells[i].classList.add('today');
+}
+// för varje div ska få klassen som matchar dess nr? 
+// Loopa igenom alla datum. När datum matchar calendar.today sätt klassen .today 
 
 // för varje datecell skapa nytt P element
 // I varje P element ska siffran stiga med ett 
