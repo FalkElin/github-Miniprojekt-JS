@@ -1,9 +1,11 @@
 // window.addEventListener("load", main);
 
-// function main() {
-//   addEventListeners();
-//   startCalender();
-// }
+function main() {
+  getLocation();
+  addEventListeners();
+  startCalender();
+  todo();  
+}
 
 // function addEventListeners() {
 //   const previousMonthBtn = document.getElementById("previousMonthBtn");
