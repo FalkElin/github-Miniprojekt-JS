@@ -14,6 +14,7 @@ let calendar = {
     year: null,
 }
 calendar.month = calendar.date.getMonth();
+console.log(calendar.month);
 calendar.year = calendar.date.getFullYear();
 
 const months = [
@@ -50,17 +51,21 @@ function renderCalendar() {
 document.getElementById('calendarHeader').innerText = months[calendar.month];
 document.querySelector('.today-text').innerHTML 
 = calendar.date.toLocaleDateString('sv-SE');
+
+
+/**------Calendar body------- */
+
+/** Får antal dagar i månad x genom att subtrahera 32 till första dagen för att sedan subtrahera datumet man landar på. */
+// let lastDay = 32 - new Date(calendar.month, calendar.year).getDate();
+// console.log(fullMonthDays);
+
 let dateCells = document.querySelectorAll('div.date-cells');
-
-
-
 
 for (let i = 1; i <= 31; i++) {
     dateCells[i].innerHTML= i;
 
 }
 
-/**------Calendar body------- */
 
 //     let days = '';
 //     // dateCells.innerHTML = 'datecells hittas en gång';
@@ -75,4 +80,6 @@ for (let i = 1; i <= 31; i++) {
 // för varje datecell skapa nytt P element
 // I varje P element ska siffran stiga med ett 
 //
+/** Får antal dagar i månad x genom att addera 32 till första dagen för att sedan subtrahera datumet man landar på. */
+  // let fullMonthDays = 32 - new Date(year, month, 32).getDate();
 }
