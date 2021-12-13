@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kalender</title>
-    <!-- Material Icons -->
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
+    <!-- Font awesome -->
+    <script src="https://kit.fontawesome.com/29ee0bc57e.js" crossorigin="anonymous">
+    </script>
     <!-- CSS -->
     <link rel="stylesheet" href="style.css" />
     <!-- Javascript -->
+    <!-- <script defer src="./JS/calender.js"></script> -->
+    <script defer src="JS/newcalendar.js"></script>
     <script defer src="./JS/thisweek.js"></script>
     <script defer src="./JS/todos.js"></script>
     <script defer src="./JS/main.js"></script>
@@ -35,17 +35,88 @@
         </div>
       </div>
     </div>
+    <div class="input-form"></div>
+
+    <!-- ---------CALENDER--------- -->
+    <div class="calendar-container flex column">
+
+      <div id="" class="calendar-header flex a-c j-c">
+        <div class="header-items flex a-c">
+          <span class="arrow arrow-left">pil</span>
+          <div class="flex column j-c a-c">
+            <h2 id="calendarHeader" class="month-year-text">placeholder</h2>
+            <p class="today-text">placeholder</p>
+          </div>
+          <span class="arrow arrow-right">pil</span>
+        </div>
+      </div>
+
+      <div class="cells-container grid">
+
+        <div class="calendar-cell flex weekdays">Måndag</div>
+        <div class="calendar-cell flex weekdays">Tisdag</div>
+        <div class="calendar-cell flex weekdays">Onsdag</div>
+        <div class="calendar-cell flex weekdays">Torsdag</div>
+        <div class="calendar-cell flex weekdays">Fredag</div>
+        <div class="calendar-cell flex weekdays">Lördag</div>
+        <div class="calendar-cell flex weekdays">Söndag</div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex">hjälp</div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex today"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+    </div>
+
+    </div>
+      
+      
+    </div>
     <div class="input-form">
-      <form>
-        <h2>TO-DO</h2>
-        <input type="text" placeholder="..." name="title">
-        <label for="date">Välj en tid</label>
+      <h3 class="todo-header">To Do List</h3>
+        <input type="text" id="myInput" placeholder="Things to be done..." />
         <input type="datetime-local" name="date" id="date">
-        <label for="color">Välj färg</label>
-        <input type="color" value="#ff0000" id="color" name="color">
-        <button id="addBtn">Lägg till</button>
-      </form>
-      <ul>
+        <input type="color" name="color" id="color">
+        <span class="addBtn" id="add_button">Add</span>
+      </header>
+      <ul id="myUL">
+        
       </ul>
     </div>
     <div class="calendar"></div>
