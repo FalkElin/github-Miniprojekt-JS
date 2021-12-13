@@ -8,11 +8,13 @@
     <!-- Material Icons -->
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
+      rel="stylesheet"/>
+      <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <!-- CSS -->
     <link rel="stylesheet" href="style.css" />
     <!-- Javascript -->
+    <!-- <script defer src="./JS/calender.js"></script> -->
+    <script defer src="JS/newcalendar.js"></script>
     <script defer src="./JS/thisweek.js"></script>
     <script defer src="./JS/todos.js"></script>
     <script defer src="./JS/main.js"></script>
@@ -20,6 +22,78 @@
   </head>
   <body>
     <div class="welcome-segment">
+      <div class="Day-today"></div>
+    </div>
+    <div class="input-form"></div>
+
+    <!-- ---------CALENDER--------- -->
+    <div class="calendar-container flex column">
+
+      <div id="" class="calendar-header flex a-c j-c">
+        <div class="header-items flex a-c">
+          <span class="arrow arrow-left">pil</span>
+          <div class="flex column j-c a-c">
+            <h2 id="calendarHeader" class="month-year-text">placeholder</h2>
+            <p class="today-text">placeholder</p>
+          </div>
+          <span class="arrow arrow-right">pil</span>
+        </div>
+      </div>
+
+      <div class="cells-container grid">
+
+        <div class="calendar-cell flex weekdays">Måndag</div>
+        <div class="calendar-cell flex weekdays">Tisdag</div>
+        <div class="calendar-cell flex weekdays">Onsdag</div>
+        <div class="calendar-cell flex weekdays">Torsdag</div>
+        <div class="calendar-cell flex weekdays">Fredag</div>
+        <div class="calendar-cell flex weekdays">Lördag</div>
+        <div class="calendar-cell flex weekdays">Söndag</div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex">hjälp</div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex today"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+    </div>
+
+    </div>
       <img class="winter" src="/pictures/swedish-lapland-winter.jpeg" alt="" />
       <div class="weather-data">
         <div class="location">

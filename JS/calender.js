@@ -28,6 +28,7 @@ let allMonths = [
   "Nov",
   "Dec",
 ];
+let calendarCells = [];
 
 createCalendar(currentMonth, currentYear);
 
