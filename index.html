@@ -5,11 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kalender</title>
-    <!-- Material Icons -->
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"/>
-      <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Font awesome -->
+    <script src="https://kit.fontawesome.com/29ee0bc57e.js" crossorigin="anonymous">
+    </script>
     <!-- CSS -->
     <link rel="stylesheet" href="style.css" />
     <!-- Javascript -->
@@ -111,16 +109,14 @@
       
     </div>
     <div class="input-form">
-      <form>
-        <h2>TO-DO</h2>
-        <input type="text" placeholder="..." name="title">
-        <label for="date">Välj en tid</label>
+      <h3 class="todo-header">To Do List</h3>
+        <input type="text" id="myInput" placeholder="Things to be done..." />
         <input type="datetime-local" name="date" id="date">
-        <label for="color">Välj färg</label>
-        <input type="color" value="#ff0000" id="color" name="color">
-        <button id="addBtn">Lägg till</button>
-      </form>
-      <ul>
+        <input type="color" name="color" id="color">
+        <span class="addBtn" id="add_button">Add</span>
+      </header>
+      <ul id="myUL">
+        
       </ul>
     </div>
     <div class="calendar"></div>
