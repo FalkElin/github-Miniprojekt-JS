@@ -1,22 +1,6 @@
 window.addEventListener('load', main);
 
-const todos = [
-  {
-    title: 'Tvättstugan', 
-    date: '2021-12-16',
-    color: '#03aa'
-  },
-  {
-    title: 'Köpa julklappar',
-    date: '2021-12-17',
-    color: '#333'
-  },
-  {
-    title: 'Baka lussebullar',
-    date: '2021-12-21',
-    color: '#feee'
-  }
-];
+const todos = ['Köpa julklappar', 'Handla', 'Träna'];
 
 const todosForDay = todos.filter((todo) => true);
 
@@ -27,16 +11,23 @@ function main() {
 
 function addEventListeners() {
   document.getElementById('todo-form').addEventListener('submit', addTodo);
+  const newTodo = document.querySelector('title');
+  const newDate = document.querySelector('date');
 }
-
+// Listan funkar utan datum
 function addTodo(event) {
   event.preventDefault();
-  const formData = new FormData(event.target);
-  const todo = Object.fromEntries(formData);
-    todos.push(todo);
-    //input.value = "";
-  console.log(todos);
-    renderTodos();
+  //const formData = new FormData(event.target);
+  //const todo = Object.fromEntries(formData);
+    //const myArray = Object.values(todos);
+    //document.getElementById('todo-form').innerHTML = Object.values(todos);
+    const form = event.target;
+    const input = form.querySelector('input');
+    if (input.value) {
+      todos.push(input.value);
+      input.value = "";
+      renderTodos();
+    }
 }
 
 function renderTodos() {
