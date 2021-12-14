@@ -9,7 +9,8 @@
     <script src="https://kit.fontawesome.com/29ee0bc57e.js" crossorigin="anonymous">
     </script>
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/todo.css">
     <!-- Javascript -->
     <!-- <script defer src="./JS/calender.js"></script> -->
     <script defer src="JS/newcalendar.js"></script>
@@ -108,17 +109,19 @@
       
       
     </div>
-    <div class="input-form">
-      <h3 class="todo-header">To Do List</h3>
-        <input type="text" id="myInput" placeholder="Things to be done..." />
+    <aside>
+      <form id="todo-form">
+        <label for="title"></label>
+        <input type="text" name="title" id="title">
+        <label for="date"></label>
         <input type="datetime-local" name="date" id="date">
+        <label for="color"></label>
         <input type="color" name="color" id="color">
-        <span class="addBtn" id="add_button">Add</span>
-      </header>
-      <ul id="myUL">
-        
-      </ul>
-    </div>
+        <button>Lägg till</button>
+        <ul>
+        </ul>
+      </form>
+    </aside>
     <div class="calendar"></div>
   </body>
 </html>
