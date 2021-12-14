@@ -1,5 +1,78 @@
-const todoObjectList = [];
+window.addEventListener('load', main);
 
+const todos = [
+  {
+    title: 'Tvättstugan', 
+    date: '2021-12-16',
+    color: '#03aa'
+  },
+  {
+    title: 'Köpa julklappar',
+    date: '2021-12-17',
+    color: '#333'
+  },
+  {
+    title: 'Baka lussebullar',
+    date: '2021-12-21',
+    color: '#feee'
+  }
+];
+
+const todosForDay = todos.filter((todo) => true);
+
+function main() {
+  addEventListeners();
+  renderTodos();
+}
+
+function addEventListeners() {
+  document.getElementById('todo-form').addEventListener('submit', addTodo);
+}
+
+function addTodo(event) {
+  event.preventDefault();
+  const formData = new FormData(event.target);
+  const todo = Object.fromEntries(formData);
+    todos.push(todo);
+    //input.value = "";
+  console.log(todos);
+    renderTodos();
+}
+
+function renderTodos() {
+  const ul = document.querySelector('ul');
+  // Remove previous content
+  ul.innerHTML = "";
+  // Re-add todos to ul
+  for (const todo of todos) {
+    const li = createTodoElement(todo);
+    ul.appendChild(li);
+  }
+}
+
+function createTodoElement(todo) {
+  const li = document.createElement('li');
+  li.innerHTML = todo;
+  li.id = todo;
+  li.addEventListener('click', removeTodo);
+  return li;
+}
+
+function removeTodo(event) {
+  const todoToDelete = event.target.id;
+
+  const updatedTodoList = [];
+  for (const todo of todos) {
+    if (todo !== todoToDelete) {
+      updatedTodoList.push(todo);
+    }
+  }
+  todos = updatedTodoList;
+  renderTodos();
+}
+/* 
+const todoObjectList = [];
+let idIndex = 0;
 
 class Todo_Class {
     constructor(item){
@@ -12,8 +85,9 @@ class Todo_Class {
             alert("You did not enter any todo") 
         } else {
             const todoObject = {
-                id : todoObjectList.length,
+                id : idIndex++,
                 todoText : todoInput,
+                
                 isDone : false,
             }
 
@@ -93,3 +167,4 @@ document.querySelector("#myInput").addEventListener("keydown", function(e) {
         myTodoList.add()
     }
 })
+ */

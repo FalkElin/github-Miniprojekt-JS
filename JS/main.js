@@ -4,7 +4,6 @@ function main() {
   getLocation();
   addEventListeners();
   startCalender();
-  todo();  
 }
 
 // function addEventListeners() {
