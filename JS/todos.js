@@ -1,6 +1,6 @@
 window.addEventListener('load', main);
 
-let todos = ['Köpa julklappar', 'Handla', 'Träna'];
+let todos = [];
 
 const todosForDay = todos.filter((todo) => true);
 
@@ -24,8 +24,9 @@ function addTodo(event) {
     if (input.value) {
       todos.push(input.value);
       input.value = "";
-      renderTodos();
+      console.log(todos);
     }
+    renderTodos();
 }
 
 function renderTodos() {
@@ -37,6 +38,7 @@ function renderTodos() {
     const li = createTodoElement(todo);
     ul.appendChild(li);
   }
+
 }
 
 function createTodoElement(todo) {
@@ -58,4 +60,16 @@ function removeTodo(event) {
   }
   todos = updatedTodoList;
   renderTodos();
+}
+
+function changeTodo() {
+const input = document.querySelector('input');
+const log = document.getElementById('log');
+
+input.addEventListener('change', updateValue);
+
+function updateValue(e) {
+  log.textContent = e.target.value;
+}
+
 }
