@@ -29,9 +29,10 @@ async function getCurrentWeather(position) {
   const data = await response.json();
   const temperature = data.main.temp;
   const sky = data.weather[0].main;
-
+  const city = data.name;
   console.log(data);
 
+  printCityName(city);
   printWeatherMessage(temperature);
   printWeatherIcon(sky);
 }
@@ -79,4 +80,8 @@ function getCurrentTime() {
   let today = new Date();
   let time = today.getHours() + ":" + today.getMinutes();
   document.querySelector(".location-timezone").innerHTML = time;
+}
+
+function printCityName(city) {
+  document.querySelector(".city").innerHTML = city;
 }
