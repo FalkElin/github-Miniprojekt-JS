@@ -1,6 +1,6 @@
 window.addEventListener('load', main);
 
-const todos = ['Köpa julklappar', 'Handla', 'Träna'];
+let todos = ['Köpa julklappar', 'Handla', 'Träna'];
 
 const todosForDay = todos.filter((todo) => true);
 
@@ -11,8 +11,6 @@ function main() {
 
 function addEventListeners() {
   document.getElementById('todo-form').addEventListener('submit', addTodo);
-  const newTodo = document.querySelector('title');
-  const newDate = document.querySelector('date');
 }
 
 function addTodo(event) {
