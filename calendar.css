@@ -1,0 +1,43 @@
+.calendar-container {
+    margin: auto;
+    min-width: calc(var(--min-width) * 7);
+    width: 80%;
+    height: 100%;
+  }
+  .hide-degree {
+    visibility: hidden;
+  }
+  .cells-container {
+    background-color: #1d1d1d;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: 1fr repeat(6, 2fr);
+    width: 100%;
+    height: 100%;
+  }
+  .calendar-cell {
+    color: white;
+    justify-content: center;
+    align-items: center;
+    min-width: var(--min-width);
+    
+  }
+  .calendar-header {
+    height: 10rem;
+    width: 100%;
+    min-width: var(--min-width);
+    background-color: lightgreen;
+  }
+  .header-items {
+    width: 50%;
+    border: 1px solid red;
+    justify-content: space-evenly;
+  }
+  .month-year-text {
+    font-size: 2rem;
+  }
+  .today {
+    background-color: lightgreen;
+  }
+  .other-month {
+    color: grey;
+  }
