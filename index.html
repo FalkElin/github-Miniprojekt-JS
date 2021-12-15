@@ -15,7 +15,8 @@
       rel="stylesheet"
     />
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/todo.css">
     <!-- Javascript -->
     <!-- <script defer src="./JS/calender.js"></script> -->
     <script defer src="JS/newcalendar.js"></script>
@@ -28,9 +29,20 @@
     <div class="welcome-segment">
       <div class="weather-data">
         <div class="location">
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+          <h1 class="location-timezone">12.54</h1>
+          <p>icon</p>
+=======
           <h1 id="city" class="city"></h1>
           <h2 class="weekday"></h2>
           <h3 class="location-timezone"></h3>
+>>>>>>> Stashed changes
+=======
+          <h1 id="city" class="city"></h1>
+          <h2 class="weekday"></h2>
+          <h3 class="location-timezone"></h3>
+>>>>>>> ad8c750f63153f35021a28c2d3ea321f96f3b927
         </div>
         <div class="temperature hide-degree">
           <div class="degree">
@@ -150,15 +162,24 @@
       </div>
     </div>
 
-    <div class="input-form">
-      <h3 class="todo-header">To Do List</h3>
-      <input type="text" id="myInput" placeholder="Things to be done..." />
-      <input type="datetime-local" name="date" id="date" />
-      <input type="color" name="color" id="color" />
-      <span class="addBtn" id="add_button">Add</span>
-
-      <ul id="myUL"></ul>
     </div>
+      
+      
+    </div>
+    <aside>
+      <form id="todo-form">
+        <h3>To do</h3>
+        <label for="title"></label>
+        <input type="text" name="title" id="title" placeholder="Vad behöver du göra?">
+        <label for="date"></label>
+        <input type="datetime-local" name="date" id="date">
+        <label for="color"></label>
+        <input type="color" name="color" id="color">
+        <button class="addBtn">Lägg till</button>
+        <ul id="log">
+        </ul>
+      </form>
+    </aside>
     <div class="calendar"></div>
   </body>
 </html>

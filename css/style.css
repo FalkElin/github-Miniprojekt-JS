@@ -2,6 +2,7 @@ body,
 html {
   margin: 0;
   height: 100%;
+ 
 }
 body {
   box-sizing: border-box;
@@ -17,56 +18,53 @@ body {
   min-width: calc(var(--min-width) * 7);
   width: 80%;
   height: 100%;
+ 
+  
+  
 }
-.hide-degree {
-  visibility: hidden;
-}
+
 .cells-container {
   background-color: #1d1d1d;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: 1fr repeat(6, 2fr);
   width: 100%;
   height: 100%;
+  
+  
 }
 .calendar-cell {
   color: white;
   justify-content: center;
   align-items: center;
   min-width: var(--min-width);
+  
 }
 .calendar-header {
-  height: 10rem;
-  width: 100%;
-  min-width: var(--min-width);
-  background-color: lightgreen;
+    height: 10rem;
+    width: 100%;
+    min-width: var(--min-width);
+    background-color: lightgreen;
+    
 }
 .header-items {
   width: 50%;
   border: 1px solid red;
   justify-content: space-evenly;
+  
 }
 .month-year-text {
   font-size: 2rem;
+  
 }
 .today {
   background-color: lightgreen;
 }
 
-.flex {
-  display: flex;
-}
-.column {
-  flex-direction: column;
-}
-.j-c {
-  justify-content: center;
-}
-.a-c {
-  align-items: center;
-}
-.grid {
-  display: grid;
-}
+.flex {display: flex;}
+.column {flex-direction: column;}
+.j-c {justify-content: center;}
+.a-c {align-items: center;}
+.grid {display: grid;}
 /* STYLES FOR WELCOME SEGMENT BELOW */
 .welcome-segment {
   top: 0;
@@ -78,13 +76,21 @@ body {
   height: 23rem;
 }
 
+.winter {
+  object-fit: cover;
+  object-position: center;
+}
+
 .weather-data {
   position: relative;
   background-color: rgba(0, 0, 0, 0.39);
   display: flex;
-  min-width: 12rem;
   justify-content: center;
   flex-direction: column;
+<<<<<<< Updated upstream
+  padding: 0 4rem;
+  margin-left: 10rem;
+=======
   padding: 2rem 4rem;
 }
 
@@ -93,27 +99,26 @@ body {
 }
 .welcome-segment h1 {
   margin: 0;
+>>>>>>> Stashed changes
 }
 .location {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  position: relative;
 }
 
+<<<<<<< Updated upstream
+.location h1,
+.location p {
+  margin: 0.5rem;
+  color: whitesmoke;
+}
+
+=======
+>>>>>>> Stashed changes
 .temperature {
   display: flex;
   flex-direction: column;
-}
-
-.weather-icon {
-  height: 2.5rem;
-  margin-left: 1rem;
-}
-
-.hide-icon {
-  display: none;
 }
 
 .degree {
@@ -121,13 +126,18 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  position: relative;
 }
 
-.celsius {
-  font-size: 1.2rem;
+.degree span {
+  font-size: 1.5rem;
 }
 
+<<<<<<< Updated upstream
+.temperature h2,
+.temperature div {
+  margin: 0.5rem;
+  color: whitesmoke;
+=======
 /* Style the header */
 .todo-header {
   background: #4ca1af; /* fallback for old browsers */
@@ -241,4 +251,5 @@ ul li.checked::before {
 .far:hover {
   background-color: tomato;
   color: white;
+>>>>>>> Stashed changes
 }
