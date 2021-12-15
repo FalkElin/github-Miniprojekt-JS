@@ -1,7 +1,6 @@
 window.addEventListener('load', mainTodo);
 
 let todos = [];
-
 const todosForDay = todos.filter((todo) => true);
 
 function mainTodo() {
@@ -89,4 +88,3 @@ ul.addEventListener('click', (event) => {
     }
   }
 });
-
