@@ -1,5 +1,6 @@
 window.addEventListener('load', mainTodo);
 
+
 let todos = [];
 const todosForDay = todos.filter((todo) => true);
 
@@ -19,9 +20,6 @@ function createLi() {
   const span = document.createElement('span');
   span.textContent = input.value;
   const label = document.createElement('label');
-  //label.textContent = 'submit';
-  //const checkbox = document.createElement('input');
-  //checkbox.type = 'checkbox';
   const editBtn = document.createElement('button');
   editBtn.textContent = 'edit';
   const removeBtn = document.createElement('button');
@@ -34,8 +32,6 @@ function createLi() {
 
   return li;
 }
-
-
 
 function renderTodos() {
   const ul = document.querySelector('ul');
