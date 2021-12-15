@@ -5,9 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kalender</title>
-    <!-- Font awesome -->
-    <script src="https://kit.fontawesome.com/29ee0bc57e.js" crossorigin="anonymous">
-    </script>
+    <!-- Fonts & icons -->
+    <script
+      src="https://kit.fontawesome.com/29ee0bc57e.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <!-- CSS -->
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/todo.css">
@@ -21,16 +27,53 @@
   </head>
   <body>
     <div class="welcome-segment">
-      <img class="winter" src="/pictures/swedish-lapland-winter.jpeg" alt="" />
       <div class="weather-data">
         <div class="location">
-          <h1 class="location-timezone">12.54</h1>
-          <p>icon</p>
+          <h1 id="city" class="city"></h1>
+          <h2 class="weekday"></h2>
+          <h3 class="location-timezone"></h3>
         </div>
-        <div class="temperature">
+        <div class="temperature hide-degree">
           <div class="degree">
             <h2 class="temperature-degree"></h2>
-            <span class="celius-or-farenheight">°</span>
+            <span class="celsius">c</span>
+            <i>
+              <img
+                class="weather-icon cloud hide-icon"
+                src="/pictures/cloudy.png"
+                alt=""
+              />
+              <img
+                class="weather-icon snow hide-icon"
+                src="/pictures/winter.png"
+                alt=""
+              />
+              <img
+                class="weather-icon sun hide-icon"
+                src="/pictures/sunny.png"
+                alt=""
+              />
+              <img
+                class="weather-icon wind hide-icon"
+                src="/pictures/windy.png"
+                alt=""
+              />
+              <img
+                class="weather-icon rain hide-icon"
+                src="/pictures/rain.png"
+                alt=""
+              />
+              <img
+                class="weather-icon thunder hide-icon"
+                src="/pictures/thunder.png"
+                alt=""
+              />
+              <img
+                class="weather-icon drizzle hide-icon"
+                src="/pictures/drizzle.png"
+                alt=""
+              />
+            </i>
           </div>
           <div class="temperature-description"></div>
         </div>
@@ -40,20 +83,22 @@
 
     <!-- ---------CALENDER--------- -->
     <div class="calendar-container flex column">
-
-      <div id="" class="calendar-header flex a-c j-c">
+      <div class="calendar-header flex a-c j-c">
         <div class="header-items flex a-c">
-          <span class="arrow arrow-left">pil</span>
+          <span class="material-icons arrows" id="arrow-back">
+            arrow_back_ios</span
+          >
           <div class="flex column j-c a-c">
             <h2 id="calendarHeader" class="month-year-text">placeholder</h2>
             <p class="today-text">placeholder</p>
           </div>
-          <span class="arrow arrow-right">pil</span>
+          <span class="material-icons arrows" id="arrow-forward"
+            >arrow_forward_ios</span
+          >
         </div>
       </div>
 
       <div class="cells-container grid">
-
         <div class="calendar-cell flex weekdays">Måndag</div>
         <div class="calendar-cell flex weekdays">Tisdag</div>
         <div class="calendar-cell flex weekdays">Onsdag</div>
@@ -91,7 +136,6 @@
         <div class="calendar-cell date-cells flex"></div>
         <div class="calendar-cell date-cells flex"></div>
         <div class="calendar-cell date-cells flex"></div>
-        <div class="calendar-cell date-cells flex today"></div>
         <div class="calendar-cell date-cells flex"></div>
         <div class="calendar-cell date-cells flex"></div>
         <div class="calendar-cell date-cells flex"></div>
@@ -103,6 +147,8 @@
         <div class="calendar-cell date-cells flex"></div>
         <div class="calendar-cell date-cells flex"></div>
         <div class="calendar-cell date-cells flex"></div>
+        <div class="calendar-cell date-cells flex"></div>
+      </div>
     </div>
 
     </div>
