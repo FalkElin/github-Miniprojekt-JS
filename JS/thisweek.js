@@ -7,7 +7,8 @@ function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(getCurrentWeather);
   } else {
-    x.innerHTML = "Geolocation is not supported by this browser.";
+    document.getElementById("city").innerHTML =
+      "Geolocation is not supported by this browser.";
   }
 }
 
