@@ -82,20 +82,15 @@ body {
   overflow: hidden;
 }
 
-.winter {
-  object-fit: cover;
-  object-position: center;
-}
-
 .weather-data {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.39);
   height: inherit;
   display: flex;
+  min-width: 12rem;
   justify-content: center;
   flex-direction: column;
   padding: 0 4rem;
-  margin-left: 10rem;
 }
 .location {
   display: flex;
@@ -118,9 +113,8 @@ body {
 }
 
 .weather-icon {
-  height: 2.3rem;
-  padding: 0;
-  margin: 0 auto;
+  height: 2.5rem;
+  margin-left: 1rem;
 }
 
 .hide-icon {
@@ -136,11 +130,10 @@ body {
   position: relative;
 }
 
-.degree span {
-  font-size: 1.5rem;
+.celsius {
+  font-size: 1.2rem;
 }
 
-.temperature h2,
 .temperature div {
   margin: 0.5rem;
   color: whitesmoke;

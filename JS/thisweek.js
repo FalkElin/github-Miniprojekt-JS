@@ -8,7 +8,7 @@ function getLocation() {
     navigator.geolocation.getCurrentPosition(getCurrentWeather);
   } else {
     document.getElementById("city").innerHTML =
-      "Geolocation is not supported by this browser.";
+      "Geolokalisering stöds inte av den här webbläsaren.";
   }
 }
 
@@ -38,17 +38,26 @@ async function getCurrentWeather(position) {
   printWeatherIcon(sky);
 }
 
-function printWeatherMessage(temperature) {
+/**
+ * prints different message depending on current temperature and weather
+ * @param {*} temperature
+ * @param {*} sky
+ */
+function printWeatherMessage(temperature, sky) {
   document.querySelector(".temperature-degree").innerHTML =
-    Math.floor(temperature);
+    Math.floor(temperature) + "°";
 
-  if (temperature < 10) {
+  if (temperature < 5) {
     document.querySelector(".temperature-description").innerHTML =
-      "Stay inside, it's cold today";
+      "Stanna inne! Det är kallt ute idag";
   }
-  if (temperature > 10) {
+  if (temperature > 5 || !sky === "Rain, Snow, Thunderstorm, Drizzle") {
     document.querySelector(".temperature-description").innerHTML =
-      "It's good weather";
+      "Det är plusgrader och uppehåll";
+  }
+  if (sky === "Clear") {
+    document.querySelector(".temperature-description").innerHTML =
+      "Solen skiner och himlen är blå!";
   }
 }
 
@@ -58,6 +67,8 @@ function printWeatherIcon(sky) {
   snow = document.querySelector(".snow");
   wind = document.querySelector(".wind");
   rain = document.querySelector(".rain");
+  thunder = document.querySelector(".thunder");
+  drizzle = document.querySelector(".drizzle");
 
   switch (sky) {
     case "Clouds":
@@ -74,13 +85,36 @@ function printWeatherIcon(sky) {
     case "Snow":
       rain.classList.remove("hide-icon");
       break;
+
+    case "Thunderstorm":
+      thunder.classList.remove("hide-icon");
+      break;
+
+    case "Drizzle":
+      drizzle.classList.remove("hide-icon");
+      break;
   }
 }
+function startClock() {
+  renderClock();
+  setInterval(renderClock, 6000);
+}
 
-function getCurrentTime() {
+function renderClock() {
   let today = new Date();
-  let time = today.getHours() + ":" + today.getMinutes();
-  document.querySelector(".location-timezone").innerHTML = time;
+
+  const timeElement = document.querySelector(".location-timezone");
+  timeElement.innerText = getCurrentTime(today);
+}
+
+function getCurrentTime(today) {
+  let hours = today.getHours();
+  let minutes = today.getMinutes();
+
+  if (hours < 10) hours = "0" + hours;
+  if (minutes < 10) minutes = "0" + minutes;
+
+  return hours + ":" + minutes;
 }
 
 function printCityName(city) {
