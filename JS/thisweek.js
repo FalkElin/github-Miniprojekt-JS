@@ -31,7 +31,6 @@ async function getCurrentWeather(position) {
   const temperature = data.main.temp;
   const sky = data.weather[0].main;
   const city = data.name;
-  console.log(data);
 
   printCityName(city);
   printWeatherMessage(temperature);
@@ -105,6 +104,10 @@ function renderClock() {
 
   const timeElement = document.querySelector(".location-timezone");
   timeElement.innerText = getCurrentTime(today);
+
+  const weekdayElement = document.querySelector(".weekday");
+  weekdayElement.innerText =
+    getCurrentWeekday(today) + " " + getDateInNumbers(today);
 }
 
 function getCurrentTime(today) {
@@ -115,6 +118,34 @@ function getCurrentTime(today) {
   if (minutes < 10) minutes = "0" + minutes;
 
   return hours + ":" + minutes;
+}
+
+function getCurrentWeekday(today) {
+  const weekday = today.getDay();
+
+  switch (weekday) {
+    case 0:
+      return "Söndag";
+    case 1:
+      return "Måndag";
+    case 2:
+      return "Tisdag";
+    case 3:
+      return "Onsdag";
+    case 4:
+      return "Torsdag";
+    case 5:
+      return "Fredag";
+    case 6:
+      return "Lördag";
+  }
+}
+
+function getDateInNumbers(today) {
+  day = today.getDate();
+  month = today.getMonth() + 1;
+
+  return day + "/" + month;
 }
 
 function printCityName(city) {
