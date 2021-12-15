@@ -17,18 +17,15 @@ function getLocation() {
  * @param {position} position
  */
 async function getCurrentWeather(position) {
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
+
   // gets lon and lat position which is read in api call and shows degree icon
   const degree = document.querySelector(".temperature");
   degree.classList.remove("hide-degree");
->>>>>>> Stashed changes
-=======
+
   // gets lon and lat position which is read in api call and shows degree icon
   const degree = document.querySelector(".temperature");
   degree.classList.remove("hide-degree");
->>>>>>> ad8c750f63153f35021a28c2d3ea321f96f3b927
+
   lat = position.coords.latitude.toFixed(2);
   long = position.coords.longitude.toFixed(2);
 
@@ -38,18 +35,14 @@ async function getCurrentWeather(position) {
   );
   const data = await response.json();
   const temperature = data.main.temp;
-<<<<<<< HEAD
-<<<<<<< Updated upstream
 
-=======
   const sky = data.weather[0].main;
   const city = data.name;
 
-=======
   const sky = data.weather[0].main;
   const city = data.name;
 
->>>>>>> ad8c750f63153f35021a28c2d3ea321f96f3b927
+
   //starts functions when api is succesfully returned
   printCityName(city);
   printWeatherMessage(temperature);
@@ -62,10 +55,6 @@ async function getCurrentWeather(position) {
  * @param {*} sky
  */
 function printWeatherMessage(temperature, sky) {
-<<<<<<< HEAD
->>>>>>> Stashed changes
-=======
->>>>>>> ad8c750f63153f35021a28c2d3ea321f96f3b927
   document.querySelector(".temperature-degree").innerHTML =
     Math.floor(temperature) + "°";
 
@@ -121,9 +110,7 @@ function printWeatherIcon(sky) {
       break;
   }
 }
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
+
 
 /**
  * Prints different icon depending on current weather from api
@@ -163,8 +150,6 @@ function printWeatherIcon(sky) {
       break;
   }
 }
-=======
->>>>>>> ad8c750f63153f35021a28c2d3ea321f96f3b927
 
 /**
  * updates time every minute by calling function that gets current time
@@ -248,7 +233,3 @@ function getDateInNumbers(today) {
 function printCityName(city) {
   document.querySelector(".city").innerHTML = city;
 }
-<<<<<<< HEAD
->>>>>>> Stashed changes
-=======
->>>>>>> ad8c750f63153f35021a28c2d3ea321f96f3b927
