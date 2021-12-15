@@ -1,7 +1,6 @@
 window.addEventListener('load', main);
 
 let todos = [];
-
 const todosForDay = todos.filter((todo) => true);
 
 function main() {
