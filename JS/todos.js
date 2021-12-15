@@ -1,33 +1,36 @@
-window.addEventListener('load', main);
+window.addEventListener('load', mainTodo);
 
-const todos = ['Köpa julklappar', 'Handla', 'Träna'];
 
+let todos = [];
 const todosForDay = todos.filter((todo) => true);
 
-function main() {
-  addEventListeners();
+function mainTodo() {
   renderTodos();
 }
 
-function addEventListeners() {
-  document.getElementById('todo-form').addEventListener('submit', addTodo);
-  const newTodo = document.querySelector('title');
-  const newDate = document.querySelector('date');
-}
+const form = document.querySelector('#todoForm');
+const input = document.querySelector('input');
+const mains = document.querySelector('.main');
+const ul = document.querySelector('#todoList');
 
-function addTodo(event) {
-  event.preventDefault();
-  //const formData = new FormData(event.target);
-  //const todo = Object.fromEntries(formData);
-    //const myArray = Object.values(todos);
-    //document.getElementById('todo-form').innerHTML = Object.values(todos);
-    const form = event.target;
-    const input = form.querySelector('input');
-    if (input.value) {
-      todos.push(input.value);
-      input.value = "";
-      renderTodos();
-    }
+
+// Skapa li element
+function createLi() {
+  const li = document.createElement('li');
+  const span = document.createElement('span');
+  span.textContent = input.value;
+  const label = document.createElement('label');
+  const editBtn = document.createElement('button');
+  editBtn.textContent = 'edit';
+  const removeBtn = document.createElement('button');
+  removeBtn.textContent = 'remove';
+
+  li.appendChild(span);
+  li.appendChild(label);
+  li.appendChild(editBtn);
+  li.appendChild(removeBtn);
+
+  return li;
 }
 
 function renderTodos() {
@@ -39,25 +42,45 @@ function renderTodos() {
     const li = createTodoElement(todo);
     ul.appendChild(li);
   }
+
 }
 
-function createTodoElement(todo) {
-  const li = document.createElement('li');
-  li.innerHTML = todo;
-  li.id = todo;
-  li.addEventListener('click', removeTodo);
-  return li;
-}
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
 
-function removeTodo(event) {
-  const todoToDelete = event.target.id;
+  const li = createLi();
 
-  const updatedTodoList = [];
-  for (const todo of todos) {
-    if (todo !== todoToDelete) {
-      updatedTodoList.push(todo);
+  if(input.value === '') {
+    alert('Enter a new todo');
+  } else {
+    ul.appendChild(li);
+  }
+}); 
+
+
+//Ändra och radera todo
+ul.addEventListener('click', (event) => {
+  if(event.target.tagName === 'BUTTON') {
+    const button = event.target;
+    const li = button.parentNode;
+    const ul = li.parentNode;
+    if(button.textContent === 'remove') {
+      ul.removeChild(li);
+    } else if(button.textContent === 'edit') {
+      const span = li.firstElementChild;
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.value = span.textContent;
+      li.insertBefore(input, span);
+      li.removeChild(span);
+      button.textContent = 'save';
+    } else if(button.textContent === 'save') {
+      const input = li.firstElementChild;
+      const span = document.createElement('span');
+      span.textContent = input.value;
+      li.insertBefore(span, input);
+      li.removeChild(input);
+      button.textContent = 'edit';
     }
   }
-  todos = updatedTodoList;
-  renderTodos();
-}
+});
