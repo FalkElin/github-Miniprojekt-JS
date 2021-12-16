@@ -1,12 +1,31 @@
+body,
+html {
+  margin: 0;
+  height: 100%;
+}
+body {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 1px;
+}
+:root {
+  --min-width: 6rem;
+}
+
+/* REUSABLES */
+.flex {display: flex;}
+.column {flex-direction: column;}
+.j-c {justify-content: center;}
+.a-c {align-items: center;}
+.grid {display: grid;}
+
 .calendar-container {
     margin: auto;
     min-width: calc(var(--min-width) * 7);
     width: 80%;
     height: 100%;
   }
-  .hide-degree {
-    visibility: hidden;
-  }
+ 
   .cells-container {
     background-color: #1d1d1d;
     grid-template-columns: repeat(7, 1fr);
@@ -19,7 +38,10 @@
     justify-content: center;
     align-items: center;
     min-width: var(--min-width);
-   
+    border-radius: 10px;
+  }
+  .calendar-cell:hover {
+    background-color: #ffffff4d;
     
   }
   .calendar-header {

@@ -1,35 +1,10 @@
-body,
-html {
-  margin: 0;
-  height: 100%;
-}
-body {
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
-  letter-spacing: 1px;
-}
-:root {
-  --min-width: 6rem;
-}
 
-
-
-/* REUSABLES */
-.flex {display: flex;}
-.column {flex-direction: column;}
-.j-c {justify-content: center;}
-.a-c {align-items: center;}
-.grid {display: grid;}
 
 /* STYLES FOR WELCOME SEGMENT BELOW */
 .welcome-segment {
   height: auto;
 }
-.flex {display: flex;}
-.column {flex-direction: column;}
-.j-c {justify-content: center;}
-.a-c {align-items: center;}
-.grid {display: grid;}
+
 /* STYLES FOR WELCOME SEGMENT BELOW */
 .welcome-segment {
   top: 0;

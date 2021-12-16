@@ -117,18 +117,18 @@ function renderCalendar() {
             }
         }
         
-        // /** renders visible last days of previous month */
-        // for (firstDayIndex -= 2; firstDayIndex >= 0; firstDayIndex--) {
-        //     dateCells[firstDayIndex].innerHTML = previousLastDay;
-        //     previousLastDay--;
-        //     dateCells[firstDayIndex].classList.add('other-month');
-        // }
-        // /** renders visible days of next coming month */
-        // for (let i = 1; i <= 7; i++) {
-        //     console.log(daysInMonth + 1);
-        //     dateCells[daysInMonth + i + 1].innerHTML = i;
-        //     dateCells[daysInMonth + i + 1].classList.add('other-month');
-        // }   
+        /** renders visible last days of previous month */
+        for (firstDayIndex -= 2; firstDayIndex >= 0; firstDayIndex--) {
+            dateCells[firstDayIndex].innerHTML = previousLastDay;
+            previousLastDay--;
+            dateCells[firstDayIndex].classList.add('other-month');
+        }
+        /** renders visible days of next coming month */
+        for (let i = 1; i <= 7; i++) {
+            console.log(daysInMonth + 1);
+            dateCells[daysInMonth + i + 1].innerHTML = i;
+            dateCells[daysInMonth + i + 1].classList.add('other-month');
+        }   
     }
 }
 function changeMonthBack() {
