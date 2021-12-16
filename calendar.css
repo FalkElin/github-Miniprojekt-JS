@@ -19,7 +19,7 @@
     justify-content: center;
     align-items: center;
     min-width: var(--min-width);
-    border: 1px solid red;
+   
     
   }
   .calendar-header {
