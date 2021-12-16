@@ -34,7 +34,7 @@ async function getCurrentWeather(position) {
 
   //starts functions when api is succesfully returned
   printCityName(city);
-  printWeatherMessage(temperature);
+  printWeatherMessage(temperature, sky);
   printWeatherIcon(sky);
 }
 
@@ -47,11 +47,11 @@ function printWeatherMessage(temperature, sky) {
   document.querySelector(".temperature-degree").innerHTML =
     Math.floor(temperature) + "°";
 
-  if (temperature < 5) {
+  if (temperature < 5 && sky === "Clouds") {
     document.querySelector(".temperature-description").innerHTML =
       "Stanna inne! Det är kallt ute idag";
   }
-  if (temperature > 5 || !sky === "Rain, Snow, Thunderstorm, Drizzle") {
+  if (temperature > 0 && sky === "Clouds") {
     document.querySelector(".temperature-description").innerHTML =
       "Det är plusgrader och uppehåll";
   }
@@ -181,4 +181,27 @@ function getDateInNumbers(today) {
  */
 function printCityName(city) {
   document.querySelector(".city").innerHTML = city;
+}
+
+async function test() {
+  console.log(await getSwedishHolidays(calendar.year, calendar.month));
+}
+
+test();
+
+async function getSwedishHolidays(year, month) {
+  const response = await fetch(
+    `http://sholiday.faboul.se/dagar/v2.1/${year}/${month + 1}`
+  );
+  const data = await response.json();
+  const days = data.dagar;
+
+  const holidays = [];
+  for (let i = 0; i < days.length; i++) {
+    if (days[i].helgdag) {
+      holidays.push(days[i]);
+    }
+  }
+
+  return holidays;
 }
