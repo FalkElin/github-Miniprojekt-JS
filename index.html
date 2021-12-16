@@ -25,29 +25,53 @@
   </head>
   <body>
     <div class="welcome-segment">
-      <img class="winter" src="/pictures/swedish-lapland-winter.jpeg" alt="" />
       <div class="weather-data">
         <div class="location">
-
-          <h1 class="location-timezone">12.54</h1>
-          <p>icon</p>
-
-          <h1 class="location-timezone">12.54</h1>
-          <p>icon</p>
-
           <h1 id="city" class="city"></h1>
           <h2 class="weekday"></h2>
           <h3 class="location-timezone"></h3>
-
-          <h1 id="city" class="city"></h1>
-          <h2 class="weekday"></h2>
-          <h3 class="location-timezone"></h3>
-
         </div>
-        <div class="temperature">
+        <div class="temperature hide-degree">
           <div class="degree">
             <h2 class="temperature-degree"></h2>
-            <span class="celius-or-farenheight">°</span>
+            <span class="celsius">c</span>
+            <i>
+              <img
+                class="weather-icon cloud hide-icon"
+                src="/pictures/cloudy.png"
+                alt=""
+              />
+              <img
+                class="weather-icon snow hide-icon"
+                src="/pictures/winter.png"
+                alt=""
+              />
+              <img
+                class="weather-icon sun hide-icon"
+                src="/pictures/sunny.png"
+                alt=""
+              />
+              <img
+                class="weather-icon wind hide-icon"
+                src="/pictures/windy.png"
+                alt=""
+              />
+              <img
+                class="weather-icon rain hide-icon"
+                src="/pictures/rain.png"
+                alt=""
+              />
+              <img
+                class="weather-icon thunder hide-icon"
+                src="/pictures/thunder.png"
+                alt=""
+              />
+              <img
+                class="weather-icon drizzle hide-icon"
+                src="/pictures/drizzle.png"
+                alt=""
+              />
+            </i>
           </div>
           <div class="temperature-description"></div>
         </div>
