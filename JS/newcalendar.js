@@ -1,11 +1,11 @@
 window.onload = main;
 
 let calendar = {
-    date: new Date(),
-    month: null,
-    year: null,
-    today: null
-}
+  date: new Date(),
+  month: null,
+  year: null,
+  today: null,
+};
 
 function main() {
     addCalendarEventlisteners();
@@ -20,29 +20,29 @@ function main() {
 
 
 const months = [
-    "Januari",
-    "Februari",
-    "Mars",
-    "April",
-    "Maj",
-    "Juni",
-    "Juli",
-    "Augusti",
-    "September",
-    "Oktober",
-    "November",
-    "December",
-  ];
+  "Januari",
+  "Februari",
+  "Mars",
+  "April",
+  "Maj",
+  "Juni",
+  "Juli",
+  "Augusti",
+  "September",
+  "Oktober",
+  "November",
+  "December",
+];
 
-  const weekdays = [
-      'Söndag',
-      'Måndag',
-      'Tisdag',
-      'Onsdag',
-      'Tordag',
-      'Fredag',
-      'Lördag'
-  ]
+const weekdays = [
+  "Söndag",
+  "Måndag",
+  "Tisdag",
+  "Onsdag",
+  "Tordag",
+  "Fredag",
+  "Lördag",
+];
 
 function addCalendarEventlisteners() {
     document.getElementById('arrow-back').addEventListener('click', changeMonthBack);
@@ -175,10 +175,10 @@ function changeMonthForward() {
 // decembers nr 1 i kalendern === decembers 1a datum. 
 // 
 
-// Loopa igenom alla datum. När datum matchar calendar.today sätt klassen .today 
+// Loopa igenom alla datum. När datum matchar calendar.today sätt klassen .today
 
 // för varje datecell skapa nytt P element
-// I varje P element ska siffran stiga med ett 
+// I varje P element ska siffran stiga med ett
 //
 /** Får antal dagar i månad x genom att addera 32 till första dagen för att sedan subtrahera datumet man landar på. */
 

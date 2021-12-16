@@ -1,95 +1,86 @@
-const todoObjectList = [];
+window.addEventListener('load', mainTodo);
 
 
-class Todo_Class {
-    constructor(item){
-        this.ulElement =item;
-    } 
+let todos = [];
+const todosForDay = todos.filter((todo) => true);
 
-    add() {
-        const todoInput = document.querySelector("#myInput").value;
-        if (todoInput == "") {
-            alert("You did not enter any todo") 
-        } else {
-            const todoObject = {
-                id : todoObjectList.length,
-                todoText : todoInput,
-                isDone : false,
-            }
+function mainTodo() {
+  renderTodos();
+}
 
-        todoObjectList.unshift(todoObject);
-        this.display();
-        document.querySelector("#myInput").value = '';
+const form = document.querySelector('#todoForm');
+const input = document.querySelector('input');
+const mains = document.querySelector('.main');
+const ul = document.querySelector('#todoList');
 
-        }
+
+// Skapa li element
+function createLi() {
+  const li = document.createElement('li');
+  const span = document.createElement('span');
+  span.textContent = input.value;
+  const label = document.createElement('label');
+  const editBtn = document.createElement('button');
+  editBtn.textContent = 'edit';
+  const removeBtn = document.createElement('button');
+  removeBtn.textContent = 'remove';
+
+  li.appendChild(span);
+  li.appendChild(label);
+  li.appendChild(editBtn);
+  li.appendChild(removeBtn);
+
+  return li;
+}
+
+function renderTodos() {
+  const ul = document.querySelector('ul');
+  // Remove previous content
+  ul.innerHTML = "";
+  // Re-add todos to ul
+  for (const todo of todos) {
+    const li = createTodoElement(todo);
+    ul.appendChild(li);
+  }
+
+}
+
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  const li = createLi();
+
+  if(input.value === '') {
+    alert('Enter a new todo');
+  } else {
+    ul.appendChild(li);
+  }
+}); 
+
+
+//Ändra och radera todo
+ul.addEventListener('click', (event) => {
+  if(event.target.tagName === 'BUTTON') {
+    const button = event.target;
+    const li = button.parentNode;
+    const ul = li.parentNode;
+    if(button.textContent === 'remove') {
+      ul.removeChild(li);
+    } else if(button.textContent === 'edit') {
+      const span = li.firstElementChild;
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.value = span.textContent;
+      li.insertBefore(input, span);
+      li.removeChild(span);
+      button.textContent = 'save';
+    } else if(button.textContent === 'save') {
+      const input = li.firstElementChild;
+      const span = document.createElement('span');
+      span.textContent = input.value;
+      li.insertBefore(span, input);
+      li.removeChild(input);
+      button.textContent = 'edit';
     }
-
-    done_undone(x) {
-        const selectedTodoIndex = todoObjectList.findIndex((item)=> item.id == x);
-        console.log(todoObjectList[selectedTodoIndex].isDone);
-        todoObjectList[selectedTodoIndex].isDone == false ? todoObjectList[selectedTodoIndex].isDone = true : todoObjectList[selectedTodoIndex].isDone = false;
-        this.display();
-    }
-
-    deleteElement(z) {
-        const selectedDelIndex = todoObjectList.findIndex((item)=> item.id == z);
-
-        todoObjectList.splice(selectedDelIndex,1);
-
-        this.display();
-    }
-
-
-    display() {
-        this.ulElement.innerHTML = "";
-
-        todoObjectList.forEach((object_item) => {
-
-            const liElement = document.createElement("li");
-            const delBtn = document.createElement("i");
-
-            liElement.innerText = object_item.todoText;
-            liElement.setAttribute("data-id", object_item.id);
-
-            delBtn.setAttribute("data-id", object_item.id);
-            delBtn.classList.add("far", "fa-trash-alt");
-
-            liElement.appendChild(delBtn);
-            
-            delBtn.addEventListener("click", function(e) {
-                const deleteId = e.target.getAttribute("data-id");
-                myTodoList.deleteElement(deleteId);
-            })
-            
-            liElement.addEventListener("click", function(e) {
-                const selectedId = e.target.getAttribute("data-id");
-                myTodoList.done_undone(selectedId);
-            })
-
-            if (object_item.isDone) {
-                liElement.classList.add("checked");
-            }
-
-            this.ulElement.appendChild(liElement);
-        })
-    }
-} 
-
-
-
-
-//----MAIN PROGRAM------------
-const listSection = document.querySelector("#myUL");
-
-myTodoList = new Todo_Class(listSection);
-
-
-document.querySelector(".addBtn").addEventListener("click", function() {
-    myTodoList.add()
-})
-
-document.querySelector("#myInput").addEventListener("keydown", function(e) {
-    if (e.keyCode == 13) {
-        myTodoList.add()
-    }
-})
+  }
+});
