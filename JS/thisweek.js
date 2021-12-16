@@ -17,15 +17,9 @@ function getLocation() {
  * @param {position} position
  */
 async function getCurrentWeather(position) {
-
   // gets lon and lat position which is read in api call and shows degree icon
   const degree = document.querySelector(".temperature");
   degree.classList.remove("hide-degree");
-
-  // gets lon and lat position which is read in api call and shows degree icon
-  const degree = document.querySelector(".temperature");
-  degree.classList.remove("hide-degree");
-
   lat = position.coords.latitude.toFixed(2);
   long = position.coords.longitude.toFixed(2);
 
@@ -35,13 +29,8 @@ async function getCurrentWeather(position) {
   );
   const data = await response.json();
   const temperature = data.main.temp;
-
   const sky = data.weather[0].main;
   const city = data.name;
-
-  const sky = data.weather[0].main;
-  const city = data.name;
-
 
   //starts functions when api is succesfully returned
   printCityName(city);
@@ -71,46 +60,6 @@ function printWeatherMessage(temperature, sky) {
       "Solen skiner och himlen är blå!";
   }
 }
-
-/**
- * Prints different icon depending on current weather from api
- * @param {*} sky
- */
-function printWeatherIcon(sky) {
-  cloud = document.querySelector(".cloud");
-  sun = document.querySelector(".sun");
-  snow = document.querySelector(".snow");
-  wind = document.querySelector(".wind");
-  rain = document.querySelector(".rain");
-  thunder = document.querySelector(".thunder");
-  drizzle = document.querySelector(".drizzle");
-
-  switch (sky) {
-    case "Clouds":
-      cloud.classList.remove("hide-icon");
-      break;
-    case "Rain":
-      rain.classList.remove("hide-icon");
-      break;
-
-    case "Clear":
-      sun.classList.remove("hide-icon");
-      break;
-
-    case "Snow":
-      rain.classList.remove("hide-icon");
-      break;
-
-    case "Thunderstorm":
-      thunder.classList.remove("hide-icon");
-      break;
-
-    case "Drizzle":
-      drizzle.classList.remove("hide-icon");
-      break;
-  }
-}
-
 
 /**
  * Prints different icon depending on current weather from api
