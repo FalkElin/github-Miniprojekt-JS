@@ -31,11 +31,11 @@ async function getCurrentWeather(position) {
   const temperature = data.main.temp;
   const sky = data.weather[0].main;
   const city = data.name;
+  let time = new Date().getHours();
 
   //starts functions when api is succesfully returned
   printCityName(city);
-  printWeatherMessage(temperature, sky);
-  printWeatherIcon(sky);
+  printWeatherMessage(temperature, sky, time);
 }
 
 /**
@@ -43,29 +43,117 @@ async function getCurrentWeather(position) {
  * @param {*} temperature
  * @param {*} sky
  */
-function printWeatherMessage(temperature, sky) {
+function printWeatherMessage(temperature, sky, time) {
+  const weatherDescription = document.querySelector(".temperature-description");
   document.querySelector(".temperature-degree").innerHTML =
     Math.floor(temperature) + "°";
 
-  if (temperature < 5 && sky === "Clouds") {
-    document.querySelector(".temperature-description").innerHTML =
-      "Stanna inne! Det är kallt ute idag";
-  }
-  if (temperature > 0 && sky === "Clouds") {
-    document.querySelector(".temperature-description").innerHTML =
-      "Det är plusgrader och uppehåll";
-  }
-  if (sky === "Clear") {
-    document.querySelector(".temperature-description").innerHTML =
-      "Solen skiner och himlen är blå!";
+  if (time < 18) {
+    printWeatherIconDay(sky);
+    weatherDescription.innerHTML =
+      "Det är " +
+      printWeatherMessageDay(sky) +
+      " och " +
+      printTemperatureMessage(temperature);
+  } else {
+    printWeatherIconNight(sky);
+    weatherDescription.innerHTML =
+      "Det är " +
+      printWeatherMessageNight(sky) +
+      " och " +
+      printTemperatureMessage(temperature);
   }
 }
 
+function printTemperatureMessage(temperature) {
+  if (temperature > 0) {
+    return "minusgrader";
+  } else if (temperature < 0) {
+    return "plusgrader";
+  }
+}
+
+function printWeatherMessageDay(sky) {
+  if (sky === "Clouds") {
+    return "molnigt";
+  } else if (sky === "Drizzle") {
+    return "duggregn";
+  } else if (sky === "Clear") {
+    return "soligt";
+  } else if (sky === "Rain") {
+    return "regnigt";
+  } else if (sky === "Snow") {
+    return "snö";
+  } else if (sky === "Thunderstorm") {
+    return "åska";
+  }
+}
+
+function printWeatherMessageNight(sky) {
+  if (sky === "Clouds") {
+    return "molnigt";
+  } else if (sky === "Drizzle") {
+    return "duggregn";
+  } else if (sky === "Clear") {
+    return "klar himmel";
+  } else if (sky === "Rain") {
+    return "regnigt";
+  } else if (sky === "Snow") {
+    return "snö";
+  } else if (sky === "Thunderstorm") {
+    return "åska";
+  } else if (sky === "Atmosphere") {
+    return "vind";
+  }
+}
 /**
- * Prints different icon depending on current weather from api
+ * Prints different icon at night depending on current weather from api
  * @param {*} sky
  */
-function printWeatherIcon(sky) {
+function printWeatherIconNight(sky) {
+  cloud = document.querySelector(".cloud");
+  sun = document.querySelector(".sun");
+  snow = document.querySelector(".snow");
+  wind = document.querySelector(".wind");
+  rain = document.querySelector(".rain");
+  thunder = document.querySelector(".thunder");
+  drizzle = document.querySelector(".drizzle");
+  moon = document.querySelector(".moon");
+
+  switch (sky) {
+    case "Clouds":
+      cloud.classList.remove("hide-icon");
+      break;
+    case "Rain":
+      rain.classList.remove("hide-icon");
+      break;
+
+    case "Clear":
+      moon.classList.remove("hide-icon");
+      break;
+
+    case "Snow":
+      rain.classList.remove("hide-icon");
+      break;
+
+    case "Thunderstorm":
+      thunder.classList.remove("hide-icon");
+      break;
+
+    case "Drizzle":
+      drizzle.classList.remove("hide-icon");
+      break;
+
+    case "Atmosphere":
+      wind.classList.remove("hide-icon");
+      break;
+  }
+}
+/**
+ * Prints different icon at daytime depending on current weather from api
+ * @param {*} sky
+ */
+function printWeatherIconDay(sky) {
   cloud = document.querySelector(".cloud");
   sun = document.querySelector(".sun");
   snow = document.querySelector(".snow");
@@ -127,6 +215,7 @@ function renderClock() {
  * @param {*} today
  * @returns hours + minutes
  */
+
 function getCurrentTime(today) {
   let hours = today.getHours();
   let minutes = today.getMinutes();
