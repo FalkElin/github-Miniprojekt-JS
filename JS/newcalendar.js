@@ -1,8 +1,4 @@
-window.onload = main();
-
-function main() {
-    addCalendarEventlisteners();
-}
+window.onload = main;
 
 let calendar = {
     date: new Date(),
@@ -10,6 +6,18 @@ let calendar = {
     year: null,
     today: null
 }
+
+function main() {
+    addCalendarEventlisteners();
+    
+    calendar.month = calendar.date.getMonth();
+    calendar.year = calendar.date.getFullYear();
+    calendar.today = calendar.date.getUTCDate()
+    calendar.date.setDate(1);
+
+    renderCalendar();
+}
+
 // let monthInfo = {
 //         dateCells: document.querySelectorAll('div.date-cells'),
 //         daysInMonth: 32 - new Date(calendar.year, calendar.month, 32).getDate(),
@@ -19,12 +27,6 @@ let calendar = {
 //         nextFirstDay: 7 - 1
 // }
 
-calendar.month = calendar.date.getMonth();
-calendar.year = calendar.date.getFullYear();
-calendar.today = calendar.date.getDay();
-let todaysDate = calendar.date.getUTCDate()
-
-calendar.date.setDate(1);
 console.log(calendar.month);
 console.log(new Date());
 
@@ -58,18 +60,20 @@ function addCalendarEventlisteners() {
     document.getElementById('arrow-forward').addEventListener('click', changeMonthForward);
 }
 
-renderCalendar();
+
 
 function renderCalendar() {
     renderCells();
     renderHeader();
-    console.log(calendar.date.getDate());
+    
+    
    
 
     /**-----Header---- */
     function renderHeader() {
+        let todaysDate = calendar.date.getUTCDate()
         document.getElementById('calendarHeader').innerText = months[calendar.month] + " " +  + calendar.year;
-        document.querySelector('.today-text').innerHTML = weekdays[calendar.today] + " " + todaysDate;
+        document.querySelector('.today-text').innerHTML = weekdays[new Date().getDay()] + " " + calendar.today;
     }
 
     /**------Calendar body------- */
@@ -80,52 +84,66 @@ function renderCalendar() {
         let lastDayIndex = new Date(calendar.date.getFullYear(), calendar.date.getMonth() + 1, 0).getDay();
         let previousLastDay = new Date(calendar.date.getFullYear(), calendar.date.getMonth(), 0).getDate();
         let nextFirstDay = 7 - lastDayIndex - 1;
-        console.log(lastDayIndex);
 
-        
+        console.log(calendar);
         console.log(lastDayIndex);
         console.log(previousLastDay);
         console.log(firstDayIndex);
         console.log(nextFirstDay);
         console.log(daysInMonth);
 
-        /** Clears each cell of text */
+
+        /** Clears each cell of data*/
         for (let cell of dateCells) {
             cell.innerHTML = '';
+            cell.classList.remove('other-month');
         }
 
+  
          /** Fill cells with correct date number and adds color to todays date*/
-        for (let i = 1; i <= daysInMonth; i++) {
-            dateCells[i + firstDayIndex - 2].innerHTML= i;
+        const weekday = calendar.date.getDay();
+        console.log(weekday);
 
-            if (dateCells[i].innerHTML == todaysDate) {
+        for (let i = weekday; i < daysInMonth + weekday; i++) {
+            dateCells[i - 1].innerHTML= i - weekday +1;
+            console.log(dateCells[i].innerHTML);
+            console.log()
+
+            if (dateCells[i].innerHTML == calendar.today) {
+                console.log('hi');
                 dateCells[i].classList.add('today');
             }
         }
-    
-        /** renders visible last days of previous month */
-        for (firstDayIndex -= 2; firstDayIndex >= 0; firstDayIndex--) {
-            dateCells[firstDayIndex].innerHTML = previousLastDay;
-            previousLastDay--;
-            dateCells[firstDayIndex].classList.add('other-month');
+        for (let i = 1; i <= daysInMonth; i++) {
+            if (dateCells[i].innerHTML == calendar.today) {
+                dateCells[i].classList.add('today');
+            }
         }
-        /** renders visible days of next coming month */
-        for (let i = 1; i <= 7; i++) {
-            console.log(daysInMonth + 1);
-            dateCells[daysInMonth + i + 1].innerHTML = i;
-            dateCells[daysInMonth + i + 1].classList.add('other-month');
-        }   
+        
+        // /** renders visible last days of previous month */
+        // for (firstDayIndex -= 2; firstDayIndex >= 0; firstDayIndex--) {
+        //     dateCells[firstDayIndex].innerHTML = previousLastDay;
+        //     previousLastDay--;
+        //     dateCells[firstDayIndex].classList.add('other-month');
+        // }
+        // /** renders visible days of next coming month */
+        // for (let i = 1; i <= 7; i++) {
+        //     console.log(daysInMonth + 1);
+        //     dateCells[daysInMonth + i + 1].innerHTML = i;
+        //     dateCells[daysInMonth + i + 1].classList.add('other-month');
+        // }   
     }
 }
 function changeMonthBack() {
     if (calendar.month === 0) {
         calendar.month = 11;
         calendar.year--;
-        renderCalendar();
     } else {
         calendar.month--;
-        renderCalendar();
     }
+    calendar.date = new Date(calendar.year, calendar.month, 1);
+
+    renderCalendar();
 }
 function changeMonthForward() {
     if (calendar.month === 11) {
@@ -133,14 +151,28 @@ function changeMonthForward() {
         calendar.year++;
     //    console.log(monthInfo.firstDayIndex = monthInfo.lastDayIndex +1);
     //     console.log(monthInfo.firstDayIndex);
-        renderCalendar();
     } else {
         calendar.month++;
         // firstDayIndex = lastDayIndex + 1;
         // console.log(firstDayIndex);
-        renderCalendar();
     }
+    calendar.date = new Date(calendar.year, calendar.month, 1);
+    renderCalendar();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // decembers nr 1 i kalendern === decembers 1a datum. 
@@ -163,4 +195,5 @@ function changeMonthForward() {
 //prevmonth; prevmonth--;
 //dateCells[firstDayIndex - 3].innerHTML = prevmonth;
 
-// 
+// if (days.helgdag = true)
+

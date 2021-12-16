@@ -29,7 +29,6 @@
   }
   .header-items {
     width: 50%;
-    border: 1px solid red;
     justify-content: space-evenly;
   }
   .month-year-text {
