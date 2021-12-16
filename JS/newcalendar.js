@@ -8,16 +8,16 @@ let calendar = {
 };
 
 function main() {
-    addCalendarEventlisteners();
-    
-    calendar.month = calendar.date.getMonth();
-    calendar.year = calendar.date.getFullYear();
-    calendar.today = calendar.date.getUTCDate()
-    calendar.date.setDate(1);
+  addCalendarEventlisteners();
 
-    renderCalendar();
+  calendar.month = calendar.date.getMonth();
+  calendar.year = calendar.date.getFullYear();
+  calendar.today = calendar.date.getUTCDate();
+  calendar.date.setDate(1);
+  test();
+
+  renderCalendar();
 }
-
 
 const months = [
   "Januari",
@@ -45,135 +45,130 @@ const weekdays = [
 ];
 
 function addCalendarEventlisteners() {
-    document.getElementById('arrow-back').addEventListener('click', changeMonthBack);
-    document.getElementById('arrow-forward').addEventListener('click', changeMonthForward);
+  document
+    .getElementById("arrow-back")
+    .addEventListener("click", changeMonthBack);
+  document
+    .getElementById("arrow-forward")
+    .addEventListener("click", changeMonthForward);
 }
-
-
 
 function renderCalendar() {
-    renderCells();
-    renderHeader();
-    
-    
-   
+  renderCells();
+  renderHeader();
 
-    /**-----Header---- */
-    function renderHeader() {
-        let todaysDate = calendar.date.getUTCDate()
-        document.getElementById('calendarHeader').innerText = months[calendar.month] + " " +  + calendar.year;
-        document.querySelector('.today-text').innerHTML = weekdays[new Date().getDay()] + " " + calendar.today;
+  /**-----Header---- */
+  function renderHeader() {
+    let todaysDate = calendar.date.getUTCDate();
+    document.getElementById("calendarHeader").innerText =
+      months[calendar.month] + " " + +calendar.year;
+    document.querySelector(".today-text").innerHTML =
+      weekdays[new Date().getDay()] + " " + calendar.today;
+  }
+
+  /**------Calendar body------- */
+  function renderCells() {
+    let dateCells = document.querySelectorAll("div.date-cells");
+    let daysInMonth =
+      32 - new Date(calendar.year, calendar.month, 32).getDate();
+    let firstDayIndex = calendar.date.getDay();
+    let lastDayIndex = new Date(
+      calendar.date.getFullYear(),
+      calendar.date.getMonth() + 1,
+      0
+    ).getDay();
+    let previousLastDay = new Date(
+      calendar.date.getFullYear(),
+      calendar.date.getMonth(),
+      0
+    ).getDate();
+    let nextFirstDay = 7 - lastDayIndex - 1;
+
+    console.log(calendar);
+    console.log(lastDayIndex);
+    console.log(previousLastDay);
+    console.log(firstDayIndex);
+    console.log(nextFirstDay);
+    console.log(daysInMonth);
+
+    /** Clears each cell of data*/
+    for (let cell of dateCells) {
+      cell.innerHTML = "";
+      cell.classList.remove("other-month");
+      cell.classList.remove("today");
     }
 
-    /**------Calendar body------- */
-    function renderCells() {
-        let dateCells = document.querySelectorAll('div.date-cells');
-        let daysInMonth = 32 - new Date(calendar.year, calendar.month, 32).getDate();
-        let firstDayIndex = calendar.date.getDay();
-        let lastDayIndex = new Date(calendar.date.getFullYear(), calendar.date.getMonth() + 1, 0).getDay();
-        let previousLastDay = new Date(calendar.date.getFullYear(), calendar.date.getMonth(), 0).getDate();
-        let nextFirstDay = 7 - lastDayIndex - 1;
-
-        console.log(calendar);
-        console.log(lastDayIndex);
-        console.log(previousLastDay);
-        console.log(firstDayIndex);
-        console.log(nextFirstDay);
-        console.log(daysInMonth);
-
-
-        /** Clears each cell of data*/
-        for (let cell of dateCells) {
-            cell.innerHTML = '';
-            cell.classList.remove('other-month');
-            cell.classList.remove('today');
+    /** Fill cells with correct date number and adds color to todays date*/
+    const weekday = calendar.date.getDay();
+    let i = weekday;
+    if (i > 0) {
+      for (let i = weekday; i < daysInMonth + weekday && i > 0; i++) {
+        dateCells[i - 1].innerHTML = i - weekday + 1;
+      }
+    } else {
+      /** When first day of month is a sunday */
+      for (j = 1; j < daysInMonth + weekday; j++) {
+        for (let i = 6; i < daysInMonth + 6 && i >= 0; i++) {
+          dateCells[i].innerHTML = j++;
         }
-
-  
-         /** Fill cells with correct date number and adds color to todays date*/
-        const weekday = calendar.date.getDay();
-        let i = weekday;
-        if (i > 0) { 
-
-            for (let i = weekday; i < daysInMonth + weekday && i > 0; i++) {
-                dateCells[i - 1].innerHTML= i - weekday +1;
-            } 
-        } else {
-
-            /** When first day of month is a sunday */
-            for (j = 1; j < daysInMonth + weekday; j++) {
-                for (let i = 6; i < daysInMonth + 6 && i >= 0; i++) {
-                    dateCells[i].innerHTML= j++;
-                }
-            }
-        }
-  
-        for (let i = 1; i <= daysInMonth; i++) {
-            let todaysDate = new Date();
-            if (dateCells[i].innerHTML == calendar.today && calendar.month == todaysDate.getMonth() && calendar.year == todaysDate.getFullYear()) {
-                dateCells[i].classList.add('today');
-            } else {
-                // dateCells[i].classList.remove('today');
-            }
-        }
-        
-        /** renders visible last days of previous month */
-        for (firstDayIndex -= 2; firstDayIndex >= 0; firstDayIndex--) {
-            dateCells[firstDayIndex].innerHTML = previousLastDay;
-            previousLastDay--;
-            dateCells[firstDayIndex].classList.add('other-month');
-        }
-        /** renders visible days of next coming month */
-        for (let i = 1; i <= 7; i++) {
-            console.log(daysInMonth + 1);
-            dateCells[daysInMonth + i + 1].innerHTML = i;
-            dateCells[daysInMonth + i + 1].classList.add('other-month');
-        }   
+      }
     }
+
+    for (let i = 1; i <= daysInMonth; i++) {
+      let todaysDate = new Date();
+      if (
+        dateCells[i].innerHTML == calendar.today &&
+        calendar.month == todaysDate.getMonth() &&
+        calendar.year == todaysDate.getFullYear()
+      ) {
+        dateCells[i].classList.add("today");
+      } else {
+        // dateCells[i].classList.remove('today');
+      }
+    }
+
+    /** renders visible last days of previous month */
+    for (firstDayIndex -= 2; firstDayIndex >= 0; firstDayIndex--) {
+      dateCells[firstDayIndex].innerHTML = previousLastDay;
+      previousLastDay--;
+      dateCells[firstDayIndex].classList.add("other-month");
+    }
+    /** renders visible days of next coming month */
+    for (let i = 1; i <= 7; i++) {
+      console.log(daysInMonth + 1);
+      dateCells[daysInMonth + i + 1].innerHTML = i;
+      dateCells[daysInMonth + i + 1].classList.add("other-month");
+    }
+  }
 }
 function changeMonthBack() {
-    if (calendar.month === 0) {
-        calendar.month = 11;
-        calendar.year--;
-    } else {
-        calendar.month--;
-    }
-    calendar.date = new Date(calendar.year, calendar.month, 1);
+  if (calendar.month === 0) {
+    calendar.month = 11;
+    calendar.year--;
+  } else {
+    calendar.month--;
+  }
+  calendar.date = new Date(calendar.year, calendar.month, 1);
 
-    renderCalendar();
+  renderCalendar();
 }
 function changeMonthForward() {
-    if (calendar.month === 11) {
-        calendar.month = 0;
-        calendar.year++;
+  if (calendar.month === 11) {
+    calendar.month = 0;
+    calendar.year++;
     //    console.log(monthInfo.firstDayIndex = monthInfo.lastDayIndex +1);
     //     console.log(monthInfo.firstDayIndex);
-    } else {
-        calendar.month++;
-        // firstDayIndex = lastDayIndex + 1;
-        // console.log(firstDayIndex);
-    }
-    calendar.date = new Date(calendar.year, calendar.month, 1);
-    renderCalendar();
+  } else {
+    calendar.month++;
+    // firstDayIndex = lastDayIndex + 1;
+    // console.log(firstDayIndex);
+  }
+  calendar.date = new Date(calendar.year, calendar.month, 1);
+  renderCalendar();
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// decembers nr 1 i kalendern === decembers 1a datum. 
-// 
+// decembers nr 1 i kalendern === decembers 1a datum.
+//
 
 // Loopa igenom alla datum. När datum matchar calendar.today sätt klassen .today
 
@@ -181,8 +176,6 @@ function changeMonthForward() {
 // I varje P element ska siffran stiga med ett
 //
 /** Får antal dagar i månad x genom att addera 32 till första dagen för att sedan subtrahera datumet man landar på. */
-
-
 
 //.1 firstdayindex - 1 = startplats för lastdayofpreviousmonth
 //2.få lastdaypfprevmonth att räkna baklänges så långt divvarna räcker.
@@ -199,6 +192,5 @@ function changeMonthForward() {
 // Översätta värdet av helgdagskey från string till number med .getDate()
 // Matcha ihop helgdagsdatum med kalenderns datum
 ///
-// For each objekt in holidays loop logga ut datums värde. 
+// For each objekt in holidays loop logga ut datums värde.
 //`<p>${helgdagsnamnet}</p>`
-
