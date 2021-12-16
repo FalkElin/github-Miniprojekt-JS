@@ -194,3 +194,11 @@ function changeMonthForward() {
 
 // if (days.helgdag = true)
 
+// API:
+// hämta ut antalet helgdagar i aktuell månad
+// Översätta värdet av helgdagskey från string till number med .getDate()
+// Matcha ihop helgdagsdatum med kalenderns datum
+///
+// For each objekt in holidays loop logga ut datums värde. 
+//`<p>${helgdagsnamnet}</p>`
+
