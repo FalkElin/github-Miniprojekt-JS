@@ -18,17 +18,6 @@ function main() {
     renderCalendar();
 }
 
-// let monthInfo = {
-//         dateCells: document.querySelectorAll('div.date-cells'),
-//         daysInMonth: 32 - new Date(calendar.year, calendar.month, 32).getDate(),
-//         firstDayIndex: calendar.date.getDay(),
-//         lastDayIndex: new Date(calendar.date.getFullYear(), calendar.date.getMonth() + 1, 0).getDay(),
-//         previousLastDay: new Date(calendar.date.getFullYear(), calendar.date.getMonth(), 0).getDate(),
-//         nextFirstDay: 7 - 1
-// }
-
-console.log(calendar.month);
-console.log(new Date());
 
 const months = [
     "Januari",
@@ -97,26 +86,34 @@ function renderCalendar() {
         for (let cell of dateCells) {
             cell.innerHTML = '';
             cell.classList.remove('other-month');
+            cell.classList.remove('today');
         }
 
   
          /** Fill cells with correct date number and adds color to todays date*/
         const weekday = calendar.date.getDay();
-        console.log(weekday);
+        let i = weekday;
+        if (i > 0) { 
 
-        for (let i = weekday; i < daysInMonth + weekday; i++) {
-            dateCells[i - 1].innerHTML= i - weekday +1;
-            console.log(dateCells[i].innerHTML);
-            console.log()
+            for (let i = weekday; i < daysInMonth + weekday && i > 0; i++) {
+                dateCells[i - 1].innerHTML= i - weekday +1;
+            } 
+        } else {
 
-            if (dateCells[i].innerHTML == calendar.today) {
-                console.log('hi');
-                dateCells[i].classList.add('today');
+            /** When first day of month is a sunday */
+            for (j = 1; j < daysInMonth + weekday; j++) {
+                for (let i = 6; i < daysInMonth + 6 && i >= 0; i++) {
+                    dateCells[i].innerHTML= j++;
+                }
             }
         }
+  
         for (let i = 1; i <= daysInMonth; i++) {
-            if (dateCells[i].innerHTML == calendar.today) {
+            let todaysDate = new Date();
+            if (dateCells[i].innerHTML == calendar.today && calendar.month == todaysDate.getMonth() && calendar.year == todaysDate.getFullYear()) {
                 dateCells[i].classList.add('today');
+            } else {
+                // dateCells[i].classList.remove('today');
             }
         }
         
