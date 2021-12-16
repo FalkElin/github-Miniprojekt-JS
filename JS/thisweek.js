@@ -187,11 +187,9 @@ async function test() {
   console.log(await getSwedishHolidays(calendar.year, calendar.month));
 }
 
-test();
-
 async function getSwedishHolidays(year, month) {
   const response = await fetch(
-    `http://sholiday.faboul.se/dagar/v2.1/${year}/${month + 1}`
+    `https://sholiday.faboul.se/dagar/v2.1/${year}/${month + 1}`
   );
   const data = await response.json();
   const days = data.dagar;
