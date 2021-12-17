@@ -275,23 +275,23 @@ function printCityName(city) {
   document.querySelector(".city").innerHTML = city;
 }
 
-async function test() {
-  console.log(await getSwedishHolidays(calendar.year, calendar.month));
-}
+// async function test() {
+//   console.log(await getSwedishHolidays(calendar.year, calendar.month));
+// }
 
-async function getSwedishHolidays(year, month) {
-  const response = await fetch(
-    `https://sholiday.faboul.se/dagar/v2.1/${year}/${month + 1}`
-  );
-  const data = await response.json();
-  const days = data.dagar;
+// async function getSwedishHolidays(year, month) {
+//   const response = await fetch(
+//     `https://sholiday.faboul.se/dagar/v2.1/${year}/${month + 1}`
+//   );
+//   const data = await response.json();
+//   const days = data.dagar;
 
-  const holidays = [];
-  for (let i = 0; i < days.length; i++) {
-    if (days[i].helgdag) {
-      holidays.push(days[i]);
-    }
-  }
+//   const holidays = [];
+//   for (let i = 0; i < days.length; i++) {
+//     if (days[i].helgdag) {
+//       holidays.push(days[i]);
+//     }
+//   }
 
-  return holidays;
-}
+//   return holidays;
+// }
