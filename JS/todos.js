@@ -74,7 +74,6 @@ function renderTodos() {
   }
 }
 
-
 /** Lägger till event lyssnare */
 function addEventListeners() {
   const form = document.querySelector("#todoForm");

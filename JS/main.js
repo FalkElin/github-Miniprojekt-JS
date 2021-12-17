@@ -9,7 +9,7 @@ function main() {
   //mainCalendar();
 }
 
-/** Använder användarens namn och sparar till LS */
+/** Sparar till LS */
 function saveTodosToLS() {
   const todosAsString = JSON.stringify(todos);
   localStorage.setItem("todos", todosAsString);
