@@ -23,7 +23,7 @@
     <script defer src="./JS/mobile.js"></script>
   </head>
   <body>
-    <div class="welcome-segment">
+    <div class="welcome-segment column">
       <div class="weather-data">
         <div class="location-time-weekday-div">
           <h1 id="city" class="city"></h1>
@@ -81,6 +81,24 @@
             </i>
           </div>
           <div class="temperature-description"></div>
+        </div>
+      </div>
+      <div class="todo-element" id="wrapper">
+        <div class="todo-div">
+          <div id="header">
+            <h1>Todo</h1>
+          </div>
+          <div class="main">
+            <form id="todoForm">
+              <input type="text" name="name" placeholder="Add a todo">
+              <button type="submit" name="submit" value="submit">Submit</button>
+            </form>
+            <ul id="todoList">
+              <li>
+                <!-- Code injected by JS -->
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -158,27 +176,8 @@
       
     </div>
 
-    <!-- todo starts here -->
-<aside>
-  <div id="wrapper">
-    <div class="todo-div">
-      <div id="header">
-        <h1>TODO</h1>
-      </div>
-      <div class="main">
-        <form id="todoForm">
-          <input type="text" name="name" placeholder="Add a todo">
-          <button type="submit" name="submit" value="submit">Submit</button>
-        </form>
-        <ul id="todoList">
-          <li>
-            <!-- Code injected by JS -->
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</aside>
+ 
+
 
     <div class="calendar"></div>
   </body>

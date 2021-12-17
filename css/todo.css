@@ -7,7 +7,6 @@
 body {
   font: 16px/1.4 "Mulish", sans-serif;
   color: #333;
-  background: #e3e9ff;
 }
 
 p {
@@ -25,26 +24,24 @@ input[type="text"]:focus {
   outline: none;
 }
 
-#wrapper {
-  overflow: hidden;
-  width: 100%;
+.aside {
   position: relative;
+  left: 0;
 }
 
 .todo-div {
-  background: #fff;
-  border-radius: 5px;
+  background-color: #8995aa;
   box-shadow: 5px 5px 20px -5px rgba(0, 0, 0, 0.2);
-  margin: 50px auto;
-  max-width: 800px;
+  width: 19rem;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
 
 /* header */
 #header {
-  background: #70b3ff;
+  background-color: #32746d;
   color: #fff;
   padding: 20px 30px;
-  border-radius: 5px 5px 0 0;
 }
 
 #header h1 {
@@ -75,7 +72,7 @@ input[type="text"]:focus {
 #todoForm button {
   padding: 0 1em;
   font: 16px/1.4 "Mulish", sans-serif;
-  background: #70b3ff;
+  background-color: rgb(123, 171, 184);
   color: #fff;
   border-radius: 0;
   border: 0;
@@ -95,7 +92,7 @@ input[type="text"]:focus {
 #todoList li {
   padding: 20px;
   margin: 0 0 10px;
-  border-radius: 0.2em;
+  border-radius: 3px;
   border: 1px solid #eee;
 }
 
