@@ -1,12 +1,13 @@
 window.addEventListener("load", main);
- let todos = [];
+
+let todos = [];
 
 function main() {
   loadTodos();
   getLocation();
   startClock();
   mainTodo();
-  //mainCalendar();
+
 }
 
 /** Använder användarens namn och sparar till LS */

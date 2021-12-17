@@ -74,12 +74,12 @@ function renderCalendar() {
     let previousLastDay = new Date(calendar.date.getFullYear(),calendar.date.getMonth(),0).getDate();
     let nextFirstDay = 7 - lastDayIndex - 1;
 
-    console.log(calendar);
-    console.log(lastDayIndex);
-    console.log(previousLastDay);
-    console.log(firstDayIndex);
-    console.log(nextFirstDay);
-    console.log(daysInMonth);
+    // console.log(calendar);
+    // console.log(lastDayIndex);
+    // console.log(previousLastDay);
+    // console.log(firstDayIndex);
+    // console.log(nextFirstDay);
+    // console.log(daysInMonth);
 
     /** Clears each cell of data*/
     for (let cell of dateCells) {
@@ -94,7 +94,7 @@ function renderCalendar() {
     if (i > 0) {
       for (let i = weekday; i < daysInMonth + weekday && i > 0; i++) {
         dateCells[i - 1].innerHTML = i - weekday + 1;
-        console.log(daysInMonth);
+        // console.log(daysInMonth);
       }
     } else {
       /** When first day of month is a sunday */
