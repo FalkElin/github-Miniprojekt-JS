@@ -53,6 +53,8 @@ function deleteTodo(todo, li, removeBtn) {
   ul.removeChild(li);
   removeBtn.textContent = "Ta bort";
   removeBtn.onclick = () => deleteTodo(todo, input);
+  
+  saveTodosToLS();
 }
 
 
