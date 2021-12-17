@@ -63,9 +63,11 @@ function saveEdit(todo, input) {
   renderTodos();
 }
 /** Lägger till todos i array */
+
 function addTodo(event) {
   event.preventDefault();
   const todo = constructFormObject(event.target);
+  console.log(todos);
   if (input.value) {
     todos.push(todo);
     input.value = "";
@@ -75,14 +77,14 @@ function addTodo(event) {
   } else {
     console.log('fel');
   }
-  for (let todo of todos) {
-    // console.log(todo.date);
-    // console.log(todo.name);
 
+  for (let todo of todos) {
     let todoDates = todo.date;
     let todoNames = todo.name;
 
-    // console.log(allTodoDates);
+    // console.log('test');
+    // console.log(todoDates);
+    // console.log(todoNames);
 
     let splittedDates = todoDates.split('-');
     let todoDate = splittedDates[2];
@@ -94,17 +96,9 @@ function addTodo(event) {
         let todoCells = dateCells[i];
         todoCells.appendChild(todoParagraph);
       }
-      console.log(todoDates);
-    }
-      
-
-
     
+    }
   }
-
-
-
-  console.log(todos);
 }
 
 
