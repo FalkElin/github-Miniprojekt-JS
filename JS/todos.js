@@ -5,8 +5,6 @@ const input = document.querySelector("input");
 const mains = document.querySelector(".main");
 const ul = document.querySelector("#todoList");
 
-let todos = [];
-
 function mainTodo() {
   addEventListeners();
   renderTodos();
