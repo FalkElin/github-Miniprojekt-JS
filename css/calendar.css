@@ -6,6 +6,7 @@ body {
   background-position: center;
   height: 100%;
   font: 16px/1.4 "Mulish", sans-serif;
+  overflow: hidden;
 }
 
 :root {
@@ -33,7 +34,7 @@ body {
   min-width: calc(var(--min-width) * 7);
   width: 70%;
   height: 60rem;
-  margin: 0 auto;
+  margin: auto;
 }
 
 .cells-container {
