@@ -1,18 +1,18 @@
-* {
+/* * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
+} */
 
-body {
+/* body {
   font: 16px/1.4 "Mulish", sans-serif;
   color: #333;
   background: #e3e9ff;
-}
+} */
 
-p {
+/* p {
   margin: 0 0 20px;
-}
+} */
 
 ul {
   list-style: none;
@@ -53,10 +53,10 @@ h3 {
 }
 
 /* main */
-.main {
+/* .main {
   padding: 30px;
 }
-
+ */
 /* todo form */
 #todoForm {
   position: relative;
