@@ -1,5 +1,5 @@
 window.addEventListener("load", main);
-// let todos = [];
+ let todos = [];
 
 function main() {
   loadTodos();

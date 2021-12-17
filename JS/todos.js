@@ -18,11 +18,12 @@ function createLi(todo) {
   span.textContent = todo.name;
   const label = document.createElement("label");
   const editBtn = document.createElement("button");
-  editBtn.textContent = "edit";
+  editBtn.textContent = "Ändra";
   editBtn.onclick =  () => beginEdit(todo, li, editBtn);
   const removeBtn = document.createElement("button");
-  removeBtn.textContent = "remove";
- 
+  removeBtn.textContent = "Ta bort";
+  removeBtn.onclick = () => deleteTodo(todo, li, deleteTodo);
+
   li.appendChild(span);
   li.appendChild(label);
   li.appendChild(editBtn);
@@ -39,9 +40,22 @@ function beginEdit(todo, li, button) {
   input.value = todo.name;
   li.removeChild(span);
   li.prepend(input);
-  button.textContent = "save";
+  button.textContent = "Spara";
   button.onclick = () => saveEdit(todo, input);
 }
+/** Ta bort todo */
+function deleteTodo(todo, li, removeBtn) {
+  const span = li.firstElementChild;
+  const input = document.createElement("input");
+  input.type = "text";
+  input.value = todo.name;
+  todos.pop(todo);
+  ul.removeChild(li);
+  removeBtn.textContent = "Ta bort";
+  removeBtn.onclick = () => deleteTodo(todo, input);
+}
+
+
 /** Sparar ändringar till LS */
 function saveEdit(todo, input) {
   todo.name = input.value;
@@ -58,6 +72,7 @@ function addTodo(event) {
     saveTodosToLS();
     renderTodos();
   }
+  console.log(todos);
 }
 
 function renderTodos() {
