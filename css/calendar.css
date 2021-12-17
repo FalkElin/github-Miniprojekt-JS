@@ -1,7 +1,10 @@
-body,
-html {
+body {
   margin: 0;
   height: 100%;
+}
+body {
+  background-image: url(/pictures/swedish-lapland-winter.jpeg);
+  display: flex;
 }
 
 :root {
@@ -26,10 +29,10 @@ html {
 }
 
 .calendar-container {
-  margin: auto;
   min-width: calc(var(--min-width) * 7);
   width: 80%;
-  height: 100%;
+  height: 55rem;
+  margin: 2rem;
 }
 
 .cells-container {
@@ -45,7 +48,7 @@ html {
   flex-direction: column;
   align-items: center;
   min-width: var(--min-width);
-  border-radius: 10px;
+  border-radius: 3px;
 }
 .calendar-cell > p {
  
@@ -58,7 +61,8 @@ html {
   height: 10rem;
   width: 100%;
   min-width: var(--min-width);
-  background-color: lightgreen;
+  background-color: #32746d;
+  color: whitesmoke;
 }
 .header-items {
   width: 50%;
@@ -68,8 +72,14 @@ html {
   font-size: 2rem;
 }
 .today {
-  background-color: lightgreen;
+  background-color: rgb(123, 171, 184);
 }
 .other-month {
   color: grey;
+}
+.arrows {
+  cursor: pointer;
+}
+.arrows:hover {
+  color: rgb(103, 189, 212);
 }
