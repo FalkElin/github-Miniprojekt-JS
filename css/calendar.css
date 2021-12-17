@@ -30,9 +30,9 @@ body {
 
 .calendar-container {
   min-width: calc(var(--min-width) * 7);
-  width: 80%;
-  height: 55rem;
-  margin: 2rem;
+  width: 70%;
+  height: 60rem;
+  margin: 0 auto;
 }
 
 .cells-container {
@@ -41,6 +41,7 @@ body {
   grid-template-rows: 1fr repeat(6, 2fr);
   width: 100%;
   height: 100%;
+  padding-top: 2rem;
 }
 .calendar-cell {
   color: white;
@@ -49,9 +50,13 @@ body {
   align-items: center;
   min-width: var(--min-width);
   border-radius: 3px;
+  display: flex;
+  padding: 0.5rem;
 }
-.calendar-cell > p {
- 
+
+.calendar-cell p {
+  margin-top: 1rem;
+  color: #8995aa;
 }
 
 .calendar-cell:hover {
