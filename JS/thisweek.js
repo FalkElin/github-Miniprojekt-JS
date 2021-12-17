@@ -17,15 +17,9 @@ function getLocation() {
  * @param {position} position
  */
 async function getCurrentWeather(position) {
-
   // gets lon and lat position which is read in api call and shows degree icon
   const degree = document.querySelector(".temperature");
   degree.classList.remove("hide-degree");
-
-  // gets lon and lat position which is read in api call and shows degree icon
-  const degree = document.querySelector(".temperature");
-  degree.classList.remove("hide-degree");
-
   lat = position.coords.latitude.toFixed(2);
   long = position.coords.longitude.toFixed(2);
 
@@ -35,18 +29,13 @@ async function getCurrentWeather(position) {
   );
   const data = await response.json();
   const temperature = data.main.temp;
-
   const sky = data.weather[0].main;
   const city = data.name;
-
-  const sky = data.weather[0].main;
-  const city = data.name;
-
+  let time = new Date().getHours();
 
   //starts functions when api is succesfully returned
   printCityName(city);
-  printWeatherMessage(temperature);
-  printWeatherIcon(sky);
+  printWeatherMessage(temperature, sky, time);
 }
 
 /**
@@ -54,29 +43,77 @@ async function getCurrentWeather(position) {
  * @param {*} temperature
  * @param {*} sky
  */
-function printWeatherMessage(temperature, sky) {
+function printWeatherMessage(temperature, sky, time) {
+  const weatherDescription = document.querySelector(".temperature-description");
   document.querySelector(".temperature-degree").innerHTML =
     Math.floor(temperature) + "°";
 
-  if (temperature < 5) {
-    document.querySelector(".temperature-description").innerHTML =
-      "Stanna inne! Det är kallt ute idag";
-  }
-  if (temperature > 5 || !sky === "Rain, Snow, Thunderstorm, Drizzle") {
-    document.querySelector(".temperature-description").innerHTML =
-      "Det är plusgrader och uppehåll";
-  }
-  if (sky === "Clear") {
-    document.querySelector(".temperature-description").innerHTML =
-      "Solen skiner och himlen är blå!";
+  if (time < 18) {
+    printWeatherIconDay(sky);
+    weatherDescription.innerHTML =
+      "Det är " +
+      printWeatherMessageDay(sky) +
+      " och " +
+      printTemperatureMessage(temperature);
+  } else {
+    printWeatherIconNight(sky);
+    weatherDescription.innerHTML =
+      "Det är " +
+      printWeatherMessageNight(sky) +
+      " och " +
+      printTemperatureMessage(temperature);
   }
 }
 
+function printTemperatureMessage(temperature) {
+  if (temperature > 1) {
+    return "plusgrader";
+  }
+  if (temperature < 0) {
+    return "minusgrader";
+  } else {
+    return "nollgradigt";
+  }
+}
+
+function printWeatherMessageDay(sky) {
+  if (sky === "Clouds") {
+    return "molnigt";
+  } else if (sky === "Drizzle") {
+    return "duggregn";
+  } else if (sky === "Clear") {
+    return "soligt";
+  } else if (sky === "Rain") {
+    return "regnigt";
+  } else if (sky === "Snow") {
+    return "snö";
+  } else if (sky === "Thunderstorm") {
+    return "åska";
+  }
+}
+
+function printWeatherMessageNight(sky) {
+  if (sky === "Clouds") {
+    return "molnigt";
+  } else if (sky === "Drizzle") {
+    return "duggregn";
+  } else if (sky === "Clear") {
+    return "klar himmel";
+  } else if (sky === "Rain") {
+    return "regnigt";
+  } else if (sky === "Snow") {
+    return "snö";
+  } else if (sky === "Thunderstorm") {
+    return "åska";
+  } else if (sky === "Atmosphere") {
+    return "vind";
+  }
+}
 /**
- * Prints different icon depending on current weather from api
+ * Prints different icon at night depending on current weather from api
  * @param {*} sky
  */
-function printWeatherIcon(sky) {
+function printWeatherIconNight(sky) {
   cloud = document.querySelector(".cloud");
   sun = document.querySelector(".sun");
   snow = document.querySelector(".snow");
@@ -84,6 +121,7 @@ function printWeatherIcon(sky) {
   rain = document.querySelector(".rain");
   thunder = document.querySelector(".thunder");
   drizzle = document.querySelector(".drizzle");
+  moon = document.querySelector(".moon");
 
   switch (sky) {
     case "Clouds":
@@ -94,7 +132,7 @@ function printWeatherIcon(sky) {
       break;
 
     case "Clear":
-      sun.classList.remove("hide-icon");
+      moon.classList.remove("hide-icon");
       break;
 
     case "Snow":
@@ -108,15 +146,17 @@ function printWeatherIcon(sky) {
     case "Drizzle":
       drizzle.classList.remove("hide-icon");
       break;
+
+    case "Atmosphere":
+      wind.classList.remove("hide-icon");
+      break;
   }
 }
-
-
 /**
- * Prints different icon depending on current weather from api
+ * Prints different icon at daytime depending on current weather from api
  * @param {*} sky
  */
-function printWeatherIcon(sky) {
+function printWeatherIconDay(sky) {
   cloud = document.querySelector(".cloud");
   sun = document.querySelector(".sun");
   snow = document.querySelector(".snow");
@@ -178,6 +218,7 @@ function renderClock() {
  * @param {*} today
  * @returns hours + minutes
  */
+
 function getCurrentTime(today) {
   let hours = today.getHours();
   let minutes = today.getMinutes();
@@ -232,4 +273,25 @@ function getDateInNumbers(today) {
  */
 function printCityName(city) {
   document.querySelector(".city").innerHTML = city;
+}
+
+async function test() {
+  console.log(await getSwedishHolidays(calendar.year, calendar.month));
+}
+
+async function getSwedishHolidays(year, month) {
+  const response = await fetch(
+    `https://sholiday.faboul.se/dagar/v2.1/${year}/${month + 1}`
+  );
+  const data = await response.json();
+  const days = data.dagar;
+
+  const holidays = [];
+  for (let i = 0; i < days.length; i++) {
+    if (days[i].helgdag) {
+      holidays.push(days[i]);
+    }
+  }
+
+  return holidays;
 }

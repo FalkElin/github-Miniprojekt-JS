@@ -1,30 +1,30 @@
-window.addEventListener('load', mainTodo);
+window.addEventListener("load", mainTodo);
 
+const form = document.querySelector("#todoForm");
+const input = document.querySelector("input");
+const mains = document.querySelector(".main");
+const ul = document.querySelector("#todoList");
 
 let todos = [];
-const todosForDay = todos.filter((todo) => true);
 
 function mainTodo() {
+  addEventListeners();
   renderTodos();
+  //renderCalendar();
 }
 
-const form = document.querySelector('#todoForm');
-const input = document.querySelector('input');
-const mains = document.querySelector('.main');
-const ul = document.querySelector('#todoList');
-
-
-// Skapa li element
-function createLi() {
-  const li = document.createElement('li');
-  const span = document.createElement('span');
-  span.textContent = input.value;
-  const label = document.createElement('label');
-  const editBtn = document.createElement('button');
-  editBtn.textContent = 'edit';
-  const removeBtn = document.createElement('button');
-  removeBtn.textContent = 'remove';
-
+/** Skapar li element */
+function createLi(todo) {
+  const li = document.createElement("li");
+  const span = document.createElement("span");
+  span.textContent = todo.name;
+  const label = document.createElement("label");
+  const editBtn = document.createElement("button");
+  editBtn.textContent = "edit";
+  editBtn.onclick =  () => beginEdit(todo, li, editBtn);
+  const removeBtn = document.createElement("button");
+  removeBtn.textContent = "remove";
+ 
   li.appendChild(span);
   li.appendChild(label);
   li.appendChild(editBtn);
@@ -33,54 +33,61 @@ function createLi() {
   return li;
 }
 
-function renderTodos() {
-  const ul = document.querySelector('ul');
-  // Remove previous content
-  ul.innerHTML = "";
-  // Re-add todos to ul
-  for (const todo of todos) {
-    const li = createTodoElement(todo);
-    ul.appendChild(li);
+/** Ändrar texten på edit till save */
+function beginEdit(todo, li, button) {
+  const span = li.firstElementChild;
+  const input = document.createElement("input");
+  input.type = "text";
+  input.value = todo.name;
+  li.removeChild(span);
+  li.prepend(input);
+  button.textContent = "save";
+  button.onclick = () => saveEdit(todo, input);
+}
+/** Sparar ändringar till LS */
+function saveEdit(todo, input) {
+  todo.name = input.value;
+  saveTodosToLS();
+  renderTodos();
+}
+/** Lägger till todos i array */
+function addTodo(event) {
+  event.preventDefault();
+  const todo = constructFormObject(event.target);
+  if (input.value) {
+    todos.push(todo);
+    input.value = "";
+    saveTodosToLS();
+    renderTodos();
   }
-
 }
 
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
-
-  const li = createLi();
-
-  if(input.value === '') {
-    alert('Enter a new todo');
-  } else {
+function renderTodos() {
+  const filteredTodos = todos.filter((todo) => true);
+  const ul = document.querySelector("ul");
+  // Tar bort tidigare tillagda todos
+  ul.innerHTML = "";
+  // Lägger tillbaka todos
+  for (const todo of filteredTodos) {
+    const li = createLi(todo);
     ul.appendChild(li);
   }
-}); 
+}
+
+/** Lägger till event lyssnare */
+function addEventListeners() {
+  const form = document.querySelector("#todoForm");
+  form.addEventListener("submit", addTodo);
+}
+
+/**
+ * Retunerar ett js-objekt baserat på ett form element
+ * @param {HTMLFormElement} formElement
+ * @returns {Object}
+ */
+function constructFormObject(formElement) {
+  const formData = new FormData(formElement);
+  return Object.fromEntries(formData);
+}
 
 
-//Ändra och radera todo
-ul.addEventListener('click', (event) => {
-  if(event.target.tagName === 'BUTTON') {
-    const button = event.target;
-    const li = button.parentNode;
-    const ul = li.parentNode;
-    if(button.textContent === 'remove') {
-      ul.removeChild(li);
-    } else if(button.textContent === 'edit') {
-      const span = li.firstElementChild;
-      const input = document.createElement('input');
-      input.type = 'text';
-      input.value = span.textContent;
-      li.insertBefore(input, span);
-      li.removeChild(span);
-      button.textContent = 'save';
-    } else if(button.textContent === 'save') {
-      const input = li.firstElementChild;
-      const span = document.createElement('span');
-      span.textContent = input.value;
-      li.insertBefore(span, input);
-      li.removeChild(input);
-      button.textContent = 'edit';
-    }
-  }
-});
