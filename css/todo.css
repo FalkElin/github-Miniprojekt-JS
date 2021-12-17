@@ -44,7 +44,7 @@ input[type="text"]:focus {
   padding: 20px 30px;
 }
 
-#header h1 {
+h3 {
   font-size: 24px;
   font-weight: 400;
 }
@@ -54,7 +54,7 @@ input[type="text"]:focus {
   padding: 30px;
 }
 
-/* invite form */
+/* todo form */
 #todoForm {
   position: relative;
   margin: 0 0 20px;
@@ -88,7 +88,7 @@ input[type="text"]:focus {
   opacity: 0.7;
 }
 
-/* invited list */
+/* todo list */
 #todoList li {
   padding: 20px;
   margin: 0 0 10px;

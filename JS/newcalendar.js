@@ -14,9 +14,8 @@ function main() {
   calendar.year = calendar.date.getFullYear();
   calendar.today = calendar.date.getUTCDate();
   calendar.date.setDate(1);
-  test();
-
   renderCalendar();
+  renderCalendarHolidays();
 }
 
 const months = [
@@ -69,19 +68,10 @@ function renderCalendar() {
   /**------Calendar body------- */
   function renderCells() {
     let dateCells = document.querySelectorAll("div.date-cells");
-    let daysInMonth =
-      32 - new Date(calendar.year, calendar.month, 32).getDate();
+    let daysInMonth = 32 - new Date(calendar.year, calendar.month, 32).getDate();
     let firstDayIndex = calendar.date.getDay();
-    let lastDayIndex = new Date(
-      calendar.date.getFullYear(),
-      calendar.date.getMonth() + 1,
-      0
-    ).getDay();
-    let previousLastDay = new Date(
-      calendar.date.getFullYear(),
-      calendar.date.getMonth(),
-      0
-    ).getDate();
+    let lastDayIndex = new Date(calendar.date.getFullYear(),calendar.date.getMonth() + 1,0).getDay();
+    let previousLastDay = new Date(calendar.date.getFullYear(),calendar.date.getMonth(),0).getDate();
     let nextFirstDay = 7 - lastDayIndex - 1;
 
     console.log(calendar);
@@ -104,6 +94,7 @@ function renderCalendar() {
     if (i > 0) {
       for (let i = weekday; i < daysInMonth + weekday && i > 0; i++) {
         dateCells[i - 1].innerHTML = i - weekday + 1;
+        console.log(daysInMonth);
       }
     } else {
       /** When first day of month is a sunday */
@@ -134,12 +125,63 @@ function renderCalendar() {
       dateCells[firstDayIndex].classList.add("other-month");
     }
     /** renders visible days of next coming month */
-    for (let i = 1; i <= 7; i++) {
-      console.log(daysInMonth + 1);
-      dateCells[daysInMonth + i + 1].innerHTML = i;
-      dateCells[daysInMonth + i + 1].classList.add("other-month");
-    }
+    // for (let i = 1; i <= 7; i++) {
+    //   console.log(daysInMonth + 1);
+    //   dateCells[daysInMonth + i + 1].innerHTML = i;
+    //   dateCells[daysInMonth + i + 1].classList.add("other-month");
+    // }
   }
+}
+
+
+async function renderCalendarHolidays() {
+  console.log(await getSwedishHolidays(calendar.year, calendar.month));
+}
+
+let dateCells = document.querySelectorAll("div.date-cells");
+let firstDayIndex = calendar.date.getDay();
+
+  async function getSwedishHolidays(year, month) {
+    const response = await fetch(
+      `https://sholiday.faboul.se/dagar/v2.1/${year}/${month + 1}`
+    );
+    const data = await response.json();
+    const days = data.dagar;
+
+    const holidays = [];
+    for (let i = 0; i < days.length; i++) {
+      if (days[i].helgdag) {
+        holidays.push(days[i]);
+      }
+    }
+    for (let day of holidays) {
+      let str = day.datum;
+      let holidayName = day.helgdag;
+      let splittedStr = str.split('-');
+      let holidayDates = splittedStr[2];
+      let holidayParagraph = document.createElement('p');
+      holidayParagraph.innerHTML = holidayName;
+
+      for (let i=0;i < 42; i++) {
+        
+        if (holidayDates == dateCells[i].innerHTML) {
+          let holidayCells = dateCells[i];
+          holidayCells.appendChild(holidayParagraph);
+        }
+      }
+    }
+    return holidays;
+}
+function changeMonthForward() {
+  if (calendar.month === 11) {
+    calendar.month = 0;
+    calendar.year++;
+  } else {
+    calendar.month++;
+  }
+  calendar.date = new Date(calendar.year, calendar.month, 1);
+  renderCalendar();
+  renderCalendarHolidays();
 }
 function changeMonthBack() {
   if (calendar.month === 0) {
@@ -149,23 +191,10 @@ function changeMonthBack() {
     calendar.month--;
   }
   calendar.date = new Date(calendar.year, calendar.month, 1);
+  renderCalendar();
+  renderCalendarHolidays();
+}
 
-  renderCalendar();
-}
-function changeMonthForward() {
-  if (calendar.month === 11) {
-    calendar.month = 0;
-    calendar.year++;
-    //    console.log(monthInfo.firstDayIndex = monthInfo.lastDayIndex +1);
-    //     console.log(monthInfo.firstDayIndex);
-  } else {
-    calendar.month++;
-    // firstDayIndex = lastDayIndex + 1;
-    // console.log(firstDayIndex);
-  }
-  calendar.date = new Date(calendar.year, calendar.month, 1);
-  renderCalendar();
-}
 
 // decembers nr 1 i kalendern === decembers 1a datum.
 //
