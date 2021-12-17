@@ -5,12 +5,10 @@ const input = document.querySelector("input");
 const mains = document.querySelector(".main");
 const ul = document.querySelector("#todoList");
 
-let todos = [];
 
 function mainTodo() {
   addEventListeners();
   renderTodos();
-  //renderCalendar();
 }
 
 /** Skapar li element */
@@ -59,8 +57,41 @@ function addTodo(event) {
     input.value = "";
     saveTodosToLS();
     renderTodos();
+    
+  } else {
+    console.log('fel');
   }
+  for (let todo of todos) {
+    // console.log(todo.date);
+    // console.log(todo.name);
+
+    let todoDates = todo.date;
+    let todoNames = todo.name;
+
+    // console.log(allTodoDates);
+
+    let splittedDates = todoDates.split('-');
+    let todoDate = splittedDates[2];
+    let todoParagraph = document.createElement('p');
+    todoParagraph.innerHTML = todoNames;
+
+    for (let i=0; i < 42; i++) {
+      if (todoDate == dateCells[i].innerHTML) {
+        let todoCells = dateCells[i];
+        todoCells.appendChild(todoParagraph);
+      }
+      console.log(todoDates);
+    }
+      
+
+
+    
+  }
+
+
+
 }
+
 
 function renderTodos() {
   const filteredTodos = todos.filter((todo) => true);
@@ -74,7 +105,7 @@ function renderTodos() {
   }
 }
 
-/** Lägger till event lyssnare */
+/** Lägger till eventlyssnare */
 function addEventListeners() {
   const form = document.querySelector("#todoForm");
   form.addEventListener("submit", addTodo);
@@ -90,4 +121,4 @@ function constructFormObject(formElement) {
   return Object.fromEntries(formData);
 }
 
-
+/**----------------- */
