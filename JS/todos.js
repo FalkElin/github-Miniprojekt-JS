@@ -6,6 +6,7 @@ const mains = document.querySelector(".main");
 const ul = document.querySelector("#todoList");
 
 
+let todos = [];
 
 
 function mainTodo() {
@@ -33,6 +34,7 @@ function createLi(todo) {
 
   return li;
 }
+
 /** Ändrar texten på edit till save */
 function beginEdit(todo, li, button) {
   const span = li.firstElementChild;

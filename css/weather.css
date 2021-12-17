@@ -1,0 +1,102 @@
+.align-center {
+  align-items: center;
+}
+
+.hide-degree {
+  visibility: hidden;
+}
+
+.time-div h3 {
+  margin-right: 0.5rem;
+  font-weight: 100;
+}
+
+.time-div i {
+  font-size: 1.2rem;
+}
+
+.time-div {
+  margin-bottom: 0.5rem;
+  margin-top: 0.3rem;
+}
+
+.hide-degree {
+  visibility: hidden;
+}
+
+.welcome-segment {
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  color: #8995aa;
+  font: 16px/1.4 "Mulish", sans-serif;
+  height: 23rem;
+}
+
+.weather-data {
+  position: relative;
+  background-color: #1b1b17;
+  display: flex;
+  width: 19rem;
+  justify-content: center;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.city {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-weight: 400;
+  color: #9ec5ab;
+}
+
+.location-time-weekday-div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.3rem;
+}
+
+.temperature {
+  display: flex;
+  flex-direction: column;
+}
+
+.weather-icon {
+  height: 3rem;
+  margin-left: 1rem;
+}
+
+.hide-icon {
+  display: none;
+}
+
+.degree {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  color: #70b3ff;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.temperature-degree {
+  font-weight: 100;
+}
+
+.celsius {
+  font-size: 1.2rem;
+}
+
+.weekday {
+  font-weight: 100;
+  color: #32746d;
+}
+
+.temperature-description {
+  color: #8995aa;
+  font-size: 0.8rem;
+  align-self: center;
+}
