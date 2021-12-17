@@ -1,10 +1,11 @@
 body {
-  margin: 0;
-  height: 100%;
-}
-body {
   background-image: url(/pictures/swedish-lapland-winter.jpeg);
   display: flex;
+  background-size: cover;
+  margin: 0;
+  background-position: center;
+  height: 100%;
+  font: 16px/1.4 "Mulish", sans-serif;
 }
 
 :root {
