@@ -66,10 +66,13 @@ function printWeatherMessage(temperature, sky, time) {
 }
 
 function printTemperatureMessage(temperature) {
-  if (temperature > 0) {
-    return "minusgrader";
-  } else if (temperature < 0) {
+  if (temperature > 1) {
     return "plusgrader";
+  }
+  if (temperature < 0) {
+    return "minusgrader";
+  } else {
+    return "nollgradigt";
   }
 }
 

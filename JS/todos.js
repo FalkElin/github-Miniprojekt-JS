@@ -5,9 +5,7 @@ const input = document.querySelector("input");
 const mains = document.querySelector(".main");
 const ul = document.querySelector("#todoList");
 
-
 let todos = [];
-
 
 function mainTodo() {
   addEventListeners();
@@ -76,7 +74,6 @@ function renderTodos() {
   }
 }
 
-
 /** Lägger till event lyssnare */
 function addEventListeners() {
   const form = document.querySelector("#todoForm");
@@ -92,3 +89,5 @@ function constructFormObject(formElement) {
   const formData = new FormData(formElement);
   return Object.fromEntries(formData);
 }
+
+
