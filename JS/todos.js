@@ -72,7 +72,7 @@ function addTodo(event) {
   console.log(todos);
   
   if (input.value) {
-    todos.push(todo);
+    todos.unshift(todo);
     input.value = "";
     saveTodosToLS();
     renderTodos();
