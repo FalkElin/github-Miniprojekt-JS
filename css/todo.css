@@ -24,8 +24,12 @@ input[type="text"]:focus {
   background-color: #8995aa;
   box-shadow: 5px 5px 20px -5px rgba(0, 0, 0, 0.2);
   width: 19rem;
+  height: 100%;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
+}
+.todo-element {
+  height: 100%;
 }
 
 /* header */
@@ -38,6 +42,7 @@ input[type="text"]:focus {
 /* main */
 .main {
   padding: 30px;
+  height: 100%;
 }
 
 #header h1 {
@@ -48,6 +53,7 @@ input[type="text"]:focus {
 #todoForm {
   position: relative;
   margin: 0 0 20px;
+  
 }
 
 #todoForm input {

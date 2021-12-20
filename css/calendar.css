@@ -6,6 +6,7 @@ body {
   background-position: center;
   height: 100%;
   font: 16px/1.4 "Mulish", sans-serif;
+  
 }
 
 :root {
@@ -34,18 +35,25 @@ body {
   width: 70%;
   height: 55rem;
   margin: 2rem auto;
+
 }
 
 .cells-container {
-  background-color: #1d1d1d;
+  background-color: #ffffffd2;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: 1fr repeat(6, 2fr);
   width: 100%;
   height: 100%;
   padding-top: 2rem;
+  padding: .5rem;
+  border-radius: 50px;
+}
+.calendar-cell:hover:not(.today, .weekdays) {
+  background-color: #59bb8a3f;
+  
 }
 .calendar-cell {
-  color: white;
+  color: #1d1d1d;
   justify-content: flex-start;
   flex-direction: column;
   align-items: center;
@@ -53,6 +61,7 @@ body {
   border-radius: 3px;
   display: flex;
   padding: 0.5rem;
+  transition: background-color 0.2s linear;
 }
 
 .calendar-cell p {
@@ -60,15 +69,15 @@ body {
   color: #8995aa;
 }
 
-.calendar-cell:hover {
-  background-color: #ffffff4d;
-}
+
 .calendar-header {
   height: 10rem;
   width: 100%;
   min-width: var(--min-width);
   background-color: #32746d;
   color: whitesmoke;
+  border-radius: 50px;
+  margin-bottom: 1rem;
 }
 .header-items {
   width: 50%;
@@ -81,11 +90,14 @@ body {
   background-color: rgb(123, 171, 184);
 }
 .other-month {
-  color: grey;
+  color: rgba(128, 128, 128, 0.726);
 }
 .arrows {
   cursor: pointer;
 }
 .arrows:hover {
   color: rgb(103, 189, 212);
+}
+p.holiday-text {
+  color: rgb(167, 84, 84);
 }

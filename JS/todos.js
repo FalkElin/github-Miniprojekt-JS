@@ -4,6 +4,7 @@ const form = document.querySelector("#todoForm");
 const input = document.querySelector("input");
 const mains = document.querySelector(".main");
 const ul = document.querySelector("#todoList");
+let todoParagraph;
 
 
 function mainTodo() {
@@ -22,7 +23,7 @@ function createLi(todo) {
   editBtn.onclick =  () => beginEdit(todo, li, editBtn);
   const removeBtn = document.createElement("button");
   removeBtn.textContent = "Ta bort";
-  removeBtn.onclick = () => deleteTodo(todo, li, deleteTodo);
+  removeBtn.onclick = () => deleteTodo(todo, li, deleteTodo, removeBtn), renderCalendarHolidays(removeBtn);
 
   li.appendChild(span);
   li.appendChild(label);
@@ -45,16 +46,23 @@ function beginEdit(todo, li, button) {
 }
 /** Ta bort todo */
 function deleteTodo(todo, li, removeBtn) {
+
+  /** Om en cells innerhtml innehåller samma som en todos namn samt 'todo' = ta bort första barnet */
+  for (let i = 0; i < 42; i++) {
+    if (dateCells[i].innerHTML.includes(todo.name && 'todo')) {
+      let todoCell = dateCells[i];
+      todoCell.firstElementChild.remove();
+    }
+  }
   const span = li.firstElementChild;
   const input = document.createElement("input");
   input.type = "text";
   input.value = todo.name;
   todos.pop(todo);
   ul.removeChild(li);
-  console.log(todos);
   removeBtn.textContent = "Ta bort";
-  removeBtn.onclick = () => deleteTodo(todo, input);
-  
+  removeBtn.onclick = () => deleteTodo(todo, input, removeBtn), renderTodosInCalendar(removeBtn);
+  renderTodosInCalendar();
   saveTodosToLS();
 }
 
@@ -77,9 +85,7 @@ function addTodo(event) {
     saveTodosToLS();
     renderTodos();
     
-  } else {
-    console.log('fel');
-  }
+  } 
   renderTodosInCalendar();
 }
 
@@ -88,13 +94,10 @@ function renderTodosInCalendar() {
     let todoDates = todo.date;
     let todoNames = todo.name;
 
-    // console.log('test');
-    // console.log(todoDates);
-    // console.log(todoNames);
-
     let splittedDates = todoDates.split('-');
-    let todoDate = splittedDates[2];
-    let todoParagraph = document.createElement('p');
+    let todoDate = parseInt(splittedDates[2]);
+    todoParagraph = document.createElement('p');
+    todoParagraph.classList.add('todo');
     todoParagraph.innerHTML = todoNames;
 
     for (let i=0; i < 42; i++) {
