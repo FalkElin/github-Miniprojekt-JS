@@ -31,11 +31,11 @@ async function getCurrentWeather(position) {
   const temperature = data.main.temp;
   const sky = data.weather[0].main;
   const city = data.name;
-  let time = new Date().getHours();
+  const sunset = data.sys.sunset;
 
   //starts functions when api is succesfully returned
   printCityName(city);
-  printWeatherMessage(temperature, sky, time);
+  printWeatherMessage(temperature, sky, sunset);
 }
 
 /**
@@ -43,18 +43,21 @@ async function getCurrentWeather(position) {
  * @param {*} temperature
  * @param {*} sky
  */
-function printWeatherMessage(temperature, sky, time) {
+function printWeatherMessage(temperature, sky, sunset) {
   const weatherDescription = document.querySelector(".temperature-description");
   document.querySelector(".temperature-degree").innerHTML =
     Math.floor(temperature) + "°";
+  let today = new Date();
+  let time = today.getHours() + ":" + today.getMinutes();
+  let formattedSunset = setBackground(sunset, time);
 
-  if (time < 18) {
+  if (time < formattedSunset) {
     printWeatherIconDay(sky);
     weatherDescription.innerHTML =
       "Det är " +
-      printWeatherMessageDay(sky) +
+      printTemperatureMessage(temperature) +
       " och " +
-      printTemperatureMessage(temperature);
+      printWeatherMessageDay(sky);
   } else {
     printWeatherIconNight(sky);
     weatherDescription.innerHTML =
@@ -65,6 +68,21 @@ function printWeatherMessage(temperature, sky, time) {
   }
 }
 
+function setBackground(sunset, time) {
+  let unix_timestamp = sunset;
+  let date = new Date(unix_timestamp * 1000);
+  let hours = date.getHours();
+  let minutes = "0" + date.getMinutes();
+
+  // Will display time in 10:30:23 format
+  let formattedSunset = hours + ":" + minutes.substr(-2);
+
+  if (time > formattedSunset) {
+    document.body.style = "background-image: url(/pictures/winter-night.jpg);";
+  }
+  return formattedSunset;
+}
+
 function printTemperatureMessage(temperature) {
   if (temperature > 1) {
     return "plusgrader";
@@ -72,19 +90,19 @@ function printTemperatureMessage(temperature) {
   if (temperature < 0) {
     return "minusgrader";
   } else {
-    return "nollgradigt";
+    return "nollgrader";
   }
 }
 
 function printWeatherMessageDay(sky) {
   if (sky === "Clouds") {
-    return "molnigt";
+    return "moln";
   } else if (sky === "Drizzle") {
     return "duggregn";
   } else if (sky === "Clear") {
-    return "soligt";
+    return "sol";
   } else if (sky === "Rain") {
-    return "regnigt";
+    return "regn";
   } else if (sky === "Snow") {
     return "snö";
   } else if (sky === "Thunderstorm") {
