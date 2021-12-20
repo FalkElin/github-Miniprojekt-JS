@@ -51,6 +51,7 @@ function deleteTodo(todo, li, removeBtn) {
   input.value = todo.name;
   todos.pop(todo);
   ul.removeChild(li);
+  console.log(todos);
   removeBtn.textContent = "Ta bort";
   removeBtn.onclick = () => deleteTodo(todo, input);
 }
@@ -63,11 +64,11 @@ function saveEdit(todo, input) {
   renderTodos();
 }
 /** Lägger till todos i array */
-
 function addTodo(event) {
   event.preventDefault();
   const todo = constructFormObject(event.target);
   console.log(todos);
+  
   if (input.value) {
     todos.push(todo);
     input.value = "";
@@ -77,7 +78,10 @@ function addTodo(event) {
   } else {
     console.log('fel');
   }
+  renderTodosInCalendar();
+}
 
+function renderTodosInCalendar() {
   for (let todo of todos) {
     let todoDates = todo.date;
     let todoNames = todo.name;
@@ -96,7 +100,6 @@ function addTodo(event) {
         let todoCells = dateCells[i];
         todoCells.appendChild(todoParagraph);
       }
-    
     }
   }
 }

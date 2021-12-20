@@ -131,6 +131,7 @@ function renderCalendar() {
     //   dateCells[daysInMonth + i + 1].classList.add("other-month");
     // }
   }
+  
 }
 
 
@@ -161,17 +162,22 @@ let firstDayIndex = calendar.date.getDay();
       let holidayDates = splittedStr[2];
       let holidayParagraph = document.createElement('p');
       holidayParagraph.innerHTML = holidayName;
+    
+      console.log(todos);
 
       for (let i=0;i < 42; i++) {
         
-        if (holidayDates == dateCells[i].innerHTML) {
+        if (holidayDates == dateCells[i].innerHTML){
           let holidayCells = dateCells[i];
           holidayCells.appendChild(holidayParagraph);
+        } else if(holidayDates[firstDayIndex] == '0' + dateCells[i].innerHTML) {
+          
         }
       }
     }
     return holidays;
 }
+
 function changeMonthForward() {
   if (calendar.month === 11) {
     calendar.month = 0;
