@@ -113,9 +113,7 @@ function renderCalendar() {
         calendar.year == todaysDate.getFullYear()
       ) {
         dateCells[i].classList.add("today");
-      } else {
-        // dateCells[i].classList.remove('today');
-      }
+      } 
     }
 
     /** renders visible last days of previous month */
@@ -161,6 +159,7 @@ let firstDayIndex = calendar.date.getDay();
       let splittedStr = str.split('-');
       let holidayDates = splittedStr[2];
       let holidayParagraph = document.createElement('p');
+      holidayParagraph.classList.add('holiday-text');
       holidayParagraph.innerHTML = holidayName;
     
       console.log(todos);
@@ -170,9 +169,7 @@ let firstDayIndex = calendar.date.getDay();
         if (holidayDates == dateCells[i].innerHTML){
           let holidayCells = dateCells[i];
           holidayCells.appendChild(holidayParagraph);
-        } else if(holidayDates[firstDayIndex] == '0' + dateCells[i].innerHTML) {
-          
-        }
+        } 
       }
     }
     return holidays;
@@ -201,9 +198,10 @@ function changeMonthBack() {
   renderCalendarHolidays();
 }
 
-
+// if sista raden celler är tomma = sätt klass hidden;
+// första todon står med. Om flera finns står det istället tre punkter
 // decembers nr 1 i kalendern === decembers 1a datum.
-//
+// 
 
 // Loopa igenom alla datum. När datum matchar calendar.today sätt klassen .today
 
