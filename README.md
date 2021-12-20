@@ -1,5 +1,9 @@
 # Miniprojekt-JS
 
+1. Skapa layouten enligt skiss (dölj kalender på mobilvy) - (G)
+
+2. Skapa och designa titeln för verktyget - (G)
+
 7. Skapade todos skall kopplas till kalender och visas med en siffra som representeras antal todos på en viss dag. - (G)
 
 8. Filtrera todolistan utifrån vald dag i kalendern, det ska gå avmarkera vald dag (VG)
