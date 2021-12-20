@@ -54,6 +54,8 @@ function deleteTodo(todo, li, removeBtn) {
   console.log(todos);
   removeBtn.textContent = "Ta bort";
   removeBtn.onclick = () => deleteTodo(todo, input);
+  
+  saveTodosToLS();
 }
 
 
