@@ -68,10 +68,19 @@ function renderCalendar() {
   /**------Calendar body------- */
   function renderCells() {
     let dateCells = document.querySelectorAll("div.date-cells");
-    let daysInMonth = 32 - new Date(calendar.year, calendar.month, 32).getDate();
+    let daysInMonth =
+      32 - new Date(calendar.year, calendar.month, 32).getDate();
     let firstDayIndex = calendar.date.getDay();
-    let lastDayIndex = new Date(calendar.date.getFullYear(),calendar.date.getMonth() + 1,0).getDay();
-    let previousLastDay = new Date(calendar.date.getFullYear(),calendar.date.getMonth(),0).getDate();
+    let lastDayIndex = new Date(
+      calendar.date.getFullYear(),
+      calendar.date.getMonth() + 1,
+      0
+    ).getDay();
+    let previousLastDay = new Date(
+      calendar.date.getFullYear(),
+      calendar.date.getMonth(),
+      0
+    ).getDate();
     let nextFirstDay = 7 - lastDayIndex - 1;
 
     // console.log(calendar);
@@ -93,16 +102,16 @@ function renderCalendar() {
     // -1,0,1,2,3,4,5
     // 0,1,2,3,4,5,6
     // Make sure that monday is 0 and sunday is 6
-    let weekday = calendar.date.getDay() - 1
+    let weekday = calendar.date.getDay() - 1;
     if (weekday === -1) weekday = 6;
 
     for (let i = weekday; i < daysInMonth + weekday; i++) {
       const day = i - weekday + 1;
       const loopDate = new Date(calendar.year, calendar.month, day);
-      
+
       // Add date number to cell
       dateCells[i].textContent = day;
-      
+
       // Add styling for today cell
       let todaysDate = new Date();
       if (isSameDay(loopDate, todaysDate)) {
@@ -117,13 +126,12 @@ function renderCalendar() {
           todosCount++;
         }
       }
-      
+
       if (todosCount > 0) {
         // skapa en badge med rätt nummer om större än 0
-        console.log('Badge', loopDate, todosCount);
+        console.log("Badge", loopDate, todosCount);
         dateCells[i].append(todosCount);
       }
-  
     }
 
     /** renders visible last days of previous month */
@@ -139,7 +147,6 @@ function renderCalendar() {
     //   dateCells[daysInMonth + i + 1].classList.add("other-month");
     // }
   }
-  
 }
 
 function isSameDay(date1, date2) {
@@ -147,9 +154,8 @@ function isSameDay(date1, date2) {
     date1.getDate() === date2.getDate() &&
     date1.getMonth() === date2.getMonth() &&
     date1.getFullYear() === date2.getFullYear()
-  )
+  );
 }
-
 
 async function renderCalendarHolidays() {
   console.log(await getSwedishHolidays(calendar.year, calendar.month));
@@ -158,37 +164,36 @@ async function renderCalendarHolidays() {
 let dateCells = document.querySelectorAll("div.date-cells");
 let firstDayIndex = calendar.date.getDay();
 
-  async function getSwedishHolidays(year, month) {
-    const response = await fetch(
-      `https://sholiday.faboul.se/dagar/v2.1/${year}/${month + 1}`
-    );
-    const data = await response.json();
-    const days = data.dagar;
+async function getSwedishHolidays(year, month) {
+  const response = await fetch(
+    `https://sholiday.faboul.se/dagar/v2.1/${year}/${month + 1}`
+  );
+  const data = await response.json();
+  const days = data.dagar;
 
-    const holidays = [];
-    for (let i = 0; i < days.length; i++) {
-      if (days[i].helgdag) {
-        holidays.push(days[i]);
+  const holidays = [];
+  for (let i = 0; i < days.length; i++) {
+    if (days[i].helgdag) {
+      holidays.push(days[i]);
+    }
+  }
+  for (let day of holidays) {
+    let str = day.datum;
+    let holidayName = day.helgdag;
+    let splittedStr = str.split("-");
+    let holidayDates = splittedStr[2];
+    let holidayParagraph = document.createElement("p");
+    holidayParagraph.classList.add("holiday-text");
+    holidayParagraph.innerHTML = holidayName;
+
+    for (let i = 0; i < 42; i++) {
+      if (holidayDates == dateCells[i].innerHTML) {
+        let holidayCells = dateCells[i];
+        holidayCells.appendChild(holidayParagraph);
       }
     }
-    for (let day of holidays) {
-      let str = day.datum;
-      let holidayName = day.helgdag;
-      let splittedStr = str.split('-');
-      let holidayDates = splittedStr[2];
-      let holidayParagraph = document.createElement('p');
-      holidayParagraph.classList.add('holiday-text');
-      holidayParagraph.innerHTML = holidayName;
-
-      for (let i=0;i < 42; i++) {
-        
-        if (holidayDates == dateCells[i].innerHTML){
-          let holidayCells = dateCells[i];
-          holidayCells.appendChild(holidayParagraph);
-        } 
-      }
-    }
-    return holidays;
+  }
+  return holidays;
 }
 
 function changeMonthForward() {
@@ -217,7 +222,7 @@ function changeMonthBack() {
 // if sista raden celler är tomma = sätt klass hidden;
 // första todon står med. Om flera finns står det istället tre punkter
 // decembers nr 1 i kalendern === decembers 1a datum.
-// 
+//
 
 // Loopa igenom alla datum. När datum matchar calendar.today sätt klassen .today
 
