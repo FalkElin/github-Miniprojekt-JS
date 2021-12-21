@@ -68,13 +68,8 @@ function renderCalendar() {
   /**------Calendar body------- */
   function renderCells() {
     let dateCells = document.querySelectorAll("div.date-cells");
-<<<<<<< HEAD
     // let todoBadge = document.querySelectorAll("p.todo-badge");
     let daysInMonth = 32 - new Date(calendar.year, calendar.month, 32).getDate();
-=======
-    let daysInMonth =
-      32 - new Date(calendar.year, calendar.month, 32).getDate();
->>>>>>> acbfbbde5e224c2a5a01ac25b14e31740e8c9ee9
     let firstDayIndex = calendar.date.getDay();
     let lastDayIndex = new Date(
       calendar.date.getFullYear(),
@@ -133,7 +128,6 @@ function renderCalendar() {
           todosCount++;
         }
       }
-<<<<<<< HEAD
       
       
    
@@ -144,13 +138,6 @@ function renderCalendar() {
         todoBadge.textContent = todosCount;
         dateCells[i].append(todoBadge);
         // appendChildren(todoBadge, dateCells[i]);
-=======
-
-      if (todosCount > 0) {
-        // skapa en badge med rätt nummer om större än 0
-        console.log("Badge", loopDate, todosCount);
-        dateCells[i].append(todosCount);
->>>>>>> acbfbbde5e224c2a5a01ac25b14e31740e8c9ee9
       }
     }
 
@@ -176,13 +163,10 @@ function isSameDay(date1, date2) {
     date1.getFullYear() === date2.getFullYear()
   );
 }
-<<<<<<< HEAD
 // function appendChildren(child1, child2, parent) {
 //   number = i;
 //   parent.  append(child1, child2)
 // }
-=======
->>>>>>> acbfbbde5e224c2a5a01ac25b14e31740e8c9ee9
 
 async function renderCalendarHolidays() {
   await getSwedishHolidays(calendar.year, calendar.month);
@@ -203,7 +187,6 @@ async function getSwedishHolidays(year, month) {
     if (days[i].helgdag) {
       holidays.push(days[i]);
     }
-<<<<<<< HEAD
     for (let day of holidays) {
       let str = day.datum;
       let holidayName = day.helgdag;
@@ -220,22 +203,6 @@ async function getSwedishHolidays(year, month) {
           dateCells[i].appendChild(holidayParagraph);
           // appendChildren(holidayParagraph);
         } 
-=======
-  }
-  for (let day of holidays) {
-    let str = day.datum;
-    let holidayName = day.helgdag;
-    let splittedStr = str.split("-");
-    let holidayDates = splittedStr[2];
-    let holidayParagraph = document.createElement("p");
-    holidayParagraph.classList.add("holiday-text");
-    holidayParagraph.innerHTML = holidayName;
-
-    for (let i = 0; i < 42; i++) {
-      if (holidayDates == dateCells[i].innerHTML) {
-        let holidayCells = dateCells[i];
-        holidayCells.appendChild(holidayParagraph);
->>>>>>> acbfbbde5e224c2a5a01ac25b14e31740e8c9ee9
       }
     }
   }
