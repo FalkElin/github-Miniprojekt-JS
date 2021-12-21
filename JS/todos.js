@@ -6,7 +6,6 @@ const mains = document.querySelector(".main");
 const ul = document.querySelector("#todoList");
 let todoParagraph;
 
-
 function mainTodo() {
   addEventListeners();
   renderTodos();
@@ -20,10 +19,11 @@ function createLi(todo) {
   const label = document.createElement("label");
   const editBtn = document.createElement("button");
   editBtn.textContent = "Ändra";
-  editBtn.onclick =  () => beginEdit(todo, li, editBtn);
+  editBtn.onclick = () => beginEdit(todo, li, editBtn);
   const removeBtn = document.createElement("button");
   removeBtn.textContent = "Ta bort";
-  removeBtn.onclick = () => deleteTodo(todo, li, deleteTodo, removeBtn), renderCalendarHolidays(removeBtn);
+  (removeBtn.onclick = () => deleteTodo(todo, li, deleteTodo, removeBtn)),
+    renderCalendarHolidays(removeBtn);
 
   li.appendChild(span);
   li.appendChild(label);
@@ -46,10 +46,9 @@ function beginEdit(todo, li, button) {
 }
 /** Ta bort todo */
 function deleteTodo(todo, li, removeBtn) {
-
   /** Om en cells innerhtml innehåller samma som en todos namn samt 'todo' = ta bort första barnet */
   for (let i = 0; i < 42; i++) {
-    if (dateCells[i].innerHTML.includes(todo.name && 'todo')) {
+    if (dateCells[i].innerHTML.includes(todo.name && "todo")) {
       let todoCell = dateCells[i];
       todoCell.firstElementChild.remove();
     }
@@ -61,11 +60,13 @@ function deleteTodo(todo, li, removeBtn) {
   todos.pop(todo);
   ul.removeChild(li);
   removeBtn.textContent = "Ta bort";
-  removeBtn.onclick = () => deleteTodo(todo, input, removeBtn), renderTodosInCalendar(removeBtn);
+  (removeBtn.onclick = () => deleteTodo(todo, input, removeBtn)),
+    renderTodosInCalendar(removeBtn);
   renderTodosInCalendar();
   saveTodosToLS();
+  renderCalendar();
+  renderCalendarHolidays();
 }
-
 
 /** Sparar ändringar till LS */
 function saveEdit(todo, input) {
@@ -78,14 +79,14 @@ function addTodo(event) {
   event.preventDefault();
   const todo = constructFormObject(event.target);
   console.log(todos);
-  
+
   if (input.value) {
     todos.unshift(todo);
     input.value = "";
     saveTodosToLS();
     renderTodos();
     renderCalendar();
-  } 
+  }
   // renderTodosInCalendar();
 }
 
@@ -94,13 +95,13 @@ function renderTodosInCalendar() {
     let todoDates = todo.date;
     let todoNames = todo.name;
 
-    let splittedDates = todoDates.split('-');
+    let splittedDates = todoDates.split("-");
     let todoDate = parseInt(splittedDates[2]);
-    todoParagraph = document.createElement('p');
-    todoParagraph.classList.add('todo');
+    todoParagraph = document.createElement("p");
+    todoParagraph.classList.add("todo");
     todoParagraph.innerHTML = todoNames;
 
-    for (let i=0; i < 42; i++) {
+    for (let i = 0; i < 42; i++) {
       if (todoDate == dateCells[i].innerHTML) {
         let todoCells = dateCells[i];
         todoCells.appendChild(todoParagraph);
@@ -108,7 +109,6 @@ function renderTodosInCalendar() {
     }
   }
 }
-
 
 function renderTodos() {
   const filteredTodos = todos.filter((todo) => true);
