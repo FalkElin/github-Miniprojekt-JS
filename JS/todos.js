@@ -84,9 +84,9 @@ function addTodo(event) {
     input.value = "";
     saveTodosToLS();
     renderTodos();
-    
+    renderCalendar();
   } 
-  renderTodosInCalendar();
+  // renderTodosInCalendar();
 }
 
 function renderTodosInCalendar() {

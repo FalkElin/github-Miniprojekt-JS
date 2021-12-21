@@ -88,32 +88,42 @@ function renderCalendar() {
       cell.classList.remove("today");
     }
 
-    /** Fill cells with correct date number and adds color to todays date*/
-    const weekday = calendar.date.getDay();
-    let i = weekday;
-    if (i > 0) {
-      for (let i = weekday; i < daysInMonth + weekday && i > 0; i++) {
-        dateCells[i - 1].innerHTML = i - weekday + 1;
-        // console.log(daysInMonth);
+    /** Fill cells with correct date number and adds color to todays date and add badge for todos*/
+    // 0,1,2,3,4,5,6
+    // -1,0,1,2,3,4,5
+    // 0,1,2,3,4,5,6
+    // Make sure that monday is 0 and sunday is 6
+    let weekday = calendar.date.getDay() - 1
+    if (weekday === -1) weekday = 6;
+
+    for (let i = weekday; i < daysInMonth + weekday; i++) {
+      const day = i - weekday + 1;
+      const loopDate = new Date(calendar.year, calendar.month, day);
+      
+      // Add date number to cell
+      dateCells[i].textContent = day;
+      
+      // Add styling for today cell
+      let todaysDate = new Date();
+      if (isSameDay(loopDate, todaysDate)) {
+        dateCells[i].classList.add("today");
       }
-    } else {
-      /** When first day of month is a sunday */
-      for (j = 1; j < daysInMonth + weekday; j++) {
-        for (let i = 6; i < daysInMonth + 6 && i >= 0; i++) {
-          dateCells[i].innerHTML = j++;
+
+      // Add badge for number of todos
+      let todosCount = 0;
+      for (const todo of todos) {
+        const todoDate = new Date(todo.date);
+        if (isSameDay(loopDate, todoDate)) {
+          todosCount++;
         }
       }
-    }
-
-    for (let i = 1; i <= daysInMonth; i++) {
-      let todaysDate = new Date();
-      if (
-        dateCells[i].innerHTML == calendar.today &&
-        calendar.month == todaysDate.getMonth() &&
-        calendar.year == todaysDate.getFullYear()
-      ) {
-        dateCells[i].classList.add("today");
-      } 
+      
+      if (todosCount > 0) {
+        // skapa en badge med rätt nummer om större än 0
+        console.log('Badge', loopDate, todosCount);
+        dateCells[i].append(todosCount);
+      }
+  
     }
 
     /** renders visible last days of previous month */
@@ -130,6 +140,14 @@ function renderCalendar() {
     // }
   }
   
+}
+
+function isSameDay(date1, date2) {
+  return (
+    date1.getDate() === date2.getDate() &&
+    date1.getMonth() === date2.getMonth() &&
+    date1.getFullYear() === date2.getFullYear()
+  )
 }
 
 
@@ -161,8 +179,6 @@ let firstDayIndex = calendar.date.getDay();
       let holidayParagraph = document.createElement('p');
       holidayParagraph.classList.add('holiday-text');
       holidayParagraph.innerHTML = holidayName;
-    
-      console.log(todos);
 
       for (let i=0;i < 42; i++) {
         
