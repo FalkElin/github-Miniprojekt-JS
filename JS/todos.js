@@ -10,7 +10,7 @@ function mainTodo() {
   addEventListeners();
   renderTodos();
 }
-
+// let todos = []
 /** Skapar li element */
 function createLi(todo) {
   const li = document.createElement("li");

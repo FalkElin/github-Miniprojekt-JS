@@ -94,6 +94,7 @@ function renderCalendar() {
 
     /** Clears each cell of data*/
     for (let cell of dateCells) {
+
       cell.innerHTML = "";
       cell.classList.remove("other-month");
       cell.classList.remove("today");
@@ -131,12 +132,13 @@ function renderCalendar() {
       
       
    
-
+    
       if (todosCount > 0) {
         // skapa en badge med rätt nummer om större än 0
         let todoBadge = document.createElement('span');
-        todoBadge.textContent = todosCount;
-        dateCells[i].append(todoBadge);
+        todoBadge.classList.add('todo-badge');
+        todoBadge.textContent = "Att göra: " + todosCount;
+          dateCells[i].append(todoBadge);
         // appendChildren(todoBadge, dateCells[i]);
       }
     }
@@ -195,14 +197,14 @@ async function getSwedishHolidays(year, month) {
       let holidayParagraph = document.createElement('p');
       holidayParagraph.classList.add('holiday-text');
       holidayParagraph.textContent = holidayName;
-
+      
+     
       for (let i=0;i < 42; i++) {
-        
-        if (holidayDates == dateCells[i].innerHTML){
-          // let holidayCells = dateCells[i];
-          dateCells[i].appendChild(holidayParagraph);
-          // appendChildren(holidayParagraph);
-        } 
+          if (dateCells[i].innerHTML.includes(`${holidayName}`)) {
+            break;
+          } else if (dateCells[i].innerHTML.includes(`${holidayDates}`)) {
+            dateCells[i].append(holidayParagraph);
+          }
       }
     }
   }
