@@ -57,13 +57,12 @@ function deleteTodo(todo, li, removeBtn) {
   const input = document.createElement("input");
   input.type = "text";
   input.value = todo.name;
-  todos.splice(todo, -1);
+  todos.pop(todo);
   ul.removeChild(li);
   removeBtn.textContent = "Ta bort";
   (removeBtn.onclick = () => deleteTodo(todo, input, removeBtn)),
     renderTodosInCalendar(removeBtn);
   renderTodosInCalendar();
-  removeTodoFromLS();
   saveTodosToLS();
   renderCalendar();
   renderCalendarHolidays();
@@ -85,27 +84,11 @@ function addTodo(event) {
     todos.unshift(todo);
     input.value = "";
     saveTodosToLS();
-    saveCalendarToLS();
     renderTodos();
     renderCalendar();
   }
   // renderTodosInCalendar();
 }
-
-// function addDate(event) {
-//   event.preventDefault();
-//   const date = constructFormObject(event.target);
-//   const dateInput = +form.getElementsById('date').value;
-//   input.type = Number;
-//   input.value = dateValue;
-
-//   if (dateValue) {
-//     dateOfTodos.unshift(date);
-//     dateValue = "";
-//     saveCalendarToLS();
-//     renderCalendar();
-//   }
-// }
 
 function renderTodosInCalendar() {
   for (let todo of todos) {
