@@ -32,7 +32,8 @@ function removeTodoFromLS(index){
 
 function saveCalendarToLS() {
   const todoDateAsString = Date.parse('dateOfTodos');
-  localStorage.setItem('dateOfTodos', date);
+  todoDateAsString = JSON.stringify(dateOfTodos);
+  localStorage.setItem('dateOfTodos', todoDateAsString);
   dateOfTodos.unshift(date);
 }
 
