@@ -6,6 +6,7 @@ body {
   background-position: center;
   height: 100%;
   font: 16px/1.4 "Mulish", sans-serif;
+  box-sizing: border-box;
   
 }
 
@@ -46,7 +47,8 @@ body {
   height: 100%;
   padding-top: 2rem;
   padding: .5rem;
-  border-radius: 50px;
+  border-radius: 0 0 50px 50px;
+  box-sizing: border-box;
 }
 .calendar-cell:hover:not(.today, .weekdays) {
   background-color: #59bb8a3f;
@@ -57,7 +59,7 @@ body {
   justify-content: flex-start;
   flex-direction: column;
   align-items: center;
-  min-width: var(--min-width);
+  /* min-width: var(--min-width); */
   border-radius: 3px;
   display: flex;
   padding: 0.5rem;
@@ -85,11 +87,11 @@ body {
 .calendar-header {
   height: 10rem;
   width: 100%;
-  min-width: var(--min-width);
+  /* min-width: var(--min-width); */
   background-color: #32746d;
   color: whitesmoke;
-  border-radius: 50px;
-  margin-bottom: 1rem;
+  border-radius: 50px 50px 0 0;
+  
 }
 .header-items {
   width: 50%;
