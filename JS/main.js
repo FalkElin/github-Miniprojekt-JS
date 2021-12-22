@@ -30,11 +30,11 @@ function removeTodoFromLS(index){
   todoAsString.splice(index, -1);
 }
 
-function saveCalendarToLS() {
-  const todoDateAsString = Date.parse('dateOfTodos');
-  localStorage.setItem('dateOfTodos', date);
-  dateOfTodos.unshift(date);
-}
+// function saveCalendarToLS() {
+//   const todoDateAsString = Date.parse('dateOfTodos');
+//   localStorage.setItem('dateOfTodos', date);
+//   dateOfTodos.unshift(date);
+// }
 
 function loadTodosInLS() {
   const todoDateAsString = localStorage.getItem('dateOfTodos');

@@ -42,6 +42,7 @@ const weekdays = [
   "Fredag",
   "Lördag",
 ];
+let todoList = [];
 
 function addCalendarEventlisteners() {
   document
@@ -137,25 +138,54 @@ function renderCalendar() {
         let todoBadge = document.createElement("span");
         todoBadge.classList.add("todo-badge");
         todoBadge.textContent = "Att göra: " + todosCount;
-          dateCells[i].append(todoBadge);
-
-        // appendChildren(todoBadge, dateCells[i]);
+        dateCells[i].append(todoBadge);
         dateCells[i].append(todoBadge);
         todoBadge.addEventListener("click", showDaysTodo);
       }
+     
+      let todoDate;
       function showDaysTodo() {
+        for (let todo of todos) {
+          todoDate = new Date(todo.date);
+        }
+        const day = i - weekday + 1;
+        const loopDate = new Date(calendar.year, calendar.month, day);
+        let dailyTodoArray = todos.filter(todo => isSameDay(new Date(todo.date), loopDate));
+        console.log(dailyTodoArray);
+        // filtrerar todos och skickar med nya listan
+        renderDailyTodos(dailyTodoArray);
+      }
 
-      
-        // console.log(day);
+      function renderDailyTodos(array) {
+        const ul = document.querySelector("ul");
+        ul.innerHTML = "";
+        for (const todo of array) {
+          console.log('hhh');
+          const li = createLi(todo);
+          ul.appendChild(li);
+        }
+      }
         // for (let todo of todos) {
         //   const todoDate = new Date(todo.date);
+        //   todoList.push(todo);
         //   if (isSameDay(loopDate, todoDate)) {
+        //     console.log(todo.name);
+        //     createDailyTodoList();
         //   }
         // }
-          //1. if datum på day = datum på todoDate är lika
-          //2. lista ut todosen 
-      }
+          // 1. if datum på day = datum på todoDate är lika
+          // 2. lista ut todosen 
+     
     }
+    // function createDailyTodoList() {
+    //   console.log(todoList);
+    //   let ul = document.getElementById('todoList');
+    //   ul.innerHTML = '';
+    //   for (const dailyTodo of todoList) {
+    //     createLi(dailyTodo);
+    //   }
+      
+    // }
 
     /** renders visible last days of previous month */
     for (firstDayIndex -= 2; firstDayIndex >= 0; firstDayIndex--) {

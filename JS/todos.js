@@ -13,6 +13,7 @@ function mainTodo() {
 // let todos = []
 /** Skapar li element */
 function createLi(todo) {
+  console.log(todo.name);
   const li = document.createElement("li");
   const span = document.createElement("span");
   span.textContent = todo.name;
@@ -23,7 +24,7 @@ function createLi(todo) {
   const removeBtn = document.createElement("button");
   removeBtn.textContent = "Ta bort";
   (removeBtn.onclick = () => deleteTodo(todo, li, deleteTodo, removeBtn)),
-    renderCalendarHolidays(removeBtn);
+  renderCalendarHolidays(removeBtn);
 
   li.appendChild(span);
   li.appendChild(label);
@@ -57,7 +58,7 @@ function deleteTodo(todo, li, removeBtn) {
   const input = document.createElement("input");
   input.type = "text";
   input.value = todo.name;
-  todos.splice(todo, -1);
+  todos.pop(todo);
   ul.removeChild(li);
   removeBtn.textContent = "Ta bort";
   (removeBtn.onclick = () => deleteTodo(todo, input, removeBtn)),
@@ -85,8 +86,8 @@ function addTodo(event) {
     todos.unshift(todo);
     input.value = "";
     saveTodosToLS();
-    saveCalendarToLS();
-    renderTodos();
+    // saveCalendarToLS();
+    renderTodos(todo);
     renderCalendar();
   }
   // renderTodosInCalendar();
@@ -128,12 +129,12 @@ function renderTodosInCalendar() {
 }
 
 function renderTodos() {
-  const filteredTodos = todos.filter((todo) => true);
   const ul = document.querySelector("ul");
-  // Tar bort tidigare tillagda todos
   ul.innerHTML = "";
+  // const filteredTodos = todos.filter((todo) => true);
   // Lägger tillbaka todos
-  for (const todo of filteredTodos) {
+  for (const todo of todos) {
+    console.log('hhh');
     const li = createLi(todo);
     ul.appendChild(li);
   }
