@@ -56,7 +56,7 @@ function deleteTodo(todo, li, removeBtn) {
   const input = document.createElement("input");
   input.type = "text";
   input.value = todo.name;
-  todos.splice(todo, -1);
+  todos.pop(todo);
   ul.removeChild(li);
   removeBtn.textContent = "Ta bort";
   (removeBtn.onclick = () => deleteTodo(todo, input, removeBtn)),

@@ -121,6 +121,7 @@ function renderCalendar() {
       }
 
       // Add badge for number of todos
+      
       let todosCount = 0;
       for (const todo of todos) {
         const todoDate = new Date(todo.date);
@@ -143,15 +144,16 @@ function renderCalendar() {
         todoBadge.addEventListener("click", showDaysTodo);
       }
       function showDaysTodo() {
-        for (let todo of todos) {
-          const todoDate = new Date(todo.date);
-          if (isSameDay(loopDate, todoDate)) {
-            const ul = document.querySelector("ul");
-            ul.innerHTML = "";
-            const li = createLi(todo);
-            ul.appendChild(li);
-          }
-        }
+
+      
+        // console.log(day);
+        // for (let todo of todos) {
+        //   const todoDate = new Date(todo.date);
+        //   if (isSameDay(loopDate, todoDate)) {
+        //   }
+        // }
+          //1. if datum på day = datum på todoDate är lika
+          //2. lista ut todosen 
       }
     }
 
