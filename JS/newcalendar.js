@@ -128,17 +128,16 @@ function renderCalendar() {
         if (isSameDay(loopDate, todoDate)) {
           todosCount++;
         }
+        
       }
       
-      
-   
-    
       if (todosCount > 0) {
         // skapa en badge med rätt nummer om större än 0
         let todoBadge = document.createElement('span');
         todoBadge.classList.add('todo-badge');
         todoBadge.textContent = "Att göra: " + todosCount;
           dateCells[i].append(todoBadge);
+
         // appendChildren(todoBadge, dateCells[i]);
       }
     }
@@ -163,6 +162,7 @@ function isSameDay(date1, date2) {
     date1.getDate() === date2.getDate() &&
     date1.getMonth() === date2.getMonth() &&
     date1.getFullYear() === date2.getFullYear()
+
   );
 }
 // function appendChildren(child1, child2, parent) {
