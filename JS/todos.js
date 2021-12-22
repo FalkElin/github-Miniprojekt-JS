@@ -85,7 +85,6 @@ function addTodo(event) {
     todos.unshift(todo);
     input.value = "";
     saveTodosToLS();
-    saveCalendarToLS();
     renderTodos();
     renderCalendar();
   }
