@@ -145,6 +145,7 @@ function renderCalendar() {
             const ul = document.querySelector("ul");
             ul.innerHTML = "";
             const li = createLi(todo);
+            console.log(li);
             ul.appendChild(li);
           }
         }

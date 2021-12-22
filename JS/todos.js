@@ -77,7 +77,7 @@ function saveEdit(todo, input) {
 /** Lägger till todos i array */
 function addTodo(event) {
   event.preventDefault();
-  const todo = constructFormObject(event.target);
+  let todo = constructFormObject(event.target);
   console.log(todos);
 
   if (input.value) {
