@@ -122,7 +122,7 @@ function renderCalendar() {
       }
 
       // Add badge for number of todos
-      
+
       let todosCount = 0;
       for (const todo of todos) {
         const todoDate = new Date(todo.date);
@@ -130,7 +130,6 @@ function renderCalendar() {
           showDaysTodo;
           todosCount++;
         }
-        
       }
 
       if (todosCount > 0) {
@@ -207,7 +206,6 @@ function isSameDay(date1, date2) {
     date1.getDate() === date2.getDate() &&
     date1.getMonth() === date2.getMonth() &&
     date1.getFullYear() === date2.getFullYear()
-
   );
 }
 // function appendChildren(child1, child2, parent) {
