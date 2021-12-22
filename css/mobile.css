@@ -6,8 +6,8 @@
         margin: auto;
         display: flex;
         flex-wrap: wrap;
-        overflow-x: hidden;
-        overflow-y: hidden;
+        /* overflow-x: hidden;
+        overflow-y: hidden; */
     }
   }
   
@@ -40,4 +40,15 @@
     #todoList li button {
       font-size: 12px;
     }
+  }
+
+  @media (max-width: 375px) { 
+    body {justify-content: center;}
+    .calendar-container {display: none;}
+    .welcome-segment {width: 80%;}
+    #city {font-size: 2rem;}
+    .location-time-weekday-div {align-items: center;}
+    .todo-div {margin: 0;}
+    .todo-element {min-height: 100%;}
+
   }

@@ -126,21 +126,32 @@ function renderCalendar() {
       for (const todo of todos) {
         const todoDate = new Date(todo.date);
         if (isSameDay(loopDate, todoDate)) {
+          showDaysTodo
           todosCount++;
         }
       }
       
-      
-   
-    
       if (todosCount > 0) {
         // skapa en badge med rätt nummer om större än 0
         let todoBadge = document.createElement('span');
         todoBadge.classList.add('todo-badge');
         todoBadge.textContent = "Att göra: " + todosCount;
-          dateCells[i].append(todoBadge);
-        // appendChildren(todoBadge, dateCells[i]);
+        dateCells[i].append(todoBadge);
+        todoBadge.addEventListener('click', showDaysTodo);
       }
+      function showDaysTodo() {
+        // console.log('todoDay');
+        // console.log(day);
+        // for (let todo of todos) {
+        //   const todoDate = new Date(todo.date);
+        //   if (isSameDay(loopDate, todoDate)) {
+        //     console.log(todo.name);
+        //   }
+        // }
+          //1. if datum på day = datum på todoDate är lika
+          //2. lista ut todosen 
+      }
+
     }
 
     /** renders visible last days of previous month */
