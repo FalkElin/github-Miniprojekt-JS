@@ -27,7 +27,6 @@ function loadTodos() {
 function removeTodoFromLS(index){
   const todoAsString = JSON.parse(localStorage.getItem("todos")) || [];
   localStorage.setItem('todos', JSON.stringify(todos));
-  todoAsString.splice(index, -1);
 }
 
 function saveCalendarToLS() {
