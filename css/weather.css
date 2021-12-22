@@ -120,9 +120,10 @@
   margin: auto;
   margin-top: 1rem;
   border-bottom: rgba(95, 158, 160, 0.157) .5rem solid;
-  color: #32746d;
+  color: rgba(255, 255, 255, 0.657);
+  /* color: #32746d; */
   width: 40%;
-  letter-spacing: 1rem;
+  
   /* background-color: cadetblue; */
   /* color: rgba(0, 0, 0, 0.212); */
   /* border-radius: 100%;

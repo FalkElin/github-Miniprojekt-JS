@@ -122,6 +122,7 @@ function renderCalendar() {
       }
 
       // Add badge for number of todos
+      
       let todosCount = 0;
       for (const todo of todos) {
         const todoDate = new Date(todo.date);
@@ -140,12 +141,11 @@ function renderCalendar() {
         todoBadge.addEventListener('click', showDaysTodo);
       }
       function showDaysTodo() {
-        // console.log('todoDay');
+      
         // console.log(day);
         // for (let todo of todos) {
         //   const todoDate = new Date(todo.date);
         //   if (isSameDay(loopDate, todoDate)) {
-        //     console.log(todo.name);
         //   }
         // }
           //1. if datum på day = datum på todoDate är lika
