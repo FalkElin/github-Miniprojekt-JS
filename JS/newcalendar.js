@@ -121,6 +121,7 @@ function renderCalendar() {
       }
 
       // Add badge for number of todos
+
       let todosCount = 0;
       for (const todo of todos) {
         const todoDate = new Date(todo.date);
@@ -135,6 +136,9 @@ function renderCalendar() {
         let todoBadge = document.createElement("span");
         todoBadge.classList.add("todo-badge");
         todoBadge.textContent = "Att göra: " + todosCount;
+        dateCells[i].append(todoBadge);
+
+        // appendChildren(todoBadge, dateCells[i]);
         dateCells[i].append(todoBadge);
         todoBadge.addEventListener("click", showDaysTodo);
       }
