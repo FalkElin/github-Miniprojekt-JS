@@ -69,7 +69,8 @@ function renderCalendar() {
   function renderCells() {
     let dateCells = document.querySelectorAll("div.date-cells");
     // let todoBadge = document.querySelectorAll("p.todo-badge");
-    let daysInMonth = 32 - new Date(calendar.year, calendar.month, 32).getDate();
+    let daysInMonth =
+      32 - new Date(calendar.year, calendar.month, 32).getDate();
     let firstDayIndex = calendar.date.getDay();
     let lastDayIndex = new Date(
       calendar.date.getFullYear(),
@@ -90,11 +91,9 @@ function renderCalendar() {
     // console.log(nextFirstDay);
     // console.log(daysInMonth);
     // console.log(todoBadge);
-    
 
     /** Clears each cell of data*/
     for (let cell of dateCells) {
-
       cell.innerHTML = "";
       cell.classList.remove("other-month");
       cell.classList.remove("today");
@@ -127,20 +126,25 @@ function renderCalendar() {
       for (const todo of todos) {
         const todoDate = new Date(todo.date);
         if (isSameDay(loopDate, todoDate)) {
-          showDaysTodo
+          showDaysTodo;
           todosCount++;
         }
+        
       }
-      
+
       if (todosCount > 0) {
         // skapa en badge med rätt nummer om större än 0
-        let todoBadge = document.createElement('span');
-        todoBadge.classList.add('todo-badge');
+        let todoBadge = document.createElement("span");
+        todoBadge.classList.add("todo-badge");
         todoBadge.textContent = "Att göra: " + todosCount;
+          dateCells[i].append(todoBadge);
+
+        // appendChildren(todoBadge, dateCells[i]);
         dateCells[i].append(todoBadge);
-        todoBadge.addEventListener('click', showDaysTodo);
+        todoBadge.addEventListener("click", showDaysTodo);
       }
       function showDaysTodo() {
+
       
         // console.log(day);
         // for (let todo of todos) {
@@ -151,7 +155,6 @@ function renderCalendar() {
           //1. if datum på day = datum på todoDate är lika
           //2. lista ut todosen 
       }
-
     }
 
     /** renders visible last days of previous month */
@@ -174,6 +177,7 @@ function isSameDay(date1, date2) {
     date1.getDate() === date2.getDate() &&
     date1.getMonth() === date2.getMonth() &&
     date1.getFullYear() === date2.getFullYear()
+
   );
 }
 // function appendChildren(child1, child2, parent) {
@@ -203,19 +207,18 @@ async function getSwedishHolidays(year, month) {
     for (let day of holidays) {
       let str = day.datum;
       let holidayName = day.helgdag;
-      let splittedStr = str.split('-');
+      let splittedStr = str.split("-");
       let holidayDates = splittedStr[2];
-      let holidayParagraph = document.createElement('p');
-      holidayParagraph.classList.add('holiday-text');
+      let holidayParagraph = document.createElement("p");
+      holidayParagraph.classList.add("holiday-text");
       holidayParagraph.textContent = holidayName;
-      
-     
-      for (let i=0;i < 42; i++) {
-          if (dateCells[i].innerHTML.includes(`${holidayName}`)) {
-            break;
-          } else if (dateCells[i].innerHTML.includes(`${holidayDates}`)) {
-            dateCells[i].append(holidayParagraph);
-          }
+
+      for (let i = 0; i < 42; i++) {
+        if (dateCells[i].innerHTML.includes(`${holidayName}`)) {
+          break;
+        } else if (dateCells[i].innerHTML.includes(`${holidayDates}`)) {
+          dateCells[i].append(holidayParagraph);
+        }
       }
     }
   }
