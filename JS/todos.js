@@ -1,5 +1,6 @@
 window.addEventListener("load", mainTodo);
 
+/** Global scope */
 const form = document.querySelector("#todoForm");
 const input = document.querySelector("input");
 const mains = document.querySelector(".main");
@@ -10,8 +11,10 @@ function mainTodo() {
   addEventListeners();
   renderTodos();
 }
-// let todos = []
-/** Skapar li element */
+
+/**
+ * Create li element with a span, an edit button and delete button. 
+ */
 function createLi(todo) {
   console.log(todo.name);
   const li = document.createElement("li");
@@ -34,7 +37,7 @@ function createLi(todo) {
   return li;
 }
 
-/** Ändrar texten på edit till save */
+/** Creates a new input field to edit the todo and changes the name of edit button to save. */
 function beginEdit(todo, li, button) {
   const span = li.firstElementChild;
   const input = document.createElement("input");
@@ -45,11 +48,13 @@ function beginEdit(todo, li, button) {
   button.textContent = "Spara";
   button.onclick = () => saveEdit(todo, input);
 }
-/** Ta bort todo */
+
+
+/** If a cell's text content containes the same as a todo's name and 'todo'. Remove the first child. /*
+/** Remove a todo */
 function deleteTodo(todo, li, removeBtn) {
-  /** Om en cells innerhtml innehåller samma som en todos namn samt 'todo' = ta bort första barnet */
   for (let i = 0; i < 42; i++) {
-    if (dateCells[i].innerHTML.includes(todo.name && "todo")) {
+    if (dateCells[i].textContent.includes(todo.name && "todo")) {
       let todoCell = dateCells[i];
       todoCell.firstElementChild.remove();
     }
@@ -70,13 +75,13 @@ function deleteTodo(todo, li, removeBtn) {
   renderCalendarHolidays();
 }
 
-/** Sparar ändringar till LS */
+/** Saves changes to local storage*/
 function saveEdit(todo, input) {
   todo.name = input.value;
   saveTodosToLS();
   renderTodos();
 }
-/** Lägger till todos i array */
+/** Adds todos to the array */
 function addTodo(event) {
   event.preventDefault();
   let todo = constructFormObject(event.target);
@@ -86,7 +91,7 @@ function addTodo(event) {
     todos.unshift(todo);
     input.value = "";
     saveTodosToLS();
-    // saveCalendarToLS();
+    saveCalendar();
     renderTodos(todo);
     renderCalendar();
   }
@@ -107,7 +112,9 @@ function addTodo(event) {
 //     renderCalendar();
 //   }
 // }
-
+/**
+ * Adds the todos from the todo list to the calendar
+ */
 function renderTodosInCalendar() {
   for (let todo of todos) {
     let todoDates = todo.date;
@@ -117,37 +124,36 @@ function renderTodosInCalendar() {
     let todoDate = parseInt(splittedDates[2]);
     todoParagraph = document.createElement("p");
     todoParagraph.classList.add("todo");
-    todoParagraph.innerHTML = todoNames;
+    todoParagraph.textContent = todoNames;
 
     for (let i = 0; i < 42; i++) {
-      if (todoDate == dateCells[i].innerHTML) {
+      if (todoDate == dateCells[i].textContent) {
         let todoCells = dateCells[i];
         todoCells.appendChild(todoParagraph);
       }
     }
   }
 }
-
+/** Removes and adds all todos to the list when a new todo has been added. */
 function renderTodos() {
   const ul = document.querySelector("ul");
-  ul.innerHTML = "";
+  ul.textContent = "";
   // const filteredTodos = todos.filter((todo) => true);
-  // Lägger tillbaka todos
+
   for (const todo of todos) {
-    console.log('hhh');
     const li = createLi(todo);
     ul.appendChild(li);
   }
 }
 
-/** Lägger till eventlyssnare */
+/** Adds eventlisteners to the submit button */
 function addEventListeners() {
   const form = document.querySelector("#todoForm");
   form.addEventListener("submit", addTodo);
 }
 
 /**
- * Retunerar ett js-objekt baserat på ett form element
+ * Returns a javascript object based on a form element.
  * @param {HTMLFormElement} formElement
  * @returns {Object}
  */
@@ -155,5 +161,3 @@ function constructFormObject(formElement) {
   const formData = new FormData(formElement);
   return Object.fromEntries(formData);
 }
-
-/**----------------- */
