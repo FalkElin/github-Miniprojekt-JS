@@ -1,54 +1,92 @@
-@media only screen and (max-width: 840px) {
-    .todo-div {
-      margin: 20px;
-    }
-    body {
-        margin: auto;
-        display: flex;
-        flex-wrap: wrap;
-        /* overflow-x: hidden;
-        overflow-y: hidden; */
-    }
-  }
-  
-  @media only screen and (max-width: 640px) {
-
-    body {
-        margin: auto;
-        display: flex;
-        flex-wrap: wrap;
-    }
-    
-    .weather-data {
-        opacity: 80%;
-    }
-
-    #todoForm input,
-    #todoForm button {
-      font-size: 14px;
-    }
-  
-    #header h1 {
-      font-size: 20px;
-    }
-  
-    #todoList li span,
-    #todoList li input[type="text"] {
-      font-size: 16px;
-    }
-  
-    #todoList li button {
-      font-size: 12px;
-    }
+@media only screen and (max-width: 640px) {
+  body {
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 100%;
   }
 
-  @media (max-width: 375px) { 
-    body {justify-content: center;}
-    .calendar-container {display: none;}
-    .welcome-segment {width: 80%;}
-    #city {font-size: 2rem;}
-    .location-time-weekday-div {align-items: center;}
-    .todo-div {margin: 0;}
-    .todo-element {min-height: 100%;}
-
+  .welcome-segment {
+    position: relative;
+    display: flex;
+    color: #8995aa;
+    font: 14px/1.4 "Mulish", sans-serif;
+    min-height: 100vh;
+    width: 19rem;
+    margin: 1rem 0;
+    overflow-x: hidden;
   }
+
+  .weather-data {
+    position: relative;
+    background-color: #161616;
+    display: flex;
+    width: 20rem;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .calendar-container {
+    display: none;
+  }
+  .weather-data {
+    opacity: 80%;
+  }
+
+  #todoForm input,
+  #todoForm button {
+    font-size: 14px;
+  }
+
+  #header h1 {
+    font-size: 20px;
+  }
+
+  #todoList li span,
+  #todoList li input[type="text"] {
+    font-size: 16px;
+  }
+
+  #todoList li button {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 375px) {
+  body {
+    justify-content: center;
+  }
+  .calendar-container {
+    display: none;
+  }
+  .welcome-segment {
+    width: 17rem;
+    height: 100%;
+  }
+  .weather-data {
+    width: 17rem;
+  }
+  #city {
+    font-size: 2rem;
+  }
+  .location-time-weekday-div {
+    align-items: center;
+  }
+  .todo-div {
+    margin: 0;
+  }
+  .main {
+    padding: 17px;
+  }
+  .todo-div {
+    background-color: #8995aa;
+    box-shadow: 5px 5px 20px -5px rgba(0, 0, 0, 0.2);
+    width: 17rem;
+    height: 100%;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+  }
+  .todo-element {
+    min-height: 100%;
+  }
+}

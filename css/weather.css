@@ -47,11 +47,9 @@
   position: relative;
   background-color: #161616;
   display: flex;
-
   justify-content: center;
   flex-direction: column;
-  padding: 2rem;
-  padding-top: 0;
+  padding: 1.5rem;
 }
 
 .city {
