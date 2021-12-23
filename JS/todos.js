@@ -9,9 +9,9 @@ function initTodo() {
   addEventListeners();
   renderTodos();
 }
-
 /**
- * Create li element with a span, an edit button and delete button.
+ * Creates li element with a span, an edit button and delete button.
+ * @type {HTMLLIElement} li element
  */
 function createLi(todo) {
   const li = document.createElement("li");
@@ -23,8 +23,8 @@ function createLi(todo) {
   editBtn.onclick = () => beginEdit(todo, li, editBtn);
   const removeBtn = document.createElement("button");
   removeBtn.textContent = "Ta bort";
-  (removeBtn.onclick = () => deleteTodo(todo, li, deleteTodo, removeBtn)),
-    renderCalendarHolidays(removeBtn);
+  (removeBtn.onclick = () => deleteTodo(todo, li, deleteTodo, removeBtn))
+  renderCalendarHolidays();
 
   li.appendChild(span);
   li.appendChild(label);
@@ -33,8 +33,12 @@ function createLi(todo) {
 
   return li;
 }
-
-/** Creates a new input field to edit the todo and changes the name of edit button to save. */
+/**
+ * Creates a new input field to edit the todo and changes the name of edit button to save.
+ * @type {HTMLInputElement} todo input
+ * @type {HTMLLIElement} li 
+ * @type {HTMLButtonElement} button 
+ */
 function beginEdit(todo, li, button) {
   const span = li.firstElementChild;
   const input = document.createElement("input");
@@ -45,9 +49,11 @@ function beginEdit(todo, li, button) {
   button.textContent = "Spara";
   button.onclick = () => saveEdit(todo, input);
 }
-
-/** If a cell's text content containes the same as a todo's name and 'todo'. Remove the first child. /*
-/** Remove a todo */
+/**
+ *  Remove a todo
+ * If a cell's text content containes the same as a todo's name and 'todo'. Remove the first child.
+ * @type {HTMLButtonElement} removeBtn 
+ */
 function deleteTodo(todo, li, removeBtn) {
   for (let i = 0; i < 42; i++) {
     if (dateCells[i].textContent.includes(todo.name && "todo")) {
@@ -63,14 +69,15 @@ function deleteTodo(todo, li, removeBtn) {
   todos.splice(todoIndex, 1);
   ul.removeChild(li);
   removeBtn.textContent = "Ta bort";
-  (removeBtn.onclick = () => deleteTodo(todo, input, removeBtn)),
-    renderTodosInCalendar(removeBtn);
+  (removeBtn.onclick = () => deleteTodo(todo, input, removeBtn));
   saveTodosToLS();
   renderCalendar();
   renderCalendarHolidays();
 }
-
-/** Saves changes to local storage*/
+/**
+ * Saves changes in the list
+ * @type {HTMLButtonElement} todo 
+ */
 function saveEdit(todo, input) {
   todo.name = input.value;
   saveTodosToLS();
@@ -88,32 +95,8 @@ function addTodo(event) {
     renderTodos(todo);
     renderCalendar();
   }
-  // renderTodosInCalendar();
 }
 
-
-/**
- * Adds the todos from the todo list to the calendar
- */
-function renderTodosInCalendar() {
-  for (let todo of todos) {
-    let todoDates = todo.date;
-    let todoNames = todo.name;
-
-    let splittedDates = todoDates.split("-");
-    let todoDate = parseInt(splittedDates[2]);
-    todoParagraph = document.createElement("p");
-    todoParagraph.classList.add("todo");
-    todoParagraph.textContent = todoNames;
-
-    for (let i = 0; i < 42; i++) {
-      if (todoDate == dateCells[i].textContent) {
-        let todoCells = dateCells[i];
-        todoCells.appendChild(todoParagraph);
-      }
-    }
-  }
-}
 /** Removes and adds all todos to the list when a new todo has been added. */
 function renderTodos() {
   const ul = document.querySelector("ul");

@@ -1,3 +1,4 @@
+/** Holds relevant data for calendar */
 let calendar = {
   date: new Date(),
   month: null,
@@ -5,17 +6,18 @@ let calendar = {
   today: null,
 };
 
+/** initializes the calendar */
 function initCalendar() {
   addCalendarEventlisteners();
-
   calendar.month = calendar.date.getMonth();
   calendar.year = calendar.date.getFullYear();
   calendar.today = calendar.date.getUTCDate();
   calendar.date.setDate(1);
   renderCalendar();
-  renderCalendarHolidays();
+  renderCalendarHolidays(calendar.month, calendar.year);
 }
 
+/** Array for month titles */
 const months = [
   "Januari",
   "Februari",
@@ -31,6 +33,7 @@ const months = [
   "December",
 ];
 
+/** array for weekday titles */
 const weekdays = [
   "Söndag",
   "Måndag",
@@ -40,8 +43,8 @@ const weekdays = [
   "Fredag",
   "Lördag",
 ];
-let todoList = [];
 
+/** adds eventlisteners */
 function addCalendarEventlisteners() {
   document
     .getElementById("arrow-back")
@@ -51,11 +54,12 @@ function addCalendarEventlisteners() {
     .addEventListener("click", changeMonthForward);
 }
 
+/** Renders calendar with correct data for current state*/
 function renderCalendar() {
   renderCells();
   renderHeader();
 
-  /**-----Header---- */
+  /** Renders calendar header with correct data for current st*/
   function renderHeader() {
     let todaysDate = calendar.date.getUTCDate();
     document.getElementById("calendarHeader").innerText =
@@ -64,10 +68,9 @@ function renderCalendar() {
       weekdays[new Date().getDay()] + " " + calendar.today;
   }
 
-  /**------Calendar body------- */
+  /** Renders calendar cells with correct data for current state */
   function renderCells() {
     let dateCells = document.querySelectorAll("div.date-cells");
-    // let todoBadge = document.querySelectorAll("p.todo-badge");
     let daysInMonth =
       32 - new Date(calendar.year, calendar.month, 32).getDate();
     let firstDayIndex = calendar.date.getDay();
@@ -83,14 +86,6 @@ function renderCalendar() {
     ).getDate();
     let nextFirstDay = 7 - lastDayIndex - 1;
 
-    // console.log(calendar);
-    // console.log(lastDayIndex);
-    // console.log(previousLastDay);
-    // console.log(firstDayIndex);
-    // console.log(nextFirstDay);
-    // console.log(daysInMonth);
-    // console.log(todoBadge);
-
     /** Clears each cell of data*/
     for (let cell of dateCells) {
       cell.innerHTML = "";
@@ -99,10 +94,6 @@ function renderCalendar() {
     }
 
     /** Fill cells with correct date number and adds color to todays date and add badge for todos*/
-    // 0,1,2,3,4,5,6
-    // -1,0,1,2,3,4,5
-    // 0,1,2,3,4,5,6
-    // Make sure that monday is 0 and sunday is 6
     let weekday = calendar.date.getDay() - 1;
     if (weekday === -1) weekday = 6;
 
@@ -110,17 +101,16 @@ function renderCalendar() {
       const day = i - weekday + 1;
       const loopDate = new Date(calendar.year, calendar.month, day);
 
-      // Add date number to cell
+      /** Adds date number to cell */
       dateCells[i].textContent = day;
 
-      // Add styling for today cell
+      /** Adds styling for todays date cell */
       let todaysDate = new Date();
       if (isSameDay(loopDate, todaysDate)) {
         dateCells[i].classList.add("today");
       }
 
-      // Add badge for number of todos
-
+      /** Checks to see if dates match */
       todosCount = 0;
       for (const todo of todos) {
         const todoDate = new Date(todo.date);
@@ -129,9 +119,9 @@ function renderCalendar() {
           todosCount++;
         }
       }
-
+      
+    /** if number of todo for a day is bigger than 0, create a badge with correct data of number of todos */
       if (todosCount > 0) {
-        // skapa en badge med rätt nummer om större än 0
         todoBadge = document.createElement("span");
         todoBadge.classList.add("todo-badge");
         todoBadge.textContent = "Att göra: " + todosCount;
@@ -140,6 +130,7 @@ function renderCalendar() {
         todoBadge.addEventListener("click", showDaysTodo);
       }
 
+      /** Filter todos with same date to new array */
       let todoDate;
       function showDaysTodo() {
         for (let todo of todos) {
@@ -150,11 +141,10 @@ function renderCalendar() {
         let dailyTodoArray = todos.filter((todo) =>
           isSameDay(new Date(todo.date), loopDate)
         );
-        console.log(dailyTodoArray);
-        // filtrerar todos och skickar med nya listan
         renderDailyTodos(dailyTodoArray);
       }
 
+      /** Creates new list-elements in todo-section with data from chosen day */
       function renderDailyTodos(array) {
         const ul = document.querySelector("ul");
         ul.innerHTML = "";
@@ -163,42 +153,20 @@ function renderCalendar() {
           ul.appendChild(li);
         }
       }
-      // for (let todo of todos) {
-      //   const todoDate = new Date(todo.date);
-      //   todoList.push(todo);
-      //   if (isSameDay(loopDate, todoDate)) {
-      //     console.log(todo.name);
-      //     createDailyTodoList();
-      //   }
-      // }
-      // 1. if datum på day = datum på todoDate är lika
-      // 2. lista ut todosen
     }
-    // function createDailyTodoList() {
-    //   console.log(todoList);
-    //   let ul = document.getElementById('todoList');
-    //   ul.innerHTML = '';
-    //   for (const dailyTodo of todoList) {
-    //     createLi(dailyTodo);
-    //   }
-
-    // }
-
     /** renders visible last days of previous month */
     for (firstDayIndex -= 2; firstDayIndex >= 0; firstDayIndex--) {
       dateCells[firstDayIndex].innerHTML = previousLastDay;
       previousLastDay--;
       dateCells[firstDayIndex].classList.add("other-month");
     }
-    /** renders visible days of next coming month */
-    // for (let i = 1; i <= 7; i++) {
-    //   console.log(daysInMonth + 1);
-    //   dateCells[daysInMonth + i + 1].innerHTML = i;
-    //   dateCells[daysInMonth + i + 1].classList.add("other-month");
-    // }
   }
 }
-
+/**
+ * Checks if two dates matches
+ * @param {number} date1
+ * @param {number} date2
+ */
 function isSameDay(date1, date2) {
   return (
     date1.getDate() === date2.getDate() &&
@@ -206,10 +174,6 @@ function isSameDay(date1, date2) {
     date1.getFullYear() === date2.getFullYear()
   );
 }
-// function appendChildren(child1, child2, parent) {
-//   number = i;
-//   parent.  append(child1, child2)
-// }
 
 async function renderCalendarHolidays() {
   await getSwedishHolidays(calendar.year, calendar.month);
@@ -218,18 +182,22 @@ async function renderCalendarHolidays() {
 let dateCells = document.querySelectorAll("div.date-cells");
 let firstDayIndex = calendar.date.getDay();
 
-async function getSwedishHolidays(year, month) {
-  const response = await fetch(
-    `https://sholiday.faboul.se/dagar/v2.1/${year}/${month + 1}`
-  );
+/**
+ * fetches api with swedish holidays based on current month in calendar. 
+ */
+async function getSwedishHolidays(year,month) {
+  
+  const response = await fetch(`https://sholiday.faboul.se/dagar/v2.1/${year}/${month + 1}`);
   const data = await response.json();
   const days = data.dagar;
 
+  /** creates array and pushes holidays to the array */
   const holidays = [];
   for (let i = 0; i < days.length; i++) {
     if (days[i].helgdag) {
       holidays.push(days[i]);
     }
+    /** Fills calendar cells with correct holiday data */
     for (let day of holidays) {
       let str = day.datum;
       let holidayName = day.helgdag;
@@ -239,6 +207,7 @@ async function getSwedishHolidays(year, month) {
       holidayParagraph.classList.add("holiday-text");
       holidayParagraph.textContent = holidayName;
 
+      /** If cell contains holidayname stop loop. If not, puts correct data in cell */
       for (let i = 0; i < 42; i++) {
         if (dateCells[i].innerHTML.includes(`${holidayName}`)) {
           break;
@@ -251,6 +220,7 @@ async function getSwedishHolidays(year, month) {
   return holidays;
 }
 
+/** If month is changed forward update calendar object with correct data and renders calendar */
 function changeMonthForward() {
   if (calendar.month === 11) {
     calendar.month = 0;
@@ -262,6 +232,7 @@ function changeMonthForward() {
   renderCalendar();
   renderCalendarHolidays();
 }
+/** If month is changed backwards update calendar object with correct data and renders calendar */
 function changeMonthBack() {
   if (calendar.month === 0) {
     calendar.month = 11;
@@ -274,32 +245,3 @@ function changeMonthBack() {
   renderCalendarHolidays();
 }
 
-// if sista raden celler är tomma = sätt klass hidden;
-// första todon står med. Om flera finns står det istället tre punkter
-// decembers nr 1 i kalendern === decembers 1a datum.
-//
-
-// Loopa igenom alla datum. När datum matchar calendar.today sätt klassen .today
-
-// för varje datecell skapa nytt P element
-// I varje P element ska siffran stiga med ett
-//
-/** Får antal dagar i månad x genom att addera 32 till första dagen för att sedan subtrahera datumet man landar på. */
-
-//.1 firstdayindex - 1 = startplats för lastdayofpreviousmonth
-//2.få lastdaypfprevmonth att räkna baklänges så långt divvarna räcker.
-
-// dateCells[i + firstDayIndex - 2].innerHTML = i;
-//
-//prevmonth; prevmonth--;
-//dateCells[firstDayIndex - 3].innerHTML = prevmonth;
-
-// if (days.helgdag = true)
-
-// API:
-// hämta ut antalet helgdagar i aktuell månad
-// Översätta värdet av helgdagskey från string till number med .getDate()
-// Matcha ihop helgdagsdatum med kalenderns datum
-///
-// For each objekt in holidays loop logga ut datums värde.
-//`<p>${helgdagsnamnet}</p>`
