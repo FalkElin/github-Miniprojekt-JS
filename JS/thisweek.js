@@ -154,7 +154,7 @@ function printWeatherIconNight(sky) {
       break;
 
     case "Snow":
-      winter.classList.remove("hide-icon");
+      snow.classList.remove("hide-icon");
       break;
 
     case "Thunderstorm":

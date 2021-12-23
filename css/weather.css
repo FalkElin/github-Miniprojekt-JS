@@ -7,7 +7,7 @@
 }
 
 .time-div h3 {
-  margin-right: .5rem;
+  margin-right: 0.5rem;
   font-weight: 100;
 }
 
@@ -47,7 +47,7 @@
   position: relative;
   background-color: #161616;
   display: flex;
-  /* width: 100%; */
+
   justify-content: center;
   flex-direction: column;
   padding: 2rem;
@@ -115,18 +115,12 @@
 }
 .title {
   font-size: 2rem;
-  font-weight:200;
+  font-weight: 200;
   text-align: center;
   margin: auto;
   margin-top: 1rem;
-  border-bottom: rgba(95, 158, 160, 0.157) .5rem solid;
+  border-bottom: rgba(95, 158, 160, 0.157) 0.5rem solid;
   color: rgba(255, 255, 255, 0.657);
   /* color: #32746d; */
   width: 40%;
-  
-  /* background-color: cadetblue; */
-  /* color: rgba(0, 0, 0, 0.212); */
-  /* border-radius: 100%;
-  width:5rem;
-  height:5rem;
-} */
+}

@@ -13,7 +13,6 @@ function mainTodo() {
 // let todos = []
 /** Skapar li element */
 function createLi(todo) {
-  console.log(todo.name);
   const li = document.createElement("li");
   const span = document.createElement("span");
   span.textContent = todo.name;
@@ -24,7 +23,7 @@ function createLi(todo) {
   const removeBtn = document.createElement("button");
   removeBtn.textContent = "Ta bort";
   (removeBtn.onclick = () => deleteTodo(todo, li, deleteTodo, removeBtn)),
-  renderCalendarHolidays(removeBtn);
+    renderCalendarHolidays(removeBtn);
 
   li.appendChild(span);
   li.appendChild(label);
@@ -80,7 +79,6 @@ function saveEdit(todo, input) {
 function addTodo(event) {
   event.preventDefault();
   let todo = constructFormObject(event.target);
-  console.log(todos);
 
   if (input.value) {
     todos.unshift(todo);
@@ -134,7 +132,6 @@ function renderTodos() {
   // const filteredTodos = todos.filter((todo) => true);
   // Lägger tillbaka todos
   for (const todo of todos) {
-    console.log('hhh');
     const li = createLi(todo);
     ul.appendChild(li);
   }
