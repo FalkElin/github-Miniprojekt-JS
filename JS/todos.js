@@ -13,7 +13,7 @@ function mainTodo() {
 }
 
 /**
- * Create li element with a span, an edit button and delete button. 
+ * Create li element with a span, an edit button and delete button.
  */
 function createLi(todo) {
   const li = document.createElement("li");
@@ -47,7 +47,6 @@ function beginEdit(todo, li, button) {
   button.textContent = "Spara";
   button.onclick = () => saveEdit(todo, input);
 }
-
 
 /** If a cell's text content containes the same as a todo's name and 'todo'. Remove the first child. /*
 /** Remove a todo */
@@ -89,7 +88,6 @@ function addTodo(event) {
     todos.unshift(todo);
     input.value = "";
     saveTodosToLS();
-    saveCalendar();
     renderTodos(todo);
     renderCalendar();
   }
