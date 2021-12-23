@@ -1,5 +1,5 @@
 body {
-  background-image: url(/pictures/winter-day.jpeg);
+  background-image: url(pictures/winter-day.jpeg);
   height: 100%;
   background-size: cover;
   display: flex;
