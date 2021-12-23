@@ -140,7 +140,7 @@ function renderCalendar() {
         dateCells[i].append(todoBadge);
         dateCells[i].append(todoBadge);
         todoBadge.addEventListener("click", showDaysTodo);
-        saveToLS(todoBadge.textContent);
+        saveCalendarTodosToLS(todoBadge.textContent);
       }
 
       let todoDate;

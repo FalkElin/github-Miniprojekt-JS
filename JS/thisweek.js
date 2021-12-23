@@ -18,8 +18,7 @@ function getLocation() {
  */
 async function getCurrentWeather(position) {
   // gets lon and lat position which is read in api call and shows degree icon
-  const degree = document.querySelector(".temperature");
-  degree.classList.remove("hide-degree");
+
   lat = position.coords.latitude.toFixed(2);
   long = position.coords.longitude.toFixed(2);
 
@@ -32,6 +31,8 @@ async function getCurrentWeather(position) {
   const sky = data.weather[0].main;
   const city = data.name;
   const sunset = data.sys.sunset;
+  const degree = document.querySelector(".temperature");
+  degree.classList.remove("hide-degree");
 
   //starts functions when api is succesfully returned
   printCityName(city);
@@ -40,8 +41,8 @@ async function getCurrentWeather(position) {
 
 /**
  * prints different message depending on current temperature and weather
- * @param {*} temperature
- * @param {*} sky
+ * @param {any} temperature
+ * @param {any} sky
  */
 function printWeatherMessage(temperature, sky, sunset) {
   const weatherDescription = document.querySelector(".temperature-description");
@@ -67,7 +68,12 @@ function printWeatherMessage(temperature, sky, sunset) {
       printTemperatureMessage(temperature);
   }
 }
-
+/**
+ * makes time fetched from api display as standard time. Changes background when the sun sets to night background.
+ * @param {any} sunset
+ * @param {any} time
+ * @returns background image if statement is true
+ */
 function setBackground(sunset, time) {
   let unix_timestamp = sunset;
   let date = new Date(unix_timestamp * 1000);
@@ -83,6 +89,11 @@ function setBackground(sunset, time) {
   return formattedSunset;
 }
 
+/**
+ * Gets local temperature and prints different depending on temperature
+ * @param {any} temperature
+ * @returns weather description depending on temperature
+ */
 function printTemperatureMessage(temperature) {
   if (temperature > 1) {
     return "plusgrader";
@@ -94,6 +105,11 @@ function printTemperatureMessage(temperature) {
   }
 }
 
+/**
+ * checks if any statement matches the current weather api data, and return weather description from the true statement.
+ * @param {any} sky
+ * @returns weather description based on current weather
+ */
 function printWeatherMessageDay(sky) {
   if (sky === "Clouds") {
     return "moln";
@@ -109,7 +125,11 @@ function printWeatherMessageDay(sky) {
     return "åska";
   }
 }
-
+/**
+ *  checks if any statement matches the current weather api data, and return weather icon from the true statement.
+ * @param {*} sky
+ * @returns weathericon
+ */
 function printWeatherMessageNight(sky) {
   if (sky === "Clouds") {
     return "molnigt";
@@ -129,7 +149,7 @@ function printWeatherMessageNight(sky) {
 }
 /**
  * Prints different icon at night depending on current weather from api
- * @param {*} sky
+ * @param {any} sky
  */
 function printWeatherIconNight(sky) {
   cloud = document.querySelector(".cloud");
@@ -248,7 +268,7 @@ function getCurrentTime(today) {
 }
 
 /**
- * coverts numbers of weekday to swedish weekdays in letters
+ * converts numbers of weekday to swedish weekdays in letters
  * @param {*} today
  * @returns days in letters instead of numbers
  */
@@ -292,24 +312,3 @@ function getDateInNumbers(today) {
 function printCityName(city) {
   document.querySelector(".city").innerHTML = city;
 }
-
-// async function test() {
-//   console.log(await getSwedishHolidays(calendar.year, calendar.month));
-// }
-
-// async function getSwedishHolidays(year, month) {
-//   const response = await fetch(
-//     `https://sholiday.faboul.se/dagar/v2.1/${year}/${month + 1}`
-//   );
-//   const data = await response.json();
-//   const days = data.dagar;
-
-//   const holidays = [];
-//   for (let i = 0; i < days.length; i++) {
-//     if (days[i].helgdag) {
-//       holidays.push(days[i]);
-//     }
-//   }
-
-//   return holidays;
-// }

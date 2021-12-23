@@ -14,8 +14,8 @@ _I den här uppgiften skall ni bygga ett verktyg där användaren kan skapa och 
 
 ## Made by
 
-**Miranda Nilhag[github](https://github.com/mirrenil)**
-**Linnea Albertsson[github](https://github.com/liinneea-a)**
-**Elin Falk.[github](https://github.com/FalkElin)**
+**Miranda Nilhag [github](https://github.com/mirrenil)**
+**Linnea Albertsson [github](https://github.com/liinneea-a)**
+**Elin Falk. [github](https://github.com/FalkElin)**
 
 [demo](https://falkelin.github.io/github-Miniprojekt-JS/)

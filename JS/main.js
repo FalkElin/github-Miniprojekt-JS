@@ -2,7 +2,6 @@ window.addEventListener("load", main);
 
 let todos = [];
 let dateOfTodos = [];
-let todoBadge = [];
 
 function main() {
   loadTodos();
@@ -13,6 +12,11 @@ function main() {
 }
 
 /** Saves todos to local storage */
+function saveCalendarTodosToLS(todoBadge) {
+  localStorage.setItem("todoBadge", JSON.stringify(todoBadge));
+  console.log(todoBadge);
+}
+
 function saveTodosToLS() {
   const todosAsString = JSON.stringify(todos);
   localStorage.setItem("todos", todosAsString);
