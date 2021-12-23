@@ -1,5 +1,3 @@
-window.onload = main;
-
 let calendar = {
   date: new Date(),
   month: null,
@@ -7,7 +5,7 @@ let calendar = {
   today: null,
 };
 
-function main() {
+function initCalendar() {
   addCalendarEventlisteners();
 
   calendar.month = calendar.date.getMonth();
@@ -140,7 +138,6 @@ function renderCalendar() {
         dateCells[i].append(todoBadge);
         dateCells[i].append(todoBadge);
         todoBadge.addEventListener("click", showDaysTodo);
-        saveCalendarTodosToLS(todoBadge.textContent);
       }
 
       let todoDate;

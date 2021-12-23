@@ -1,5 +1,3 @@
-window.addEventListener("load", mainTodo);
-
 /** Global scope */
 const form = document.querySelector("#todoForm");
 const input = document.querySelector("input");
@@ -7,7 +5,7 @@ const mains = document.querySelector(".main");
 const ul = document.querySelector("#todoList");
 let todoParagraph;
 
-function mainTodo() {
+function initTodo() {
   addEventListeners();
   renderTodos();
 }
@@ -61,13 +59,12 @@ function deleteTodo(todo, li, removeBtn) {
   const input = document.createElement("input");
   input.type = "text";
   input.value = todo.name;
-  todos.pop(todo);
+  const todoIndex = todos.indexOf(todo);
+  todos.splice(todoIndex, 1);
   ul.removeChild(li);
   removeBtn.textContent = "Ta bort";
   (removeBtn.onclick = () => deleteTodo(todo, input, removeBtn)),
     renderTodosInCalendar(removeBtn);
-  renderTodosInCalendar();
-  removeTodoFromLS();
   saveTodosToLS();
   renderCalendar();
   renderCalendarHolidays();
@@ -94,20 +91,7 @@ function addTodo(event) {
   // renderTodosInCalendar();
 }
 
-// function addDate(event) {
-//   event.preventDefault();
-//   const date = constructFormObject(event.target);
-//   const dateInput = +form.getElementsById('date').value;
-//   input.type = Number;
-//   input.value = dateValue;
 
-//   if (dateValue) {
-//     dateOfTodos.unshift(date);
-//     dateValue = "";
-//     saveCalendarToLS();
-//     renderCalendar();
-//   }
-// }
 /**
  * Adds the todos from the todo list to the calendar
  */

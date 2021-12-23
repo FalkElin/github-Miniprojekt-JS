@@ -1,22 +1,16 @@
 window.addEventListener("load", main);
 
 let todos = [];
-let dateOfTodos = [];
 
 function main() {
   loadTodos();
-  loadTodosInLS();
   getLocation();
   startClock();
-  mainTodo();
+  initTodo();
+  initCalendar();
 }
 
 /** Saves todos to local storage */
-function saveCalendarTodosToLS(todoBadge) {
-  localStorage.setItem("todoBadge", JSON.stringify(todoBadge));
-  console.log(todoBadge);
-}
-
 function saveTodosToLS() {
   const todosAsString = JSON.stringify(todos);
   localStorage.setItem("todos", todosAsString);
@@ -27,19 +21,3 @@ function loadTodos() {
   todos = JSON.parse(todosAsString || "[]");
 }
 
-/** Removes a todo from local storage */
-function removeTodoFromLS(index) {
-  const todoAsString = JSON.parse(localStorage.getItem("todos")) || [];
-  localStorage.setItem("todos", JSON.stringify(todos));
-  todoAsString.splice(index, -1);
-}
-
-function saveCalendarToLS() {
-  const todoDateAsString = localStorage.getItem("dateOfTodos");
-  localStorage.setItem("dateOfTodos", todoDateAsString);
-}
-
-function loadTodosInLS() {
-  const todoDateAsString = localStorage.getItem("dateOfTodos");
-  dateOfTodos = JSON.parse(todoDateAsString || "[]");
-}
