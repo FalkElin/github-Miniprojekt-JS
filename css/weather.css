@@ -38,20 +38,20 @@
   display: flex;
   color: #8995aa;
   font: 16px/1.4 "Mulish", sans-serif;
-  height: 100vh;
+  height: 100vw;
   width: 19rem;
   overflow-y: scroll;
+  border-radius: 50px 50px 50px 50px;
+  margin: 1rem auto;
 }
 
 .weather-data {
   position: relative;
   background-color: #161616;
   display: flex;
-
   justify-content: center;
   flex-direction: column;
   padding: 2rem;
-  padding-top: 0;
 }
 
 .city {
@@ -121,6 +121,5 @@
   margin-top: 1rem;
   border-bottom: rgba(95, 158, 160, 0.157) 0.5rem solid;
   color: rgba(255, 255, 255, 0.657);
-  /* color: #32746d; */
   width: 40%;
 }

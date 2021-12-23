@@ -1,8 +1,49 @@
 @media (max-width: 768px) {
-  .calendar-container {
-    min-width: unset;
-    width: 40%;
-    height: 55rem;
-    margin: 2rem auto;
+
+  body {
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
   }
+
+  .welcome-segment {
+    display: flex;
+    height: 100%;
+    width: auto;
+   
+  }
+
+  .calendar-container {
+    display:none;
+  }
+  
+  .weather-data {
+    opacity: 80%;
+  }
+
+  #todoForm input,
+  #todoForm button {
+    font-size: 14px;
+  }
+
+  #header h1 {
+    font-size: 20px;
+  }
+
+  #todoList li span,
+  #todoList li input[type="text"] {
+    font-size: 16px;
+  }
+
+  #todoList li button {
+    font-size: 12px;
+  }
+
+  .todo-div {
+    margin:0;
+  }
+
+  
 }
