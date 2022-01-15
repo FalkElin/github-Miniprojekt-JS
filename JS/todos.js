@@ -3,6 +3,8 @@ const form = document.querySelector("#todoForm");
 const input = document.querySelector("input");
 const mains = document.querySelector(".main");
 const ul = document.querySelector("#todoList");
+//const dateCells = document.querySelectorAll("div.date-cells");
+//const dateCells = document.querySelector("div.cells-containe.grid");
 let todoParagraph;
 
 function initTodo() {
@@ -55,8 +57,11 @@ function beginEdit(todo, li, button) {
   editDate.setAttribute("type", "date");
   editDate.setAttribute("name", "date");
   editDate.value = todo.date;
+  dateCells.textContent = '';
+  // dateCells.appendChild(editDate);
   li.appendChild(editDate);
   button.onclick = () => saveEdit(todo, input, editDate)
+  renderCells();
 }
 
 /**
