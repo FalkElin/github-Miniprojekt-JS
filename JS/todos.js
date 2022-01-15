@@ -47,8 +47,18 @@ function beginEdit(todo, li, button) {
   li.removeChild(span);
   li.prepend(input);
   button.textContent = "Spara";
-  button.onclick = () => saveEdit(todo, input);
+/**
+ * Creates a date picker so you can change the date of the todo
+ * @type {HTMLInputElement} date
+ */
+  const editDate = document.createElement("input");
+  editDate.setAttribute("type", "date");
+  editDate.setAttribute("name", "date");
+  editDate.value = todo.date;
+  li.appendChild(editDate);
+  button.onclick = () => saveEdit(todo, input, editDate)
 }
+
 /**
  *  Remove a todo
  * If a cell's text content containes the same as a todo's name and 'todo'. Remove the first child.
@@ -78,8 +88,9 @@ function deleteTodo(todo, li, removeBtn) {
  * Saves changes in the list
  * @type {HTMLButtonElement} todo 
  */
-function saveEdit(todo, input) {
+function saveEdit(todo, input, editDate) {
   todo.name = input.value;
+  todo.date = editDate.value;
   saveTodosToLS();
   renderTodos();
 }
@@ -123,4 +134,4 @@ function addEventListeners() {
 function constructFormObject(formElement) {
   const formData = new FormData(formElement);
   return Object.fromEntries(formData);
-}
+} 
