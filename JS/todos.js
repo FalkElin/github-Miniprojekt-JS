@@ -55,13 +55,12 @@ function beginEdit(todo, li, button) {
  */
   const editDate = document.createElement("input");
   editDate.setAttribute("type", "date");
-  editDate.setAttribute("name", "date");
+  editDate.setAttribute("id", "date");
   editDate.value = todo.date;
   dateCells.textContent = '';
   // dateCells.appendChild(editDate);
   li.appendChild(editDate);
   button.onclick = () => saveEdit(todo, input, editDate)
-  renderCells();
 }
 
 /**
@@ -97,7 +96,8 @@ function saveEdit(todo, input, editDate) {
   todo.name = input.value;
   todo.date = editDate.value;
   saveTodosToLS();
-  renderTodos();
+  renderTodos(todo);
+    renderCalendar();
 }
 /** Adds todos to the array */
 function addTodo(event) {
