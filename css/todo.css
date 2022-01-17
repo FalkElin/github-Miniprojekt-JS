@@ -24,7 +24,7 @@ input[type="text"]:focus {
   border-bottom-right-radius: 3px;
 }
 .todo-element {
-  max-height: 27rem;
+  max-height: 30rem;
   overflow-y: scroll;
 }
 
@@ -54,14 +54,15 @@ input[type="text"]:focus {
 
 #todoForm input {
   border: none;
-  height: 50px;
-  width: 100%;
+  height: 45px;
+  width: 95%;
+  padding: .5rem;
   font: 14px/1.4 "Mulish", sans-serif;
   color: #333;
 }
 
 #todoForm button {
-  padding: 0 1em;
+  padding: .7rem;
   font: 16px/1.4 "Mulish", sans-serif;
   background-color: rgb(123, 171, 184);
   color: #fff;
