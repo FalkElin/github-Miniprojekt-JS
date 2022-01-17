@@ -17,13 +17,15 @@ input[type="text"]:focus {
 .todo-div {
   background-color: #8995aa;
   box-shadow: 5px 5px 20px -5px rgba(0, 0, 0, 0.2);
-  width: 19rem;
+  min-width: 15rem;
+  max-width: 19rem;
   min-height: 100%;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
 }
 .todo-element {
-  height: auto;
+  max-height: 27rem;
+  overflow-y: scroll;
 }
 
 /* todo div header */
@@ -46,13 +48,15 @@ input[type="text"]:focus {
 #todoForm {
   position: relative;
   margin: 0 0 20px;
+  width: 100%;
+  min-width: 13rem;
 }
 
 #todoForm input {
   border: none;
-  padding: 10px 100px 10px 10px;
+  /* padding: 10px 100px 10px 10px; */
   height: 50px;
-  width: 130px;
+  width: 100%;
   font: 14px/1.4 "Mulish", sans-serif;
   color: #333;
 }
