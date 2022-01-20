@@ -83,10 +83,7 @@ function setBackground(sunset, time) {
 
   // Will display time in 10:30:23 format
   let formattedSunset = hours + ":" + minutes.substr(-2);
-
-  // if (time > formattedSunset) {
-  //   document.body.style = "background-image: url(/pictures/winter-night.jpg);";
-  // }
+  
   return formattedSunset;
 }
 
