@@ -1,7 +1,8 @@
 body {
-  background-image: url(pictures/winter-day.jpeg);
-  height: 100%;
+  background-image: url(/pictures/winter-day.jpeg) ;
+  height: 100vh;
   background-size: cover;
+  background-repeat: no-repeat;
   display: flex;
   margin: 0;
   background-position: center;

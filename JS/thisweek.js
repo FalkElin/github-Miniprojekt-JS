@@ -74,6 +74,7 @@ function printWeatherMessage(temperature, sky, sunset) {
  * @param {any} time
  * @returns background image if statement is true
  */
+
 function setBackground(sunset, time) {
   let unix_timestamp = sunset;
   let date = new Date(unix_timestamp * 1000);
@@ -83,9 +84,9 @@ function setBackground(sunset, time) {
   // Will display time in 10:30:23 format
   let formattedSunset = hours + ":" + minutes.substr(-2);
 
-  if (time > formattedSunset) {
-    document.body.style = "background-image: url(/pictures/winter-night.jpg);";
-  }
+  // if (time > formattedSunset) {
+  //   document.body.style = "background-image: url(/pictures/winter-night.jpg);";
+  // }
   return formattedSunset;
 }
 
